@@ -1,0 +1,69 @@
+:root {
+  /* Farbpalette */
+  --primary-1: #CCD1FF;
+  --primary-2: #8A95FD;
+  --primary-3: #3441F9;
+  --primary-4: #1F2CCB;
+  --primary-5: #0F197A;
+
+  --secondary-1: #FFC3A1;
+  --secondary-2: #FF9D6A;
+  --secondary-3: #FD7A26;
+  --secondary-4: #D35D10;
+  --secondary-5: #9A3C06;
+
+  --accent-1: #C9F4F6;
+  --accent-2: #B1E8EC;
+  --accent-3: #9FDFE4;
+  --accent-4: #7AC4CB;
+  --accent-5: #509196;
+
+  --background-1: #D3D5F8;
+  --background-2: #B5BAF1;
+  --background-3: #999EF6;
+  --background-4: #6D72C6;
+  --background-5: #45488B;
+
+  --neutral-1: #FFFFFF;
+  --neutral-2: #E0E0E0;
+  --neutral-3: #B3B3B3;
+  --neutral-4: #808080;
+  --neutral-5: #4D4D4D;
+  --neutral-6: #000000;
+
+  /* Typografie */
+  --font-headline-1: "Futura", bold, 26px;
+  --font-headline-2: "Futura", medium, 20px;
+  --font-button: "Futura", medium, 16px;
+  --font-body: "Helvetica Neue", bold, 16px;
+  --font-detail: "Helvetica Neue", medium, 14px;
+
+  /* Spacings */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+
+  /* Border Radius */
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 16px;
+
+  /* Schatten */
+  --box-shadow-light: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --box-shadow-medium: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  --box-shadow-heavy: 0px 8px 16px rgba(0, 0, 0, 0.3);
+
+  /* Layout-Grenzen */
+  --max-width: 1200px;
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
