@@ -9,7 +9,7 @@ for /f "tokens=1-5 delims=:-. " %%a in ("%date% %time%") do (
 )
 set LOGFILE=start_log_%year%-%month%-%day%T%hour%-%minute%.txt
 
-echo Starting diaFragREACT... > %LOGFILE%
+echo Starting App... > %LOGFILE%
 echo ======================== >> %LOGFILE%
 echo %year%-%month%-%day%T%hour%:%minute% >> %LOGFILE%
 echo ======================== >> %LOGFILE%
