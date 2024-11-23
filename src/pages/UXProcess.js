@@ -1,158 +1,133 @@
 import React from "react";
 import styled from "styled-components";
+import SectionHeader from "../components/SectionHeader";
+import Card from "../components/Card";
+import HighlightText from "../components/HighlightText";
+import ImageGallery from "../components/ImageGallery";
+
+// Import images
+import wireframesMidFidelity from "../assets/images/wireframes_mid_fidelity.png";
+import styleguideColorsTypography from "../assets/images/styleguide_colors_typography.png";
 
 const Section = styled.section`
-  padding: var(--spacing-48) var(--spacing-16);
-  max-width: var(--max-width);
+  padding: ${(props) => props.theme.spacing(6)} ${(props) => props.theme.spacing(4)};
+  max-width: ${(props) => props.theme.breakpoints.xl};
   margin: 0 auto;
-  background: var(--neutral-1);
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--box-shadow-light);
+  display: flex;
+  flex-direction: column;
+  gap: ${(props) => props.theme.spacing(6)};
 `;
 
-const SectionHeader = styled.div`
-  text-align: center;
-  margin-bottom: var(--spacing-32);
-
-  h1 {
-    font: var(--font-headline-1);
-    color: var(--primary-3);
-  }
-
-  .subtitle {
-    font: var(--font-detail);
-    color: var(--neutral-4);
-    margin-top: var(--spacing-8);
-  }
+const List = styled.ul`
+  margin: ${(props) => props.theme.spacing(4)} 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: ${(props) => props.theme.spacing(2)};
 `;
 
-const Card = styled.div`
-  background: var(--neutral-1);
-  border-radius: var(--border-radius-medium);
-  box-shadow: var(--box-shadow-light);
-  padding: var(--spacing-32);
-  margin-bottom: var(--spacing-32);
+const ListItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: ${(props) => props.theme.spacing(3)};
+  padding: ${(props) => props.theme.spacing(2)};
+  border-radius: ${(props) => props.theme.borderRadius.small};
+  background: ${(props) => props.theme.colors.neutral.lightest};
+  font-size: ${(props) => props.theme.typography.fontSize.body};
+  color: ${(props) => props.theme.colors.neutral.dark};
+  box-shadow: ${(props) => props.theme.boxShadow.light};
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  h2 {
-    font: var(--font-headline-2);
-    color: var(--primary-3);
-    margin-bottom: var(--spacing-16);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${(props) => props.theme.boxShadow.medium};
   }
 
-  p {
-    font: var(--font-body);
-    color: var(--neutral-6);
-    margin-bottom: var(--spacing-16);
-
-    .highlight {
-      color: var(--primary-4);
-      font-weight: bold;
-    }
-  }
-
-  ul {
-    margin-top: var(--spacing-16);
-    padding-left: var(--spacing-32);
-
-    li {
-      margin-bottom: var(--spacing-8);
-      color: var(--neutral-6);
-      font: var(--font-detail);
-    }
-
-    strong {
-      color: var(--primary-3);
-    }
-  }
-
-  img {
-    width: 100%;
-    margin-top: var(--spacing-24);
-    border-radius: var(--border-radius-medium);
-    box-shadow: var(--box-shadow-light);
+  strong {
+    font-weight: bold;
+    color: ${(props) => props.theme.colors.primary.dark};
   }
 `;
 
-export default function UXProcess() {
+export default function UXDesignProcess() {
+  const galleryImages = [
+    { src: wireframesMidFidelity, alt: "Low-Fidelity-Wireframes und Entwürfe" },
+    { src: styleguideColorsTypography, alt: "Styleguide für Farben und Typografie" },
+  ];
+
   return (
     <Section>
       {/* Section Header */}
-      <SectionHeader>
-        <h1>UX-Designprozess</h1>
-        <p className="subtitle">
-          Vom ersten Konzept bis zur finalen Umsetzung – ein nutzerzentrierter Ansatz.
-        </p>
-      </SectionHeader>
+      <SectionHeader
+        title="UX-Designprozess"
+        subtitle="Vom ersten Konzept bis zur finalen Umsetzung – ein nutzerzentrierter Ansatz."
+      />
 
       {/* Ideation und Entwürfe */}
-      <Card>
-        <h2>Ideation und Entwürfe</h2>
+      <Card title="Ideation und Entwürfe">
         <p>
           Die ersten Schritte im Designprozess bestanden aus{" "}
-          <span className="highlight">Low-Fidelity-Wireframes</span> und
-          detaillierten <span className="highlight">User Journey Maps</span>, um
-          die grundlegende Struktur der App zu klären. Eine große Herausforderung
-          war es, <strong>KIM</strong> als{" "}
-          <span className="highlight">persönlichen Verbindungs-Assistenten</span>{" "}
-          zu gestalten, statt nur eine Plattform für Klick-Interaktionen zu schaffen.
+          <HighlightText>Low-Fidelity-Wireframes</HighlightText> und{" "}
+          <HighlightText>User Journey Maps</HighlightText>, um die grundlegende
+          Struktur der App zu klären. Eine große Herausforderung war es,{" "}
+          <strong>KIM</strong> als{" "}
+          <HighlightText>persönlichen Verbindungs-Assistenten</HighlightText> zu
+          gestalten, statt nur eine Plattform für Klick-Interaktionen zu schaffen.
         </p>
         <p>
           Um das <strong>Storytelling</strong> und die emotionale Verbindung zu
           verbessern, wechselten wir auf eine{" "}
-          <span className="highlight">mid-fidelity Struktur</span>, die Toms Journey
+          <HighlightText>mid-fidelity Struktur</HighlightText>, die Toms Journey
           detaillierter und ansprechender darstellt.
         </p>
         <p>
-          Der <span className="highlight">Prototyping-Prozess</span> war geprägt
-          von kontinuierlichem Testing und iterativen Verbesserungen. Besonders
-          der Wechsel auf <span className="highlight">mid-fidelity Wireframes</span>{" "}
-          half uns, die App-Nutzung und das <strong>Storytelling</strong> besser zu
+          Der <HighlightText>Prototyping-Prozess</HighlightText> war geprägt von
+          kontinuierlichem Testing und iterativen Verbesserungen. Besonders der
+          Wechsel auf <HighlightText>mid-fidelity Wireframes</HighlightText> half
+          uns, die App-Nutzung und das <strong>Storytelling</strong> besser zu
           veranschaulichen – speziell für den KI-Chat.
         </p>
-        <img
-          src="./assets/images/wireframes_mid_fidelity.png"
-          alt="Low-Fidelity-Wireframes und Entwürfe"
-        />
+        <ImageGallery images={[galleryImages[0]]} />
       </Card>
 
       {/* Interaktionen und Features */}
-      <Card>
-        <h2>Interaktionen und Features</h2>
+      <Card title="Interaktionen und Features">
         <p>
-          Die <strong>interaktiven Features</strong> der App wurden entwickelt, um
-          Toms Journey intuitiv und visuell ansprechend zu gestalten. Dazu
+          Die <strong>interaktiven Features</strong> der App wurden entwickelt,
+          um Toms Journey intuitiv und visuell ansprechend zu gestalten. Dazu
           gehören:
         </p>
-        <ul>
-          <li>
-            📊 Ein „<span className="highlight">Verbindungstiefen-Radialdiagramm</span>“,
-            das Toms Fortschritte, aber auch die Kompatibilität der Gruppe darstellt.
-          </li>
-          <li>
-            🤖 Eine intuitive <span className="highlight">KI-Chat-Funktion</span>, die den
-            ersten Kontakt erleichtert.
-          </li>
-          <li>
-            ❄️ Interaktive <strong>Icebreaker-Fragen</strong>, die soziale Hemmungen abbauen.
-          </li>
-        </ul>
+        <List>
+          <ListItem>
+            📊 Ein „<HighlightText>Verbindungstiefen-Radialdiagramm</HighlightText>“,
+            das Toms Fortschritte und die Kompatibilität der Gruppe darstellt.
+          </ListItem>
+          <ListItem>
+            🤖 Eine intuitive <HighlightText>KI-Chat-Funktion</HighlightText>, die
+            den ersten Kontakt erleichtert.
+          </ListItem>
+          <ListItem>
+            ❄️ Interaktive <strong>Icebreaker-Fragen</strong>, die soziale
+            Hemmungen abbauen.
+          </ListItem>
+        </List>
         <p>
           Der psychologische Ansatz stand im Mittelpunkt, um KIM als{" "}
-          <span className="highlight">„Brückenbauer“</span> zu inszenieren, der
+          <HighlightText>„Brückenbauer“</HighlightText> zu inszenieren, der
           Beziehungen zu einer <strong>emotionalen Tiefe</strong> führt.
         </p>
-        <h2>Styleguide: Farben und Typografie</h2>
+      </Card>
+
+      {/* Styleguide */}
+      <Card title="Styleguide: Farben und Typografie">
         <p>
-          Der <span className="highlight">Styleguide</span> für KIM stellt die
-          konsistente Anwendung von Farben und Typografie sicher. Die Hauptfarben
-          und Schriften wurden sorgfältig ausgewählt, um eine{" "}
-          <strong>emotionale</strong> und <strong>moderne Nutzererfahrung</strong>{" "}
-          zu gewährleisten.
+          Der <HighlightText>Styleguide</HighlightText> für KIM stellt die konsistente
+          Anwendung von Farben und Typografie sicher. Die Hauptfarben und Schriften
+          wurden sorgfältig ausgewählt, um eine <strong>emotionale</strong> und{" "}
+          <strong>moderne Nutzererfahrung</strong> zu gewährleisten.
         </p>
-        <img
-          src="./assets/images/styleguide_colors_typography.png"
-          alt="Styleguide für Farben und Typografie"
-        />
+        <ImageGallery images={[galleryImages[1]]} />
       </Card>
     </Section>
   );

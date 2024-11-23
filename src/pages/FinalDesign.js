@@ -1,208 +1,117 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import SectionHeader from "../components/SectionHeader";
+import Card from "../components/Card";
+import HighlightText from "../components/HighlightText";
+import Carousel from "../components/Carousel";
+
+// Import images for the Carousel
+import appScreen1 from "../assets/images/appscreens/final_app_screens_1.png";
+import appScreen2 from "../assets/images/appscreens/final_app_screens_2.png";
+import appScreen3 from "../assets/images/appscreens/final_app_screens_3.png";
+import appScreen4 from "../assets/images/appscreens/final_app_screens_4.png";
+import appScreen5 from "../assets/images/appscreens/final_app_screens_5.png";
+import appScreen6 from "../assets/images/appscreens/final_app_screens_6.png";
+import appScreen7 from "../assets/images/appscreens/final_app_screens_7.png";
+import appScreen8 from "../assets/images/appscreens/final_app_screens_8.png";
+import appScreen9 from "../assets/images/appscreens/final_app_screens_9.png";
+import appScreen10 from "../assets/images/appscreens/final_app_screens_10.png";
+import appScreen11 from "../assets/images/appscreens/final_app_screens_11.png";
 
 const Section = styled.section`
-  padding: var(--spacing-48) var(--spacing-16);
-  max-width: var(--max-width);
+  padding: ${(props) => props.theme.spacing(6)} ${(props) => props.theme.spacing(4)};
+  max-width: ${(props) => props.theme.breakpoints.xl};
   margin: 0 auto;
-  background: var(--neutral-1);
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--box-shadow-light);
-`;
-
-const SectionHeader = styled.div`
-  text-align: center;
-  margin-bottom: var(--spacing-32);
-
-  h1 {
-    font: var(--font-headline-1);
-    color: var(--primary-3);
-  }
-
-  .subtitle {
-    font: var(--font-detail);
-    color: var(--neutral-4);
-    margin-top: var(--spacing-8);
-  }
-`;
-
-const Card = styled.div`
-  background: var(--neutral-1);
-  border-radius: var(--border-radius-medium);
-  box-shadow: var(--box-shadow-light);
-  padding: var(--spacing-32);
-  margin-bottom: var(--spacing-32);
-
-  h2 {
-    font: var(--font-headline-2);
-    color: var(--primary-3);
-    margin-bottom: var(--spacing-16);
-  }
-
-  p {
-    font: var(--font-body);
-    color: var(--neutral-6);
-    margin-bottom: var(--spacing-16);
-  }
-
-  ul {
-    margin-top: var(--spacing-16);
-    padding-left: var(--spacing-32);
-
-    li {
-      margin-bottom: var(--spacing-8);
-      color: var(--neutral-6);
-      font: var(--font-detail);
-    }
-
-    strong {
-      color: var(--primary-3);
-    }
-  }
-`;
-
-const CarouselContainer = styled.div`
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--border-radius-medium);
-  box-shadow: var(--box-shadow-light);
-`;
-
-const CarouselTrack = styled.div`
   display: flex;
-  transition: transform 0.5s ease-in-out;
-  transform: translateX(${(props) => props.translate}%);
+  flex-direction: column;
+  gap: ${(props) => props.theme.spacing(6)};
 `;
 
-const Slide = styled.div`
-  flex: 0 0 100%;
+const List = styled.ul`
+  margin: ${(props) => props.theme.spacing(4)} 0 0;
+  padding: 0;
+  list-style: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 80%;
-    border-radius: var(--border-radius-medium);
-    box-shadow: var(--box-shadow-light);
-  }
+  flex-direction: column;
+  gap: ${(props) => props.theme.spacing(2)};
 `;
 
-const Button = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--neutral-1);
-  border: none;
-  padding: var(--spacing-16);
-  cursor: pointer;
-  box-shadow: var(--box-shadow-light);
-  border-radius: 50%;
-  font-size: 1.5rem;
-  color: var(--primary-3);
+const ListItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: ${(props) => props.theme.spacing(3)};
+  padding: ${(props) => props.theme.spacing(2)};
+  border-radius: ${(props) => props.theme.borderRadius.small};
+  background: ${(props) => props.theme.colors.neutral.lightest};
+  font-size: ${(props) => props.theme.typography.fontSize.body};
+  color: ${(props) => props.theme.colors.neutral.dark};
+  box-shadow: ${(props) => props.theme.boxShadow.light};
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
   &:hover {
-    background: var(--primary-4);
-    color: var(--neutral-1);
+    transform: translateY(-2px);
+    box-shadow: ${(props) => props.theme.boxShadow.medium};
   }
-  &:focus {
-    outline: none;
+
+  strong {
+    font-weight: bold;
+    color: ${(props) => props.theme.colors.primary.dark};
   }
 `;
 
-const PrevButton = styled(Button)`
-  left: var(--spacing-16);
-`;
-
-const NextButton = styled(Button)`
-  right: var(--spacing-16);
-`;
-
-export default function FinalDesign() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const images = [
-    "./assets/images/appscreens/final_app_screens_1.png",
-    "./assets/images/appscreens/final_app_screens_2.png",
-    "./assets/images/appscreens/final_app_screens_3.png",
-    "./assets/images/appscreens/final_app_screens_4.png",
-    "./assets/images/appscreens/final_app_screens_5.png",
-    "./assets/images/appscreens/final_app_screens_6.png",
-    "./assets/images/appscreens/final_app_screens_7.png",
-    "./assets/images/appscreens/final_app_screens_8.png",
-    "./assets/images/appscreens/final_app_screens_9.png",
-    "./assets/images/appscreens/final_app_screens_10.png",
-    "./assets/images/appscreens/final_app_screens_11.png",
+export default function FinalSolutionDesign() {
+  const carouselSlides = [
+    { src: appScreen1, alt: "App Screen 1" },
+    { src: appScreen2, alt: "App Screen 2" },
+    { src: appScreen3, alt: "App Screen 3" },
+    { src: appScreen4, alt: "App Screen 4" },
+    { src: appScreen5, alt: "App Screen 5" },
+    { src: appScreen6, alt: "App Screen 6" },
+    { src: appScreen7, alt: "App Screen 7" },
+    { src: appScreen8, alt: "App Screen 8" },
+    { src: appScreen9, alt: "App Screen 9" },
+    { src: appScreen10, alt: "App Screen 10" },
+    { src: appScreen11, alt: "App Screen 11" },
   ];
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
 
   return (
     <Section>
-      <SectionHeader>
-        <h1>Finale Lösung und Design</h1>
-        <p className="subtitle">
-          Einblicke in die Hauptfeatures und das finale visuelle Konzept von KIM.
-        </p>
-      </SectionHeader>
+      {/* Section Header */}
+      <SectionHeader
+        title="Finale Lösung und Design"
+        subtitle="Einblicke in die Hauptfeatures und das finale visuelle Konzept von KIM."
+      />
 
-      <Card>
-        <h2>Hauptfeatures</h2>
-        <ul>
-          <li>
-            🤖 <strong>KI-gestützter Chat:</strong> KIM erstellt auf Basis der
-            Antworten des Nutzers ein dynamisches Persönlichkeitsprofil und passt die
-            Fragen im Laufe des Gesprächs an.
-          </li>
-          <li>
+      {/* Hauptfeatures */}
+      <Card title="Hauptfeatures">
+        <List>
+          <ListItem>
+            🤖 <strong>KI-gestützter Chat:</strong>{" "}
+            <HighlightText>KIM erstellt auf Basis der Antworten des Nutzers ein dynamisches Persönlichkeitsprofil</HighlightText> 
+            und passt die Fragen im Laufe des Gesprächs an.
+          </ListItem>
+          <ListItem>
             💡 <strong>Gruppenvorschläge mit Kompatibilitätsscore:</strong>{" "}
-            Basierend auf dem Persönlichkeitsprofil bekommt der Nutzer Gruppen mit
-            hoher Übereinstimmung angezeigt. Dies fördert nicht nur schnelle
-            Verbindungen, sondern auch tiefere Beziehungen.
-          </li>
-          <li>
-            ❄️ <strong>Automatisierte Icebreaker und Gruppentreffen:</strong> KIM
-            schlägt spannende Fragen vor und plant das erste Treffen der Gruppe – so
-            können Nutzer echte Begegnungen ohne Planungsstress erleben.
-          </li>
-          <li>
-            🎨 <strong>Visuelles Design:</strong> Die Farbpalette und Typografie
-            greifen das Thema der emotionalen Tiefe auf und schaffen eine einladende,
-            warme Umgebung für den Nutzer. Das Sparkles-Emoji ✨ ist ein zentrales
-            Symbol, das KIM als den „Funken der Verbindungen“ zeigt.
-          </li>
-        </ul>
+            Basierend auf dem Persönlichkeitsprofil bekommt der Nutzer Gruppen mit hoher Übereinstimmung angezeigt, was 
+            schnelle und tiefere Verbindungen fördert.
+          </ListItem>
+          <ListItem>
+            ❄️ <strong>Automatisierte Icebreaker und Gruppentreffen:</strong>{" "}
+            KIM schlägt spannende Fragen vor und plant das erste Treffen der Gruppe – für echte Begegnungen ohne Planungsstress.
+          </ListItem>
+          <ListItem>
+            🎨 <strong>Visuelles Design:</strong> Die Farbpalette und Typografie greifen das Thema{" "}
+            <HighlightText>emotionaler Tiefe</HighlightText> auf und schaffen eine einladende, warme Umgebung. Das Sparkles-Emoji ✨ symbolisiert KIM als den „Funken der Verbindungen“.
+          </ListItem>
+        </List>
       </Card>
 
-      <Card>
-        <h2>Finale Screenshots</h2>
+      {/* Final App Screens */}
+      <Card title="Finale Screenshots">
         <p>
-          Die finalen Screens von KIM illustrieren die Hauptfeatures wie die
-          Icebreaker-Funktion, das Dashboard und vieles mehr.
+          Die finalen Screens von KIM illustrieren die Hauptfeatures wie die Icebreaker-Funktion, das Dashboard und vieles mehr.
         </p>
-        <CarouselContainer>
-          <CarouselTrack translate={-currentIndex * 100}>
-            {images.map((src, index) => (
-              <Slide key={index}>
-                <img src={src} alt={`App Screen ${index + 1}`} />
-              </Slide>
-            ))}
-          </CarouselTrack>
-          <PrevButton onClick={handlePrev} aria-label="Previous Slide">
-            ◀
-          </PrevButton>
-          <NextButton onClick={handleNext} aria-label="Next Slide">
-            ▶
-          </NextButton>
-        </CarouselContainer>
+        <Carousel slides={carouselSlides} />
       </Card>
     </Section>
   );

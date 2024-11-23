@@ -1,71 +1,75 @@
 import React from "react";
 import styled from "styled-components";
+import SectionHeader from "../components/SectionHeader";
+import Card from "../components/Card";
+import HighlightText from "../components/HighlightText";
+import Blockquote from "../components/Blockquote";
 
 const Section = styled.section`
-  padding: var(--spacing-48) var(--spacing-16);
-  max-width: var(--max-width);
+  padding: ${(props) => props.theme.spacing(6)} ${(props) => props.theme.spacing(4)};
+  max-width: ${(props) => props.theme.breakpoints.xl};
   margin: 0 auto;
-  background: var(--neutral-1);
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--box-shadow-light);
+  display: flex;
+  flex-direction: column;
+  gap: ${(props) => props.theme.spacing(6)};
 `;
 
-const Card = styled.div`
-  background: var(--neutral-1);
-  border-radius: var(--border-radius-medium);
-  box-shadow: var(--box-shadow-light);
-  padding: var(--spacing-32);
-
-  h1 {
-    font: var(--font-headline-1);
-    color: var(--primary-3);
-    margin-bottom: var(--spacing-32);
-    text-align: center;
-  }
-
-  h2 {
-    font: var(--font-headline-2);
-    color: var(--primary-3);
-    margin-bottom: var(--spacing-16);
-  }
-
-  p {
-    font: var(--font-body);
-    color: var(--neutral-6);
-    margin-bottom: var(--spacing-24);
-  }
+const FutureBox = styled.div`
+  background: ${(props) => props.theme.colors.accent.lightest};
+  padding: ${(props) => props.theme.spacing(4)};
+  border-radius: ${(props) => props.theme.borderRadius.medium};
+  box-shadow: ${(props) => props.theme.boxShadow.light};
+  text-align: center;
+  font-size: ${(props) => props.theme.typography.fontSize.body};
+  color: ${(props) => props.theme.colors.primary.dark};
 `;
 
-export default function Reflection() {
+export default function ReflectionAndLearnings() {
   return (
     <Section>
-      <Card>
-        <h1>Reflexion und Learnings</h1>
+      {/* Section Header */}
+      <SectionHeader
+        title="Reflexion und Learnings"
+        subtitle="Herausforderungen, Learnings und die Zukunft von KIM."
+      />
 
-        <h2>Herausforderungen</h2>
+      {/* Herausforderungen */}
+      <Card title="Herausforderungen">
         <p>
-          Die zentrale Herausforderung war, KIM mit einer „Seele“ zu versehen, um Nutzern ein Gefühl der echten Verbindung zu geben.
-          Der iterative Prozess und das psychologische Storytelling halfen dabei, KIM zu etwas zu machen, das Vertrauen und Tiefe vermittelt.
+          Die zentrale Herausforderung war, <HighlightText>KIM</HighlightText> mit einer „<HighlightText>Seele</HighlightText>“ zu versehen, um Nutzern ein
+          Gefühl der echten Verbindung zu geben. Der iterative Prozess und das psychologische Storytelling halfen dabei, KIM zu etwas zu machen, das{" "}
+          <HighlightText>Vertrauen und Tiefe</HighlightText> vermittelt.
         </p>
+      </Card>
 
-        <h2>Learnings</h2>
+      {/* Learnings */}
+      <Card title="Learnings">
         <p>
-          Die Balance zwischen Funktionalität und Emotionalität zu finden, war das größte Learning. Der Wechsel auf mid-fidelity
-          und die Entscheidung, KIM durch psychologisch fundierte Fragen und Emotionen zu formen, zeigte uns, wie wichtig es ist,
-          Flexibilität in den Designprozess einzubringen.
+          Die Balance zwischen <HighlightText>Funktionalität</HighlightText> und <HighlightText>Emotionalität</HighlightText> zu finden, war das größte Learning.
+          Der Wechsel auf <HighlightText>mid-fidelity</HighlightText> und die Entscheidung, KIM durch{" "}
+          <HighlightText>psychologisch fundierte Fragen</HighlightText> und Emotionen zu formen, zeigte uns, wie wichtig es ist, Flexibilität in den
+          Designprozess einzubringen.
         </p>
+      </Card>
 
-        <h2>Was wir anders machen würden</h2>
+      {/* Was wir anders machen würden */}
+      <Card title="Was wir anders machen würden">
         <p>
-          Mit mehr Zeit hätten wir die Usability-Tests früher integriert und KIM’s KI-Funktionen tiefergehend validiert, um die User Experience
-          noch präziser zu gestalten.
+          Mit mehr Zeit hätten wir die <HighlightText>Usability-Tests</HighlightText> früher integriert und KIM’s <HighlightText>KI-Funktionen</HighlightText>{" "}
+          tiefergehend validiert, um die User Experience noch präziser zu gestalten.
         </p>
+      </Card>
 
-        <h2>Zukunftsaussichten</h2>
+      {/* Zukunftsaussichten */}
+      <Card title="Zukunftsaussichten">
         <p>
-          Langfristig könnte KIM eine innovative Plattform für nachhaltige und tiefe soziale Verbindungen werden – nicht nur digital,
-          sondern auch durch reale Treffen und Erlebnisse.
+          Langfristig könnte KIM eine innovative Plattform für nachhaltige und tiefe <HighlightText>soziale Verbindungen</HighlightText> werden – nicht nur
+          digital, sondern auch durch reale Treffen und Erlebnisse.
         </p>
+        <FutureBox>
+          🌟 <strong>Zukunftsvision:</strong> KIM wird ein <HighlightText>„Brückenbauer“</HighlightText>, der Beziehungen über digitale Interaktionen hinaus
+          in die reale Welt führt.
+        </FutureBox>
       </Card>
     </Section>
   );
