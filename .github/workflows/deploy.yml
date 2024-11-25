@@ -1,4 +1,4 @@
-name: Build React App
+name: Deploy React App to GitHub Pages
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,3 +28,10 @@ jobs:
       # 4. Build the React App
       - name: Build React App
         run: npm run build
+
+      # 5. Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
