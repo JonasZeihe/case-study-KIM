@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -9,92 +9,126 @@ const LightboxOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 `;
 
-const LightboxImage = styled.img`
+const LightboxContent = styled.div`
+  position: relative;
   max-width: 90%;
   max-height: 90%;
-  border-radius: ${(props) => props.theme.borderRadius.medium};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    transform: scale(${(props) => props.scale});
+    transition: transform 0.3s ease;
+    cursor: ${(props) => (props.scale > 1 ? "grab" : "zoom-in")};
+  }
 `;
 
 const CloseButton = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
-  background: none;
-  border: none;
+  background: ${(props) => props.theme.colors.accent.main};
   color: ${(props) => props.theme.colors.neutral.white};
+  border: none;
+  border-radius: 50%;
   font-size: 2rem;
   cursor: pointer;
+  padding: ${(props) => props.theme.spacing(2)};
+  z-index: 1001;
 
   &:hover {
-    color: ${(props) => props.theme.colors.accent.main};
+    background: ${(props) => props.theme.colors.accent.dark};
   }
 `;
 
-const ThumbnailGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+const ZoomControls = styled.div`
+  position: absolute;
+  bottom: 20px;
+  display: flex;
   gap: ${(props) => props.theme.spacing(3)};
-`;
+  z-index: 1001;
 
-const Thumbnail = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: ${(props) => props.theme.borderRadius.small};
-  box-shadow: ${(props) => props.theme.boxShadow.light};
-  cursor: pointer;
+  button {
+    background: ${(props) => props.theme.colors.accent.main};
+    border: none;
+    border-radius: 50%;
+    color: ${(props) => props.theme.colors.neutral.white};
+    padding: ${(props) => props.theme.spacing(2)};
+    font-size: 1.5rem;
+    cursor: pointer;
 
-  &:hover {
-    box-shadow: ${(props) => props.theme.boxShadow.medium};
+    &:hover {
+      background: ${(props) => props.theme.colors.accent.dark};
+    }
   }
 `;
 
-// Lightbox Component
-const Lightbox = ({ images }) => {
-  const [currentImage, setCurrentImage] = useState(null);
+export default function Lightbox({ image, onClose }) {
+  const [scale, setScale] = useState(1);
 
-  const openLightbox = (image) => setCurrentImage(image);
-  const closeLightbox = () => setCurrentImage(null);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  const handleZoomIn = () => setScale((prevScale) => Math.min(prevScale + 0.5, 3));
+  const handleZoomOut = () => setScale((prevScale) => Math.max(prevScale - 0.5, 1));
+  const resetZoom = () => setScale(1);
+
+  if (!image || !image.src) {
+    console.error("Lightbox: Invalid image data");
+    return null;
+  }
 
   return (
-    <>
-      <ThumbnailGrid>
-        {images.map((image, index) => (
-          <Thumbnail
-            key={index}
-            src={image.src}
-            alt={image.alt || `Thumbnail ${index + 1}`}
-            onClick={() => openLightbox(image.src)}
-          />
-        ))}
-      </ThumbnailGrid>
-
-      {currentImage && (
-        <LightboxOverlay onClick={closeLightbox}>
-          <CloseButton onClick={closeLightbox} aria-label="Close Lightbox">
-            &times;
-          </CloseButton>
-          <LightboxImage src={currentImage} alt="Lightbox Display" />
-        </LightboxOverlay>
-      )}
-    </>
+    <LightboxOverlay onClick={onClose}>
+      <LightboxContent
+        scale={scale}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <CloseButton onClick={onClose}>&times;</CloseButton>
+        <img
+          src={image.src}
+          alt={image.alt || "Lightbox Image"}
+        />
+        <ZoomControls>
+          <button onClick={handleZoomOut} aria-label="Zoom Out">
+            -
+          </button>
+          <button onClick={handleZoomIn} aria-label="Zoom In">
+            +
+          </button>
+          <button onClick={resetZoom} aria-label="Reset Zoom">
+            ⟳
+          </button>
+        </ZoomControls>
+      </LightboxContent>
+    </LightboxOverlay>
   );
-};
+}
 
-// Prop Types
 Lightbox.propTypes = {
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      alt: PropTypes.string,
-    })
-  ).isRequired,
+  image: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string,
+  }).isRequired,
+  onClose: PropTypes.func.isRequired,
 };
-
-export default Lightbox;

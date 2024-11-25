@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import logoDesktop from '../assets/images/KIM_logo_large.png';
-import logoMobile from '../assets/images/KIM_logo_small.png';
-import Button from './Button'; // Button aus der Komponentenbibliothek
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import SmoothScroller from "../components/SmoothScroller"; // SmoothScroller importieren
+import logoDesktop from "../assets/images/KIM_logo_large.png";
+import logoMobile from "../assets/images/KIM_logo_small.png";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const sections = [
-    { id: 'introduction', label: 'Einführung' },
-    { id: 'project-overview', label: 'Projektüberblick' },
-    { id: 'research', label: 'Entdeckungsphase' },
-    { id: 'architecture', label: 'Architektur' },
-    { id: 'ux-process', label: 'UX-Prozess' },
-    { id: 'final-design', label: 'Finales Design' },
-    { id: 'reflection', label: 'Reflexion' },
+    { id: "introduction", label: "Einführung" },
+    { id: "project-overview", label: "Projektüberblick" },
+    { id: "research", label: "Entdeckungsphase" },
+    { id: "architecture", label: "Architektur" },
+    { id: "ux-process", label: "UX-Prozess" },
+    { id: "final-design", label: "Finales Design" },
+    { id: "reflection", label: "Reflexion" },
   ];
 
   useEffect(() => {
@@ -23,21 +23,9 @@ export default function Header() {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleScrollToSection = (id) => {
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-    setMenuOpen(false);
-  };
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
 
   return (
     <HeaderContainer isScrolled={isScrolled}>
@@ -46,29 +34,23 @@ export default function Header() {
           src={window.innerWidth >= 768 ? logoDesktop : logoMobile}
           alt="KIM Logo"
         />
-        <Nav>
-          {sections.map((section) => (
-            <StyledNavLink
-              key={section.id}
-              onClick={() => handleScrollToSection(section.id)}
-            >
-              {section.label}
-            </StyledNavLink>
+        <DesktopNav>
+          {sections.map(({ id, label }) => (
+            <SmoothScroller key={id} targetId={id}>
+              <NavItem>{label}</NavItem>
+            </SmoothScroller>
           ))}
-        </Nav>
-        <MobileMenuButton onClick={toggleMenu}>
-          {menuOpen ? '✕' : '☰'}
+        </DesktopNav>
+        <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? "✕" : "☰"}
         </MobileMenuButton>
       </HeaderContent>
       {menuOpen && (
         <MobileMenu>
-          {sections.map((section) => (
-            <StyledNavLink
-              key={section.id}
-              onClick={() => handleScrollToSection(section.id)}
-            >
-              {section.label}
-            </StyledNavLink>
+          {sections.map(({ id, label }) => (
+            <SmoothScroller key={id} targetId={id}>
+              <NavItem onClick={() => setMenuOpen(false)}>{label}</NavItem>
+            </SmoothScroller>
           ))}
         </MobileMenu>
       )}
@@ -85,11 +67,9 @@ const HeaderContainer = styled.header`
     isScrolled ? theme.colors.primary.main : theme.colors.neutral.white};
   color: ${({ isScrolled, theme }) =>
     isScrolled ? theme.colors.neutral.white : theme.colors.primary.dark};
-  backdrop-filter: blur(10px);
   box-shadow: ${({ isScrolled, theme }) =>
-    isScrolled ? theme.boxShadow.medium : theme.boxShadow.light};
-  padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(4)};
-  transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    isScrolled ? theme.boxShadow.medium : "none"};
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 `;
 
 const HeaderContent = styled.div`
@@ -98,6 +78,7 @@ const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: ${({ theme }) => theme.spacing(3)};
 `;
 
 const Logo = styled.img`
@@ -108,40 +89,39 @@ const Logo = styled.img`
   }
 `;
 
-const Nav = styled.nav`
+const DesktopNav = styled.nav`
   display: flex;
-  gap: ${({ theme }) => theme.spacing(5)};
+  gap: ${({ theme }) => theme.spacing(4)};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     display: none;
   }
 `;
 
-const StyledNavLink = styled(Button).attrs({
-  variant: 'text', // Wir nutzen die Textvariante der Button-Komponente
-})`
+const NavItem = styled.button`
+  background: none;
+  border: none;
   font-size: ${({ theme }) => theme.typography.fontSize.body};
   color: ${({ theme }) => theme.colors.primary.dark};
   padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(2)};
-  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primary.light};
-    color: ${({ theme }) => theme.colors.neutral.white};
+    color: ${({ theme }) => theme.colors.accent.main};
   }
 `;
 
-const MobileMenuButton = styled(Button).attrs({
-  variant: 'icon',
-})`
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.primary.dark};
+const MobileMenuButton = styled.button`
+  display: none;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.primary.dark};
   }
 `;
 
@@ -157,4 +137,3 @@ const MobileMenu = styled.div`
   padding: ${({ theme }) => theme.spacing(4)};
   gap: ${({ theme }) => theme.spacing(3)};
 `;
-

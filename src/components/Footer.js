@@ -1,12 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-  FaArrowUp,
-} from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaArrowUp } from 'react-icons/fa';
 import logoLarge from '../assets/images/KIM_logo_large.png';
 
 export default function Footer() {
@@ -21,38 +15,22 @@ export default function Footer() {
         <FooterTop>
           <Logo src={logoLarge} alt="KIM Logo" />
           <FooterDescription>
-            Die App für echte Verbindungen. Entwickelt mit dem Ziel, Freundschaften
-            zu fördern, die auf Persönlichkeit und Authentizität basieren.
+            Die App für echte Verbindungen – für authentische Freundschaften und nachhaltige Begegnungen.
           </FooterDescription>
         </FooterTop>
 
+        {/* Kontakt und Soziale Medien */}
         <FooterGrid>
-          {/* Quick Links */}
-          <FooterColumn>
-            <FooterTitle>Schnellzugriff</FooterTitle>
-            <FooterLinks>
-              {['Einführung', 'Projektüberblick', 'Entdeckungsphase', 'Reflexion'].map(
-                (item, index) => (
-                  <FooterLink
-                    key={index}
-                    href={`#${item.toLowerCase().replace(/ /g, '-')}`}
-                  >
-                    {item}
-                  </FooterLink>
-                )
-              )}
-            </FooterLinks>
-          </FooterColumn>
-
-          {/* Kontakt */}
           <FooterColumn>
             <FooterTitle>Kontakt</FooterTitle>
             <FooterLinks>
-              <FooterLink href="mailto:contact@kim-app.com">
-                contact@kim-app.com
-              </FooterLink>
+              <FooterLink href="mailto:contact@kim-app.com">contact@kim-app.com</FooterLink>
               <FooterLink href="tel:+49123456789">+49 123 456 789</FooterLink>
             </FooterLinks>
+          </FooterColumn>
+
+          <FooterColumn>
+            <FooterTitle>Folge uns</FooterTitle>
             <SocialIcons>
               <a
                 href="https://facebook.com"
@@ -88,24 +66,13 @@ export default function Footer() {
               </a>
             </SocialIcons>
           </FooterColumn>
-
-          {/* Rechtliches */}
-          <FooterColumn>
-            <FooterTitle>Rechtliches</FooterTitle>
-            <FooterLinks>
-              <FooterLink href="#impressum">Impressum</FooterLink>
-              <FooterLink href="#datenschutz">Datenschutz</FooterLink>
-            </FooterLinks>
-          </FooterColumn>
         </FooterGrid>
       </FooterContent>
 
       {/* Copyright & Scroll-to-Top */}
       <FooterBottom>
-        <Copyright>
-          © {new Date().getFullYear()} KIM App. Alle Rechte vorbehalten.
-        </Copyright>
-        <ScrollToTopButton onClick={scrollToTop}>
+        <Copyright>© {new Date().getFullYear()} KIM App. Alle Rechte vorbehalten.</Copyright>
+        <ScrollToTopButton onClick={scrollToTop} aria-label="Nach oben scrollen">
           <FaArrowUp />
         </ScrollToTopButton>
       </FooterBottom>
@@ -115,9 +82,10 @@ export default function Footer() {
 
 // Styled Components
 const FooterWrapper = styled.footer`
-  background: ${({ theme }) => theme.colors.neutral.darkest};
-  color: ${({ theme }) => theme.colors.neutral.light};
-  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(4)};
+  background: ${({ theme }) => theme.colors.primary.dark};
+  color: ${({ theme }) => theme.colors.neutral.white};
+  padding: ${({ theme }) => theme.spacing(8)} ${({ theme }) => theme.spacing(4)};
+  text-align: center;
 `;
 
 const FooterContent = styled.div`
@@ -139,14 +107,17 @@ const Logo = styled.img`
 
 const FooterDescription = styled.p`
   font-size: ${({ theme }) => theme.typography.fontSize.body};
-  color: ${({ theme }) => theme.colors.neutral.medium};
   line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
+  color: ${({ theme }) => theme.colors.neutral.light};
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 const FooterGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: ${({ theme }) => theme.spacing(5)};
+  display: flex;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(10)};
+  flex-wrap: wrap;
 `;
 
 const FooterColumn = styled.div`
@@ -158,7 +129,6 @@ const FooterColumn = styled.div`
 const FooterTitle = styled.h4`
   font-size: ${({ theme }) => theme.typography.fontSize.h3};
   color: ${({ theme }) => theme.colors.accent.main};
-  margin-bottom: ${({ theme }) => theme.spacing(2)};
 `;
 
 const FooterLinks = styled.div`
@@ -169,7 +139,7 @@ const FooterLinks = styled.div`
 
 const FooterLink = styled.a`
   font-size: ${({ theme }) => theme.typography.fontSize.body};
-  color: ${({ theme }) => theme.colors.neutral.light};
+  color: ${({ theme }) => theme.colors.neutral.white};
   text-decoration: none;
   transition: color 0.3s ease;
 
@@ -180,11 +150,11 @@ const FooterLink = styled.a`
 
 const SocialIcons = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.spacing(3)};
+  gap: ${({ theme }) => theme.spacing(4)};
 
   a {
-    font-size: 1.5rem;
-    color: ${({ theme }) => theme.colors.neutral.light};
+    font-size: 1.8rem;
+    color: ${({ theme }) => theme.colors.neutral.white};
     transition: color 0.3s ease;
 
     &:hover {
@@ -197,17 +167,18 @@ const FooterBottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral.medium};
-  padding-top: ${({ theme }) => theme.spacing(3)};
+  border-top: 1px solid ${({ theme }) => theme.colors.primary.light};
+  padding-top: ${({ theme }) => theme.spacing(4)};
+  margin-top: ${({ theme }) => theme.spacing(6)};
 `;
 
 const Copyright = styled.p`
   font-size: ${({ theme }) => theme.typography.fontSize.detail};
-  color: ${({ theme }) => theme.colors.neutral.medium};
+  color: ${({ theme }) => theme.colors.neutral.light};
 `;
 
 const ScrollToTopButton = styled.button`
-  background: ${({ theme }) => theme.colors.primary.main};
+  background: ${({ theme }) => theme.colors.accent.main};
   color: ${({ theme }) => theme.colors.neutral.white};
   border: none;
   border-radius: 50%;
@@ -221,7 +192,7 @@ const ScrollToTopButton = styled.button`
   transition: background 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primary.dark};
+    background: ${({ theme }) => theme.colors.accent.dark};
     transform: translateY(-5px);
   }
 `;

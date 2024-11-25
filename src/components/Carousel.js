@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import { useSwipeable } from "react-swipeable";
+import Lightbox from "./Lightbox";
 
-// Styled Components
 const CarouselWrapper = styled.div`
   position: relative;
   overflow: hidden;
   width: 100%;
   max-width: ${(props) => props.theme.breakpoints.xl};
-  margin: ${(props) => props.theme.spacing(4)} auto;
-  border-radius: ${(props) => props.theme.borderRadius.large};
-  box-shadow: ${(props) => props.theme.boxShadow.medium};
-  background: ${(props) => props.theme.colors.background.light};
+  margin: auto;
 `;
 
 const SlideContainer = styled.div`
@@ -24,13 +23,14 @@ const Slide = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   img {
     max-width: 100%;
-    max-height: 500px;
+    max-height: ${(props) => (props.isDesktop ? "500px" : "80vh")};
     border-radius: ${(props) => props.theme.borderRadius.medium};
     cursor: pointer;
-    box-shadow: ${(props) => props.theme.boxShadow.light};
     transition: transform 0.3s ease;
+
     &:hover {
       transform: scale(1.05);
     }
@@ -44,32 +44,27 @@ const Controls = styled.div`
   justify-content: space-between;
   width: 100%;
   transform: translateY(-50%);
-  pointer-events: none;
+`;
 
-  button {
-    pointer-events: all;
-    background: ${(props) => props.theme.colors.primary.main};
-    color: ${(props) => props.theme.colors.neutral.white};
-    border: none;
-    border-radius: 50%;
-    padding: ${(props) => props.theme.spacing(2)};
-    cursor: pointer;
-    font-size: 1.5rem;
-    box-shadow: ${(props) => props.theme.boxShadow.medium};
-    transition: background 0.3s ease, transform 0.3s ease;
+const ControlButton = styled.button`
+  background: ${(props) => props.theme.colors.primary.main};
+  color: ${(props) => props.theme.colors.neutral.white};
+  border: none;
+  border-radius: 50%;
+  padding: ${(props) => props.theme.spacing(2)};
+  cursor: pointer;
 
-    &:hover {
-      background: ${(props) => props.theme.colors.primary.dark};
-      transform: scale(1.1);
-    }
+  &:hover {
+    background: ${(props) => props.theme.colors.primary.dark};
   }
 `;
 
 const Dots = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => props.theme.spacing(4)};
-  gap: ${(props) => props.theme.spacing(2)};
+  margin-top: ${(props) => props.theme.spacing(3)};
+  gap: ${(props) => props.theme.spacing(1)};
+
   button {
     width: 12px;
     height: 12px;
@@ -78,7 +73,6 @@ const Dots = styled.div`
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    transition: background 0.3s ease;
 
     &:hover {
       background: ${(props) => props.theme.colors.primary.dark};
@@ -86,57 +80,67 @@ const Dots = styled.div`
   }
 `;
 
-// Carousel Component
 export default function Carousel({ slides }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const nextSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
-  };
+  const openLightbox = () => setLightboxOpen(true);
 
-  const prevSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
-  };
-
-  const goToSlide = (index) => {
-    setActiveIndex(index);
-  };
-
-  useEffect(() => {
-    const autoplay = setInterval(nextSlide, 4000);
-    return () => clearInterval(autoplay);
-  }, []);
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => setActiveIndex((prev) => (prev + 1) % slides.length),
+    onSwipedRight: () =>
+      setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length),
+  });
 
   return (
-    <CarouselWrapper>
-      <SlideContainer activeIndex={activeIndex}>
-        {slides.map((slide, index) => (
-          <Slide key={index}>
-            <img
-              src={slide.src}
-              alt={slide.alt}
-              onClick={() => window.open(slide.src, "_blank")} // Open in new tab
+    <>
+      <CarouselWrapper {...swipeHandlers}>
+        <SlideContainer activeIndex={activeIndex}>
+          {slides.map((slide, index) => (
+            <Slide key={index} isDesktop={window.innerWidth >= 768}>
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                onClick={openLightbox}
+              />
+            </Slide>
+          ))}
+        </SlideContainer>
+        <Controls>
+          <ControlButton onClick={() => setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length)}>
+            ◀
+          </ControlButton>
+          <ControlButton onClick={() => setActiveIndex((prev) => (prev + 1) % slides.length)}>
+            ▶
+          </ControlButton>
+        </Controls>
+        <Dots>
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              active={index === activeIndex}
+              onClick={() => setActiveIndex(index)}
             />
-          </Slide>
-        ))}
-      </SlideContainer>
-      <Controls>
-        <button onClick={prevSlide} aria-label="Previous Slide">
-          ◀
-        </button>
-        <button onClick={nextSlide} aria-label="Next Slide">
-          ▶
-        </button>
-      </Controls>
-      <Dots>
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            active={activeIndex === index}
-            onClick={() => goToSlide(index)}
-          ></button>
-        ))}
-      </Dots>
-    </CarouselWrapper>
+          ))}
+        </Dots>
+      </CarouselWrapper>
+      {lightboxOpen && (
+        <Lightbox
+        image={slides[activeIndex]} // Übergabe des aktuellen Bildes
+        onClose={() => setLightboxOpen(false)} // Schließen
+      />
+      
+      
+      )}
+    </>
   );
 }
+
+Carousel.propTypes = {
+  slides: PropTypes.arrayOf(
+    PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      alt: PropTypes.string,
+    })
+  ).isRequired,
+};

@@ -3,9 +3,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const StyledBlockquote = styled.blockquote`
+  display: inline-block; /* Breite nur so groß wie der Text */
   font-style: italic;
   color: ${(props) => props.theme.colors.neutral.medium};
-  padding: ${(props) => props.theme.spacing(4)} ${(props) => props.theme.spacing(6)};
+  padding: ${(props) => props.theme.spacing(2)} ${(props) => props.theme.spacing(3)};
   margin: ${(props) => props.theme.spacing(4)} 0;
   border-left: 4px solid ${(props) => props.theme.colors.primary.main};
   background: ${(props) => props.theme.colors.neutral.light};
