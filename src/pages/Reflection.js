@@ -3,7 +3,6 @@ import styled from "styled-components";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
 import HighlightText from "../components/HighlightText";
-import Blockquote from "../components/Blockquote";
 
 const Section = styled.section`
   padding: ${(props) => props.theme.spacing(6)} ${(props) => props.theme.spacing(4)};

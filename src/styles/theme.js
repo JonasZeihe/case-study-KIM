@@ -1,5 +1,3 @@
-const baseFontSize = 16; // Basis-Schriftgröße in px
-
 const theme = {
   colors: {
     primary: {
