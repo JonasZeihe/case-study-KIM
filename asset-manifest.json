@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.js": "/case-study-KIM/static/js/main.b2472896.js",
+    "static/media/persona_tom.png": "/case-study-KIM/static/media/persona_tom.e7306e04d02b919ea132.png",
+    "static/media/competitor_analysis.png": "/case-study-KIM/static/media/competitor_analysis.9ea876a60c4956b7f2a7.png",
+    "static/media/project_overview.png": "/case-study-KIM/static/media/project_overview.f79e50bace46e7e1bb36.png",
+    "static/media/wireframes_mid_fidelity.png": "/case-study-KIM/static/media/wireframes_mid_fidelity.1867b0bcdb2d5b0a80dd.png",
+    "static/media/hero_kim_chat_screen.png": "/case-study-KIM/static/media/hero_kim_chat_screen.4a66259c879c9bd1e359.png",
+    "static/media/user_flow.png": "/case-study-KIM/static/media/user_flow.1e0d10bba193adbf068f.png",
+    "static/media/final_app_screens_2.png": "/case-study-KIM/static/media/final_app_screens_2.0966ca3423eed0bd7504.png",
+    "static/media/final_app_screens_8.png": "/case-study-KIM/static/media/final_app_screens_8.9ed5bf78400f19ebe026.png",
+    "static/media/final_app_screens_6.png": "/case-study-KIM/static/media/final_app_screens_6.6c1bbb480802468555ad.png",
+    "static/media/final_app_screens_1.png": "/case-study-KIM/static/media/final_app_screens_1.5a10e62043d36998439b.png",
+    "static/media/final_app_screens_9.png": "/case-study-KIM/static/media/final_app_screens_9.4206d7f8c05becb86513.png",
+    "static/media/final_app_screens_7.png": "/case-study-KIM/static/media/final_app_screens_7.e0a3efb1677249579555.png",
+    "static/media/final_app_screens_3.png": "/case-study-KIM/static/media/final_app_screens_3.2f6916581954445519f2.png",
+    "static/media/final_app_screens_10.png": "/case-study-KIM/static/media/final_app_screens_10.73d06a04ae782362027c.png",
+    "static/media/final_app_screens_5.png": "/case-study-KIM/static/media/final_app_screens_5.d2c13df353b3dfc65e03.png",
+    "static/media/information_architecture_diagram.png": "/case-study-KIM/static/media/information_architecture_diagram.827ebede1f77ca44fc96.png",
+    "static/media/final_app_screens_4.png": "/case-study-KIM/static/media/final_app_screens_4.bde8cb08a5015fe6a5b0.png",
+    "static/media/user_journey_map.png": "/case-study-KIM/static/media/user_journey_map.83255ff0e11c4af37364.png",
+    "static/media/final_app_screens_11.png": "/case-study-KIM/static/media/final_app_screens_11.e57012b2f5ec84c69eda.png",
+    "static/media/user_research_insights.png": "/case-study-KIM/static/media/user_research_insights.e117520c97d3f9518f08.png",
+    "static/media/styleguide_colors_typography.png": "/case-study-KIM/static/media/styleguide_colors_typography.1853c01a2aff4826f380.png",
+    "static/media/interview_quotes.png": "/case-study-KIM/static/media/interview_quotes.b8c0c9ea7f30f3cb4470.png",
+    "static/media/conceptual_insights.png": "/case-study-KIM/static/media/conceptual_insights.c1234fdd9899e7e50982.png",
+    "static/media/user_story_tom.png": "/case-study-KIM/static/media/user_story_tom.b41db72965130367510b.png",
+    "static/media/KIM_logo_large.png": "/case-study-KIM/static/media/KIM_logo_large.b44e824ceb9e2b33f2e5.png",
+    "index.html": "/case-study-KIM/index.html",
+    "main.b2472896.js.map": "/case-study-KIM/static/js/main.b2472896.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b2472896.js"
+  ]
+}
