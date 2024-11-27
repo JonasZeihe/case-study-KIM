@@ -28,8 +28,9 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: ${({ theme }) => theme.spacing(2)};
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 
+  /* Variant Styling */
   ${({ $variant, theme }) => {
     switch ($variant) {
       case "secondary":
@@ -43,12 +44,31 @@ const StyledButton = styled.button`
         `;
       case "icon":
         return css`
-          background: transparent;
+          background: ${theme.colors.neutral.transparent || "transparent"};
           color: ${theme.colors.primary.main};
           padding: ${theme.spacing(2)};
           border-radius: 50%;
           &:hover {
             background: ${theme.colors.neutral.light};
+            transform: scale(1.1);
+          }
+        `;
+      case "warning":
+        return css`
+          background: ${theme.colors.warning?.main || theme.colors.accent.main};
+          color: ${theme.colors.neutral.white};
+          &:hover {
+            background: ${theme.colors.warning?.dark || theme.colors.accent.dark};
+            box-shadow: ${theme.boxShadow.medium};
+          }
+        `;
+      case "success":
+        return css`
+          background: ${theme.colors.success?.main || theme.colors.secondary.main};
+          color: ${theme.colors.neutral.white};
+          &:hover {
+            background: ${theme.colors.success?.dark || theme.colors.secondary.dark};
+            box-shadow: ${theme.boxShadow.medium};
           }
         `;
       default:
@@ -63,6 +83,7 @@ const StyledButton = styled.button`
     }
   }}
 
+  /* Disabled Styling */
   ${({ disabled, theme }) =>
     disabled &&
     css`
@@ -72,8 +93,21 @@ const StyledButton = styled.button`
       &:hover {
         background: ${theme.colors.neutral.medium};
         box-shadow: none;
+        transform: none;
       }
     `}
+
+  /* Focus Styling */
+  &:focus {
+    outline: 2px solid ${({ theme }) => theme.colors.accent.main};
+    outline-offset: 2px;
+    box-shadow: 0 0 4px ${({ theme }) => theme.colors.accent.main};
+  }
+
+  /* Interactive Transformations */
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 // Icon Wrapper
@@ -95,7 +129,7 @@ const Button = ({ variant = "primary", size = "medium", disabled, icon, children
 
 // Prop Types
 Button.propTypes = {
-  variant: PropTypes.oneOf(["primary", "secondary", "icon"]),
+  variant: PropTypes.oneOf(["primary", "secondary", "icon", "warning", "success"]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   disabled: PropTypes.bool,
   icon: PropTypes.node,

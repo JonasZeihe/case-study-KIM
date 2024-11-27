@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   *, *::before, *::after {
@@ -27,17 +27,20 @@ const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 1 rem;
+    min-height: 100%;
+    height: 100%;
   }
 
   #root {
     display: flex;
     flex-direction: column;
-    min-height: 1 rem;
+    flex: 1;
   }
 
   main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     width: 100%;
   }
 

@@ -55,9 +55,9 @@ const theme = {
   colors,
   typography: {
     fontFamily: {
-      primary: "'Inter', sans-serif",
-      secondary: "'Roboto', sans-serif",
-      button: "'Roboto', sans-serif",
+      primary: "'Futura', sans-serif",
+      secondary: "'Helvetica Neue', sans-serif",
+      button: "'Futura', sans-serif",
     },
     fontSize: {
       h1: scaleFont(3),

@@ -28,7 +28,7 @@ export default function Introduction() {
         textAlign="center"
       >
         <HeroBanner
-          title="KIM – Die Verbindungs-App für echte Freundschaften"
+          title="KIM – Your Friend to meet new Friends"
           subtitle="Verbindungen schaffen, die auf einer Wellenlänge basieren."
           ctaText="Jetzt mehr erfahren"
           onCtaClick={() => alert("CTA geklickt!")}
