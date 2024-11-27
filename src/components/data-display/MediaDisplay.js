@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { FaExpand, FaPlay, FaPause } from "react-icons/fa";
 import Lightbox from "../common/Lightbox";
-import Card from "./Card";
+import Carousel from "../data-display/Carousel";
 
+// Styled Components
 const MediaGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -12,9 +12,12 @@ const MediaGrid = styled.div`
   justify-content: center;
 `;
 
-const MediaContent = styled.div`
+const MediaItem = styled.div`
   position: relative;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  box-shadow: ${({ theme }) => theme.boxShadow.light};
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
@@ -23,77 +26,69 @@ const MediaContent = styled.div`
   }
 
   img,
-  video,
-  audio {
+  video {
     width: 100%;
     height: auto;
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
     object-fit: cover;
+  }
+
+  video {
+    border-radius: ${({ theme }) => theme.borderRadius.medium};
   }
 `;
 
-const FullscreenButton = styled.button`
-  position: absolute;
-  top: ${({ theme }) => theme.spacing(2)};
-  right: ${({ theme }) => theme.spacing(2)};
-  background: ${({ theme }) => theme.colors.accent.main};
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  color: ${({ theme }) => theme.colors.neutral.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.accent.dark};
-  }
+const MediaCaption = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(2)};
+  text-align: center;
+  font-size: ${({ theme }) => theme.typography.fontSize.body};
+  color: ${({ theme }) => theme.colors.neutral.dark};
 `;
 
 export default function MediaDisplay({ media, layout = "grid" }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const openLightbox = (index) => {
-    setActiveMediaIndex(index);
+    setCurrentIndex(index);
     setLightboxOpen(true);
   };
 
   const closeLightbox = () => setLightboxOpen(false);
 
+  if (!media || media.length === 0) {
+    console.error("MediaDisplay: No media provided.");
+    return null;
+  }
+
   return (
     <>
-      <MediaGrid>
-        {media.map((item, index) => (
-          <Card key={index} layout={layout}>
-            <MediaContent onClick={() => openLightbox(index)}>
-              {item.type === "image" && <img src={item.src} alt={item.alt || `Media ${index + 1}`} />}
+      {layout === "grid" && (
+        <MediaGrid>
+          {media.map((item, index) => (
+            <MediaItem key={index} onClick={() => openLightbox(index)}>
+              {item.type === "image" && (
+                <img src={item.src} alt={item.alt || `Media ${index + 1}`} />
+              )}
               {item.type === "video" && (
                 <video controls>
                   <source src={item.src} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )}
-              {item.type === "audio" && (
-                <audio controls>
-                  <source src={item.src} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-              )}
-              <FullscreenButton>
-                <FaExpand />
-              </FullscreenButton>
-            </MediaContent>
-          </Card>
-        ))}
-      </MediaGrid>
+              {item.caption && <MediaCaption>{item.caption}</MediaCaption>}
+            </MediaItem>
+          ))}
+        </MediaGrid>
+      )}
+
+      {layout === "carousel" && (
+        <Carousel slides={media} />
+      )}
+
       {lightboxOpen && (
         <Lightbox
-          images={media.filter((item) => item.type === "image")}
-          currentIndex={activeMediaIndex}
+          media={media}
+          currentIndex={currentIndex}
           onClose={closeLightbox}
         />
       )}
@@ -104,10 +99,11 @@ export default function MediaDisplay({ media, layout = "grid" }) {
 MediaDisplay.propTypes = {
   media: PropTypes.arrayOf(
     PropTypes.shape({
-      type: PropTypes.oneOf(["image", "video", "audio"]).isRequired,
+      type: PropTypes.oneOf(["image", "video"]).isRequired,
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
+      caption: PropTypes.string, // Optional for additional context
     })
   ).isRequired,
-  layout: PropTypes.oneOf(["grid", "carousel"]), // Future-proofing for different layouts
+  layout: PropTypes.oneOf(["grid", "carousel"]),
 };
