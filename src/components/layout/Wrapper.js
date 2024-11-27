@@ -1,43 +1,72 @@
 import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import styled from "styled-components"; // Styled Components importieren
+import PropTypes from "prop-types"; // PropTypes importieren
+
 
 const WrapperContainer = styled.div`
-  /* Grundlegendes Layout */
+ 
+/* Grundlegendes Layout */
   width: 100%;
   max-width: ${({ theme }) => theme.breakpoints.xl};
   margin: 0 auto;
-  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(4)};
+  padding: ${({ padding, theme }) => padding || theme.spacing(6)};
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(6)};
+  gap: ${({ gap, theme }) => gap || theme.spacing(6)};
   align-items: ${({ textAlign }) =>
-    textAlign === "left" ? "flex-start" : textAlign === "right" ? "flex-end" : "center"};
+    textAlign === "left"
+      ? "flex-start"
+      : textAlign === "right"
+      ? "flex-end"
+      : "center"};
   justify-content: ${({ justify }) => justify || "center"};
 
-  /* Farbgebung & Hintergrund */
-  background: ${({ background, theme }) =>
-    background
-      ? background.includes("url")
-        ? `${background} center/cover no-repeat`
-        : background
-      : theme.colors.background.light};
-  color: ${({ theme, textColor }) => textColor || theme.colors.neutral.dark};
-  border-radius: ${({ theme }) => theme.borderRadius.large};
-  box-shadow: ${({ theme }) => theme.boxShadow.medium};
+  /* Dynamischer Hintergrund */
+  background: ${({ gradient, theme, background }) =>
+    gradient
+      ? theme.gradients[gradient] || theme.colors.background.main
+      : background || theme.colors.background.light};
+  color: ${({ textColor, theme }) => textColor || theme.colors.neutral.dark};
 
-  /* Dynamisches Padding für spezielle Varianten */
+  /* Schatten und Border */
+  box-shadow: ${({ shadow, theme }) => shadow || theme.boxShadow.medium};
+  border-radius: ${({ borderRadius, theme }) =>
+    borderRadius || theme.borderRadius.large};
+
+  /* Optional Overlay */
+  ${({ overlayColor }) =>
+    overlayColor &&
+    `
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: ${overlayColor};
+      opacity: 0.5;
+      z-index: 1;
+    }
+  `}
+
+  /* Varianten-Styling */
   ${({ variant, theme }) =>
     variant === "hero" &&
     `
-    padding: ${theme.spacing(8)} ${theme.spacing(4)};
+    padding: ${theme.spacing(8)};
+    background: ${theme.gradients.primaryToSecondary};
+    color: ${theme.colors.neutral.white};
     text-align: center;
   `}
-
+  
   ${({ variant, theme }) =>
     variant === "header" &&
     `
-    padding: ${theme.spacing(10)} ${theme.spacing(6)};
+    padding: ${theme.spacing(6)};
+    background: ${theme.gradients.subtlePrimary};
+    color: ${theme.colors.primary.dark};
   `}
 
   /* Responsive Anpassungen */
@@ -49,18 +78,8 @@ const WrapperContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     padding: ${({ theme }) => theme.spacing(3)};
     gap: ${({ theme }) => theme.spacing(3)};
+    align-items: center;
   }
-`;
-
-const Overlay = styled.div`
-  background: ${({ overlayColor }) => overlayColor || "rgba(0, 0, 0, 0.5)"};
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  border-radius: ${({ theme }) => theme.borderRadius.large};
 `;
 
 const ContentWrapper = styled.div`
@@ -71,45 +90,47 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: ${({ textAlign }) =>
-    textAlign === "left" ? "flex-start" : textAlign === "right" ? "flex-end" : "center"};
+    textAlign === "left"
+      ? "flex-start"
+      : textAlign === "right"
+      ? "flex-end"
+      : "center"};
   gap: ${({ theme }) => theme.spacing(3)};
-`;
-
-const Title = styled.h1`
-  font-size: ${({ theme }) => theme.typography.fontSize.h1};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
-`;
-
-const Subtitle = styled.p`
-  font-size: ${({ theme }) => theme.typography.fontSize.h3};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
-  max-width: 800px;
-  text-align: ${({ textAlign }) => textAlign || "center"};
 `;
 
 const Wrapper = ({
   children,
   title,
   subtitle,
-  background,
-  overlayColor,
-  textAlign = "center",
   variant = "default",
+  gradient,
+  background,
+  textAlign = "center",
+  textColor,
+  padding,
+  gap,
+  overlayColor,
+  shadow,
+  borderRadius,
   justify = "center",
 }) => {
   return (
     <WrapperContainer
+      variant={variant}
+      gradient={gradient}
       background={background}
       textAlign={textAlign}
-      variant={variant}
+      textColor={textColor}
+      padding={padding}
+      gap={gap}
+      overlayColor={overlayColor}
+      shadow={shadow}
+      borderRadius={borderRadius}
       justify={justify}
     >
-      {overlayColor && <Overlay overlayColor={overlayColor} />}
       <ContentWrapper textAlign={textAlign}>
-        {title && <Title>{title}</Title>}
-        {subtitle && <Subtitle textAlign={textAlign}>{subtitle}</Subtitle>}
+        {title && <h1>{title}</h1>}
+        {subtitle && <p>{subtitle}</p>}
         {children}
       </ContentWrapper>
     </WrapperContainer>
@@ -120,11 +141,17 @@ Wrapper.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  variant: PropTypes.oneOf(["default", "hero", "header", "section"]),
+  gradient: PropTypes.string,
   background: PropTypes.string,
-  overlayColor: PropTypes.string,
   textAlign: PropTypes.oneOf(["left", "center", "right"]),
-  variant: PropTypes.oneOf(["default", "hero", "header"]),
-  justify: PropTypes.oneOf(["flex-start", "center", "flex-end"]),
+  textColor: PropTypes.string,
+  padding: PropTypes.string,
+  gap: PropTypes.string,
+  overlayColor: PropTypes.string,
+  shadow: PropTypes.string,
+  borderRadius: PropTypes.string,
+  justify: PropTypes.string,
 };
 
 export default Wrapper;

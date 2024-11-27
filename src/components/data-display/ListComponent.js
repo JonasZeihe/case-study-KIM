@@ -10,6 +10,7 @@ const StyledList = styled.ul`
   display: flex;
   flex-direction: ${({ direction }) => (direction === "horizontal" ? "row" : "column")};
   gap: ${({ theme }) => theme.spacing(3)};
+
   ${({ direction }) =>
     direction === "horizontal" &&
     css`
@@ -24,7 +25,9 @@ const StyledListItem = styled.li`
   gap: ${({ theme }) => theme.spacing(3)};
   padding: ${({ theme }) => theme.spacing(3)};
   background: ${({ theme, variant }) =>
-    variant === "highlighted" ? theme.colors.secondaryAccent.lightest : theme.colors.neutral.light};
+    variant === "highlighted"
+      ? theme.colors.secondaryAccent.lightest
+      : theme.colors.neutral.light};
   color: ${({ theme }) => theme.colors.neutral.dark};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   box-shadow: ${({ theme }) => theme.boxShadow.light};
@@ -33,7 +36,10 @@ const StyledListItem = styled.li`
   &:hover {
     transform: translateY(-3px);
     box-shadow: ${({ theme }) => theme.boxShadow.medium};
-    background: ${({ theme }) => theme.colors.primary.light};
+    background: ${({ theme, variant }) =>
+      variant === "highlighted"
+        ? theme.colors.secondaryAccent.main
+        : theme.colors.primary.light};
     color: ${({ theme }) => theme.colors.neutral.white};
   }
 
@@ -41,6 +47,7 @@ const StyledListItem = styled.li`
     content: "${({ icon }) => icon || "•"}";
     font-size: 1.5rem;
     color: ${({ theme }) => theme.colors.accent.main};
+
     ${({ numbered, index, theme }) =>
       numbered &&
       css`
@@ -66,7 +73,13 @@ const StyledButton = styled.button`
 `;
 
 // React Component
-const ListComponent = ({ items, direction = "vertical", variant = "standard", numbered, onClick }) => {
+const ListComponent = ({
+  items,
+  direction = "vertical",
+  variant = "standard",
+  numbered = false,
+  onClick,
+}) => {
   return (
     <StyledList direction={direction}>
       {items.map((item, index) => (
@@ -77,9 +90,11 @@ const ListComponent = ({ items, direction = "vertical", variant = "standard", nu
           numbered={numbered}
           icon={item.icon}
         >
-          {item.content}
+          <span>{item.content}</span>
           {item.buttonLabel && (
-            <StyledButton onClick={() => onClick && onClick(item)}>{item.buttonLabel}</StyledButton>
+            <StyledButton onClick={() => onClick && onClick(item)}>
+              {item.buttonLabel}
+            </StyledButton>
           )}
         </StyledListItem>
       ))}

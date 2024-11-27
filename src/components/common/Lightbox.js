@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import Button from "../common/Button";
 
 // Styled Components
 const Overlay = styled.div`
@@ -15,7 +14,7 @@ const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
 `;
 
 const ContentWrapper = styled.div`
@@ -26,28 +25,58 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 
   img {
     max-width: 100%;
     max-height: 80vh;
     object-fit: contain;
     border-radius: ${({ theme }) => theme.borderRadius.medium};
+    box-shadow: ${({ theme }) => theme.boxShadow.medium};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    img {
+      max-height: 70vh;
+    }
   }
 `;
 
-const NavigationButton = styled(Button)`
+const NavigationButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   ${({ direction }) => (direction === "left" ? "left: 1rem;" : "right: 1rem;")}
-  z-index: 1001;
+  z-index: 10000;
+  background: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.neutral.white};
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.pill};
+  padding: ${({ theme }) => theme.spacing(3)};
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.dark};
+  }
 `;
 
-const CloseButton = styled(Button)`
+const CloseButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
-  z-index: 1001;
+  z-index: 10000;
+  background: ${({ theme }) => theme.colors.secondary.main};
+  color: ${({ theme }) => theme.colors.neutral.white};
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.pill};
+  padding: ${({ theme }) => theme.spacing(3)};
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.secondary.dark};
+  }
 `;
 
 // Lightbox Component
@@ -62,7 +91,7 @@ const Lightbox = ({ media, currentIndex = 0, onClose }) => {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeIndex, onClose]);
+  }, [onClose]);
 
   const navigate = (direction) => {
     setActiveIndex((prevIndex) =>
@@ -70,8 +99,8 @@ const Lightbox = ({ media, currentIndex = 0, onClose }) => {
     );
   };
 
-  if (!media.length) {
-    console.error("Lightbox: media prop is empty or invalid");
+  if (!media || media.length === 0) {
+    console.error("Lightbox: No media provided or invalid media.");
     return null;
   }
 
@@ -80,27 +109,23 @@ const Lightbox = ({ media, currentIndex = 0, onClose }) => {
   return (
     <Overlay onClick={onClose}>
       <ContentWrapper onClick={(e) => e.stopPropagation()}>
-        <CloseButton variant="icon" size="large" onClick={onClose}>
-          <FaTimes />
+        <CloseButton onClick={onClose}>
+          <FaTimes size={24} />
         </CloseButton>
-        <img src={activeMedia.src} alt={activeMedia.alt || "Lightbox Media"} />
+        <img src={activeMedia.src} alt={activeMedia.alt || "Lightbox media"} />
         {media.length > 1 && (
           <>
             <NavigationButton
-              variant="icon"
-              size="large"
               onClick={() => navigate(-1)}
               direction="left"
             >
-              <FaChevronLeft />
+              <FaChevronLeft size={20} />
             </NavigationButton>
             <NavigationButton
-              variant="icon"
-              size="large"
               onClick={() => navigate(1)}
               direction="right"
             >
-              <FaChevronRight />
+              <FaChevronRight size={20} />
             </NavigationButton>
           </>
         )}

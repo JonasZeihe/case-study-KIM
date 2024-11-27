@@ -16,6 +16,15 @@ const HeroContainer = styled.div`
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius.large};
   box-shadow: ${({ theme }) => theme.boxShadow.medium};
+  position: relative; /* Fix für Header-Überblendung */
+  z-index: 0; /* Sicherstellen, dass es unter dem Header bleibt */
+  width: 100%; /* Passt sich immer an die Breite an */
+  box-sizing: border-box;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(3)};
+    border-radius: ${({ theme }) => theme.borderRadius.medium};
+  }
 `;
 
 const HeroTitle = styled.h1`
@@ -23,6 +32,13 @@ const HeroTitle = styled.h1`
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   line-height: ${({ theme }) => theme.typography.lineHeight.tight};
   margin-bottom: ${({ theme }) => theme.spacing(4)};
+  max-width: 90%; /* Begrenzung für kleinere Viewports */
+  word-wrap: break-word;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.typography.fontSize.h2};
+    margin-bottom: ${({ theme }) => theme.spacing(3)};
+  }
 `;
 
 const HeroSubtitle = styled.p`
@@ -30,6 +46,12 @@ const HeroSubtitle = styled.p`
   line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
   margin-bottom: ${({ theme }) => theme.spacing(5)};
   max-width: 800px;
+  word-wrap: break-word;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.typography.fontSize.detail};
+    margin-bottom: ${({ theme }) => theme.spacing(4)};
+  }
 `;
 
 const CallToAction = styled.button`
@@ -46,6 +68,11 @@ const CallToAction = styled.button`
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.light};
     box-shadow: ${({ theme }) => theme.boxShadow.light};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.typography.fontSize.body};
+    padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(3)};
   }
 `;
 
@@ -72,7 +99,7 @@ HeroBanner.propTypes = {
   subtitle: PropTypes.string,
   ctaText: PropTypes.string,
   onCtaClick: PropTypes.func,
-  gradient: PropTypes.string, // Optional custom gradient
+  gradient: PropTypes.string,
 };
 
 // Default Props

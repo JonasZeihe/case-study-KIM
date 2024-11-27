@@ -2,12 +2,13 @@ import React from "react";
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
-// Styled Components
+/* Styled Components */
 const StyledText = styled.span`
   margin: 0;
   padding: 0;
-  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
   color: ${({ color, theme }) => color || theme.colors.neutral.dark};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  text-align: ${({ align }) => align || "left"};
 
   ${({ variant, theme }) => {
     switch (variant) {
@@ -30,11 +31,24 @@ const StyledText = styled.span`
           font-weight: ${theme.typography.fontWeight.medium};
           margin-bottom: ${theme.spacing(4)};
         `;
+      case "lead":
+        return css`
+          font-size: ${theme.typography.fontSize.body};
+          font-weight: ${theme.typography.fontWeight.medium};
+          color: ${theme.colors.primary.dark};
+          margin-bottom: ${theme.spacing(3)};
+        `;
       case "caption":
         return css`
-          font-size: ${theme.typography.fontSize.caption};
+          font-size: ${theme.typography.fontSize.small};
           font-weight: ${theme.typography.fontWeight.light};
           line-height: ${theme.typography.lineHeight.relaxed};
+          color: ${theme.colors.neutral.medium};
+        `;
+      case "muted":
+        return css`
+          font-size: ${theme.typography.fontSize.body};
+          color: ${theme.colors.neutral.medium};
         `;
       default:
         return css`
@@ -43,21 +57,41 @@ const StyledText = styled.span`
         `;
     }
   }}
+
+  /* Responsive Typografie */
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    ${({ variant, theme }) =>
+      variant === "h1" &&
+      css`
+        font-size: calc(${theme.typography.fontSize.h1} * 0.8);
+      `}
+    ${({ variant, theme }) =>
+      variant === "h2" &&
+      css`
+        font-size: calc(${theme.typography.fontSize.h2} * 0.85);
+      `}
+    ${({ variant, theme }) =>
+      variant === "h3" &&
+      css`
+        font-size: calc(${theme.typography.fontSize.h3} * 0.9);
+      `}
+  }
 `;
 
-// Typography Component
-const Typography = ({ variant = "body", color, children, ...rest }) => {
+/* React Component */
+const Typography = ({ variant = "body", color, align, children, ...rest }) => {
   return (
-    <StyledText as={variant} variant={variant} color={color} {...rest}>
+    <StyledText as={variant} variant={variant} color={color} align={align} {...rest}>
       {children}
     </StyledText>
   );
 };
 
-// Prop Types
+/* Prop Types */
 Typography.propTypes = {
-  variant: PropTypes.oneOf(["h1", "h2", "h3", "body", "caption"]),
+  variant: PropTypes.oneOf(["h1", "h2", "h3", "body", "caption", "lead", "muted"]),
   color: PropTypes.string,
+  align: PropTypes.oneOf(["left", "center", "right"]),
   children: PropTypes.node.isRequired,
 };
 

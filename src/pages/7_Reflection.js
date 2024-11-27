@@ -1,15 +1,14 @@
-import React from 'react';
-import Wrapper from '../components/layout/Wrapper';
-import Card from '../components/data-display/Card';
-import Typography from '../components/common/Typography';
-import ListComponent from '../components/data-display/ListComponent';
+import React from "react";
+import Wrapper from "../components/layout/Wrapper";
+import Typography from "../components/common/Typography";
+import ListComponent from "../components/data-display/ListComponent";
 
 export default function ReflectionPage() {
   const challenges = [
     {
       content: (
         <>
-          🧠 <Typography highlight="Emotionalität" /> vs. Funktionalität: Die größte Herausforderung bestand darin, eine Plattform zu schaffen, die
+          🧠 <strong>Emotionalität vs. Funktionalität:</strong> Eine Plattform zu schaffen, die
           beides vereint und dennoch zugänglich bleibt.
         </>
       ),
@@ -17,7 +16,7 @@ export default function ReflectionPage() {
     {
       content: (
         <>
-          🎨 <Typography highlight="Design" /> einer „Seele“ für KIM: Es war wichtig, den Nutzer emotional einzufangen und
+          🎨 <strong>Design mit Seele:</strong> Nutzern eine emotionale Verbindung zu bieten und
           gleichzeitig klare Interaktionen zu gewährleisten.
         </>
       ),
@@ -28,16 +27,16 @@ export default function ReflectionPage() {
     {
       content: (
         <>
-          🔄 <Typography highlight="Iterative Prozesse" />: Die iterative Arbeitsweise hat uns gezeigt, wie wichtig
-          kontinuierliches Nutzerfeedback ist, um echte Probleme zu lösen.
+          🔄 <strong>Iterative Prozesse:</strong> Nutzerfeedback zeigt den Weg zu echten Lösungen,
+          wenn man bereit ist, Anpassungen vorzunehmen.
         </>
       ),
     },
     {
       content: (
         <>
-          🎯 <Typography highlight="Flexibilität" />: Designentscheidungen erfordern Offenheit für Änderungen,
-          insbesondere, wenn sie Nutzerbedürfnisse betreffen.
+          🎯 <strong>Flexibilität im Design:</strong> Nutzerbedürfnisse erfordern Offenheit für
+          Änderungen – ein entscheidender Faktor für den Erfolg.
         </>
       ),
     },
@@ -47,16 +46,16 @@ export default function ReflectionPage() {
     {
       content: (
         <>
-          🌍 <Typography highlight="Globale Skalierbarkeit" />: Mit mehr Ressourcen könnte KIM als Plattform für
-          tiefere Verbindungen weltweit dienen.
+          🌍 <strong>Globale Skalierbarkeit:</strong> KIM könnte eine Plattform für tiefere
+          Verbindungen weltweit werden.
         </>
       ),
     },
     {
       content: (
         <>
-          🌟 <Typography highlight="Brückenbauer für reale Treffen" />: KIM könnte nicht nur digital, sondern auch durch
-          reale Treffen langfristig Beziehungen fördern.
+          🌟 <strong>Brückenbauer für reale Treffen:</strong> KIM könnte langfristig Beziehungen
+          auch offline fördern.
         </>
       ),
     },
@@ -65,66 +64,50 @@ export default function ReflectionPage() {
   return (
     <Wrapper>
       {/* Header Section */}
-      <Wrapper variant="section" bgGradient>
-        <Typography variant="h1" textAlign="center">
-          Reflexion und Learnings
-        </Typography>
-        <Typography variant="h3" textAlign="center">
-          Ein Blick zurück und nach vorne: Herausforderungen, Learnings und die Vision für die Zukunft von KIM.
+      <Wrapper variant="hero" gradient="backgroundToPrimary" padding="large" textAlign="center">
+        <Typography variant="h1">Reflexion und Learnings</Typography>
+        <Typography variant="h3">
+          Ein Blick zurück und nach vorne: Herausforderungen, Learnings und Visionen.
         </Typography>
       </Wrapper>
 
       {/* Herausforderungen */}
-      <Wrapper variant="section" padding="large">
-        <Card
-          title={<Typography variant="h2">Herausforderungen</Typography>}
-          textAlign="left"
-        >
-          <Typography variant="body">
-            Während der Entwicklung von KIM gab es zahlreiche Herausforderungen. Hier sind die beiden wichtigsten:
-          </Typography>
-          <ListComponent items={challenges} variant="standard" />
-        </Card>
+      <Wrapper variant="section" padding="large" gradient="subtlePrimary">
+        <Typography variant="h2">Herausforderungen</Typography>
+        <Typography variant="body">
+          Während der Entwicklung von KIM gab es zentrale Herausforderungen, die uns besonders
+          gefordert haben:
+        </Typography>
+        <ListComponent items={challenges} variant="standard" />
       </Wrapper>
 
       {/* Learnings */}
-      <Wrapper variant="section" padding="large">
-        <Card
-          title={<Typography variant="h2">Learnings</Typography>}
-          textAlign="left"
-        >
-          <Typography variant="body">
-            Die Entwicklung von KIM hat wertvolle Einsichten geliefert, die über das Projekt hinausgehen:
-          </Typography>
-          <ListComponent items={learnings} variant="highlighted" />
-        </Card>
+      <Wrapper variant="section" padding="large" gradient="accentToPrimary">
+        <Typography variant="h2">Learnings</Typography>
+        <Typography variant="body">
+          Diese Erfahrungen gehen über KIM hinaus und zeigen, wie Designprozesse verbessert werden
+          können:
+        </Typography>
+        <ListComponent items={learnings} variant="highlighted" />
       </Wrapper>
 
       {/* Was wir anders machen würden */}
       <Wrapper variant="section" padding="large">
-        <Card
-          title={<Typography variant="h2">Was wir anders machen würden</Typography>}
-          textAlign="left"
-        >
-          <Typography variant="body">
-            Mit mehr Zeit hätten wir die Usability-Tests früher integriert und KIM’s KI-Funktionen tiefergehend validiert, um die User Experience
-            noch präziser zu gestalten.
-          </Typography>
-        </Card>
+        <Typography variant="h2">Was wir anders machen würden</Typography>
+        <Typography variant="body">
+          Mit mehr Zeit hätten wir die Usability-Tests früher integriert und KIM’s KI-Funktionen
+          umfassender validiert, um die User Experience weiter zu optimieren.
+        </Typography>
       </Wrapper>
 
       {/* Zukunftsaussichten */}
-      <Wrapper variant="section" padding="large">
-        <Card
-          title={<Typography variant="h2">Zukunftsaussichten</Typography>}
-          textAlign="center"
-        >
-          <Typography variant="body">
-            Langfristig könnte KIM eine innovative Plattform für nachhaltige und tiefe soziale Verbindungen werden – nicht nur digital,
-            sondern auch durch reale Treffen und Erlebnisse.
-          </Typography>
-          <ListComponent items={futureOutlook} variant="highlighted" />
-        </Card>
+      <Wrapper variant="section" padding="large" gradient="primaryToSecondary">
+        <Typography variant="h2">Zukunftsaussichten</Typography>
+        <Typography variant="body">
+          Langfristig sehen wir KIM als innovative Plattform, die digitale und reale Verbindungen
+          nachhaltig stärkt:
+        </Typography>
+        <ListComponent items={futureOutlook} variant="highlighted" />
       </Wrapper>
     </Wrapper>
   );
