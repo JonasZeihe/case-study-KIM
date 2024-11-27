@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import SmoothScroller from "../components/SmoothScroller"; // SmoothScroller importieren
-import logoDesktop from "../assets/images/KIM_logo_large.png";
-import logoMobile from "../assets/images/KIM_logo_small.png";
+import SmoothScroller from "../utilities/SmoothScroller";
+import logoDesktop from "../../assets/images/KIM_logo_large.png";
+import logoMobile from "../../assets/images/KIM_logo_small.png";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,13 +19,12 @@ export default function Header() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
     <HeaderContainer isScrolled={isScrolled}>
@@ -33,6 +32,7 @@ export default function Header() {
         <Logo
           src={window.innerWidth >= 768 ? logoDesktop : logoMobile}
           alt="KIM Logo"
+          onClick={() => SmoothScroller.scrollTo("introduction")}
         />
         <DesktopNav>
           {sections.map(({ id, label }) => (
@@ -41,15 +41,17 @@ export default function Header() {
             </SmoothScroller>
           ))}
         </DesktopNav>
-        <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? "✕" : "☰"}
+        <MobileMenuButton onClick={toggleMenu}>
+          <MenuIcon>{menuOpen ? "✕" : "☰"}</MenuIcon>
         </MobileMenuButton>
       </HeaderContent>
       {menuOpen && (
         <MobileMenu>
           {sections.map(({ id, label }) => (
             <SmoothScroller key={id} targetId={id}>
-              <NavItem onClick={() => setMenuOpen(false)}>{label}</NavItem>
+              <MobileNavItem onClick={() => setMenuOpen(false)}>
+                {label}
+              </MobileNavItem>
             </SmoothScroller>
           ))}
         </MobileMenu>
@@ -60,11 +62,12 @@ export default function Header() {
 
 // Styled Components
 const HeaderContainer = styled.header`
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   z-index: 1000;
   background: ${({ isScrolled, theme }) =>
-    isScrolled ? theme.colors.primary.main : theme.colors.neutral.white};
+    isScrolled ? theme.colors.primary.main : "transparent"};
   color: ${({ isScrolled, theme }) =>
     isScrolled ? theme.colors.neutral.white : theme.colors.primary.dark};
   box-shadow: ${({ isScrolled, theme }) =>
@@ -83,6 +86,7 @@ const HeaderContent = styled.div`
 
 const Logo = styled.img`
   height: 50px;
+  cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     height: 40px;
@@ -102,7 +106,7 @@ const NavItem = styled.button`
   background: none;
   border: none;
   font-size: ${({ theme }) => theme.typography.fontSize.body};
-  color: ${({ theme }) => theme.colors.primary.dark};
+  color: ${({ theme }) => theme.colors.neutral.white};
   padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(2)};
   cursor: pointer;
   transition: color 0.3s ease;
@@ -125,15 +129,41 @@ const MobileMenuButton = styled.button`
   }
 `;
 
+const MenuIcon = styled.span`
+  font-size: 2rem;
+`;
+
 const MobileMenu = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   top: 100%;
   left: 0;
   right: 0;
-  background: ${({ theme }) => theme.colors.neutral.white};
+  background: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.neutral.white};
   box-shadow: ${({ theme }) => theme.boxShadow.medium};
   padding: ${({ theme }) => theme.spacing(4)};
   gap: ${({ theme }) => theme.spacing(3)};
+  animation: slideDown 0.3s ease;
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-20%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+`;
+
+const MobileNavItem = styled(NavItem)`
+  font-size: ${({ theme }) => theme.typography.fontSize.h3};
+  color: ${({ theme }) => theme.colors.neutral.white};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent.dark};
+  }
 `;
