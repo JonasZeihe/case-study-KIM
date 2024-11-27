@@ -1,3 +1,9 @@
+const baseFontSize = 16; // Basisgröße für Typografie
+const goldenRatio = 1.618; // Verhältnis für Typografiestufen
+
+// Funktion für dynamische Skalierung von Schriftgrößen
+const scaleFont = (level) => `${(baseFontSize * Math.pow(goldenRatio, level)).toFixed(2)}px`;
+
 const theme = {
   colors: {
     primary: {
@@ -46,22 +52,23 @@ const theme = {
   },
   typography: {
     fontFamily: {
-      primary: "'Futura', sans-serif",
-      secondary: "'Helvetica Neue', sans-serif",
-      button: "'Helvetica Neue', sans-serif", // Sicherstellen, dass alle Fonts vorhanden sind
+      primary: "'Inter', sans-serif",
+      secondary: "'Roboto', sans-serif",
+      button: "'Roboto', sans-serif",
     },
     fontSize: {
-      h1: '2rem', // 32px
-      h2: '1.5rem', // 24px
-      h3: '1.25rem', // 20px
-      button: '1rem', // 16px
-      body: '1rem', // 16px
-      detail: '0.875rem', // 14px
+      h1: scaleFont(3), // Golden Ratio basiert
+      h2: scaleFont(2),
+      h3: scaleFont(1),
+      body: `${baseFontSize}px`, // 16px als Basis
+      detail: scaleFont(-1), // kleinere Texte wie Labels
+      small: scaleFont(-2), // kleinste Texte, z. B. Captions
     },
     fontWeight: {
-      bold: 700,
-      medium: 500,
+      light: 300,
       regular: 400,
+      medium: 500,
+      bold: 700,
     },
     lineHeight: {
       tight: 1.2,
@@ -69,16 +76,19 @@ const theme = {
       relaxed: 1.8,
     },
   },
-  spacing: (factor) => `${0.25 * factor}rem`, // 1 = 4px, 2 = 8px, ...
+  spacing: (factor) => `${0.25 * factor}rem`, // Dynamische Abstände: 1 = 4px
   borderRadius: {
+    none: '0',
     small: '0.25rem', // 4px
     medium: '0.5rem', // 8px
     large: '1rem', // 16px
+    pill: '9999px', // Für kreisförmige Elemente
   },
   boxShadow: {
     light: '0px 2px 4px rgba(0, 0, 0, 0.1)',
     medium: '0px 4px 8px rgba(0, 0, 0, 0.2)',
     heavy: '0px 8px 16px rgba(0, 0, 0, 0.3)',
+    glow: '0 0 10px rgba(52, 65, 249, 0.5)', // Glow-Effekt
   },
   breakpoints: {
     xs: '20rem', // 320px

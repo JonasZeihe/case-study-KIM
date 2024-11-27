@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 
 // Styled Components
 const StyledList = styled.ul`
-  margin: ${(props) => props.theme.spacing(4)} 0;
+  margin: ${({ theme }) => theme.spacing(4)} 0;
   padding: 0;
   list-style: none;
   display: flex;
-  flex-direction: ${(props) => (props.direction === "horizontal" ? "row" : "column")};
-  gap: ${(props) => props.theme.spacing(3)};
-  ${(props) =>
-    props.direction === "horizontal" &&
+  flex-direction: ${({ direction }) => (direction === "horizontal" ? "row" : "column")};
+  gap: ${({ theme }) => theme.spacing(3)};
+  ${({ direction }) =>
+    direction === "horizontal" &&
     css`
       justify-content: space-between;
       align-items: center;
@@ -21,53 +21,51 @@ const StyledList = styled.ul`
 const StyledListItem = styled.li`
   display: flex;
   align-items: center;
-  gap: ${(props) => props.theme.spacing(3)};
-  padding: ${(props) => props.theme.spacing(3)};
-  background: ${(props) =>
-    props.variant === "highlighted"
-      ? props.theme.colors.accent.lightest
-      : props.theme.colors.neutral.light};
-  color: ${(props) => props.theme.colors.neutral.dark};
-  border-radius: ${(props) => props.theme.borderRadius.medium};
-  box-shadow: ${(props) => props.theme.boxShadow.light};
+  gap: ${({ theme }) => theme.spacing(3)};
+  padding: ${({ theme }) => theme.spacing(3)};
+  background: ${({ theme, variant }) =>
+    variant === "highlighted" ? theme.colors.secondaryAccent.lightest : theme.colors.neutral.light};
+  color: ${({ theme }) => theme.colors.neutral.dark};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  box-shadow: ${({ theme }) => theme.boxShadow.light};
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: ${(props) => props.theme.boxShadow.medium};
-    background: ${(props) => props.theme.colors.primary.light};
-    color: ${(props) => props.theme.colors.neutral.white};
+    box-shadow: ${({ theme }) => theme.boxShadow.medium};
+    background: ${({ theme }) => theme.colors.primary.light};
+    color: ${({ theme }) => theme.colors.neutral.white};
   }
 
   &::before {
-    content: "${(props) => props.icon || "•"}";
+    content: "${({ icon }) => icon || "•"}";
     font-size: 1.5rem;
-    color: ${(props) => props.theme.colors.accent.main};
-    ${(props) =>
-      props.numbered &&
+    color: ${({ theme }) => theme.colors.accent.main};
+    ${({ numbered, index, theme }) =>
+      numbered &&
       css`
-        content: "${props.index + 1}.";
+        content: "${index + 1}.";
         font-weight: bold;
-        color: ${(props) => props.theme.colors.primary.main};
+        color: ${theme.colors.primary.main};
       `}
   }
 `;
 
 const StyledButton = styled.button`
-  background: ${(props) => props.theme.colors.primary.main};
-  color: ${(props) => props.theme.colors.neutral.white};
+  background: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.neutral.white};
   border: none;
-  border-radius: ${(props) => props.theme.borderRadius.small};
-  padding: ${(props) => props.theme.spacing(2)} ${(props) => props.theme.spacing(4)};
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(4)};
   cursor: pointer;
   transition: background 0.3s ease;
 
   &:hover {
-    background: ${(props) => props.theme.colors.primary.dark};
+    background: ${({ theme }) => theme.colors.primary.dark};
   }
 `;
 
-// ListComponent
+// React Component
 const ListComponent = ({ items, direction = "vertical", variant = "standard", numbered, onClick }) => {
   return (
     <StyledList direction={direction}>
@@ -80,7 +78,9 @@ const ListComponent = ({ items, direction = "vertical", variant = "standard", nu
           icon={item.icon}
         >
           {item.content}
-          {item.buttonLabel && <StyledButton onClick={() => onClick(item)}>{item.buttonLabel}</StyledButton>}
+          {item.buttonLabel && (
+            <StyledButton onClick={() => onClick && onClick(item)}>{item.buttonLabel}</StyledButton>
+          )}
         </StyledListItem>
       ))}
     </StyledList>

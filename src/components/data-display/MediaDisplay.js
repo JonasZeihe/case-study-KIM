@@ -2,47 +2,34 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FaExpand, FaPlay, FaPause } from "react-icons/fa";
-import Lightbox from "./Lightbox";
+import Lightbox from "../common/Lightbox";
+import Card from "./Card";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing(3)};
+const MediaGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: ${({ theme }) => theme.spacing(4)};
   justify-content: center;
 `;
 
-const MediaContainer = styled.div`
+const MediaContent = styled.div`
   position: relative;
-  width: ${({ layout }) => (layout === "grid" ? "calc(33.33% - 1rem)" : "100%")};
-  max-width: ${({ layout }) => (layout === "grid" ? "300px" : "none")};
-  aspect-ratio: 16 / 9;
-  background: ${({ theme }) => theme.colors.neutral.light};
-  border-radius: ${({ theme }) => theme.borderRadius.medium};
-  overflow: hidden;
   cursor: pointer;
-  box-shadow: ${({ theme }) => theme.boxShadow.light};
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: ${({ theme }) => theme.boxShadow.medium};
   }
-`;
 
-const MediaElement = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const VideoElement = styled.video`
-  width: 100%;
-  height: 100%;
-`;
-
-const AudioElement = styled.audio`
-  width: 100%;
-  height: auto;
+  img,
+  video,
+  audio {
+    width: 100%;
+    height: auto;
+    border-radius: ${({ theme }) => theme.borderRadius.medium};
+    object-fit: cover;
+  }
 `;
 
 const FullscreenButton = styled.button`
@@ -79,38 +66,30 @@ export default function MediaDisplay({ media, layout = "grid" }) {
 
   return (
     <>
-      <Wrapper>
+      <MediaGrid>
         {media.map((item, index) => (
-          <MediaContainer
-            key={index}
-            layout={layout}
-            onClick={() => openLightbox(index)}
-          >
-            {item.type === "image" && (
-              <MediaElement
-                src={item.src}
-                alt={item.alt || `Media ${index + 1}`}
-                loading="lazy"
-              />
-            )}
-            {item.type === "video" && (
-              <VideoElement controls>
-                <source src={item.src} type="video/mp4" />
-                Your browser does not support the video tag.
-              </VideoElement>
-            )}
-            {item.type === "audio" && (
-              <AudioElement controls>
-                <source src={item.src} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </AudioElement>
-            )}
-            <FullscreenButton>
-              <FaExpand />
-            </FullscreenButton>
-          </MediaContainer>
+          <Card key={index} layout={layout}>
+            <MediaContent onClick={() => openLightbox(index)}>
+              {item.type === "image" && <img src={item.src} alt={item.alt || `Media ${index + 1}`} />}
+              {item.type === "video" && (
+                <video controls>
+                  <source src={item.src} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+              {item.type === "audio" && (
+                <audio controls>
+                  <source src={item.src} type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+              )}
+              <FullscreenButton>
+                <FaExpand />
+              </FullscreenButton>
+            </MediaContent>
+          </Card>
         ))}
-      </Wrapper>
+      </MediaGrid>
       {lightboxOpen && (
         <Lightbox
           images={media.filter((item) => item.type === "image")}
@@ -130,5 +109,5 @@ MediaDisplay.propTypes = {
       alt: PropTypes.string,
     })
   ).isRequired,
-  layout: PropTypes.oneOf(["grid", "carousel"]),
+  layout: PropTypes.oneOf(["grid", "carousel"]), // Future-proofing for different layouts
 };

@@ -1,10 +1,8 @@
-// src/pages/7_Reflection.js
 import React from 'react';
-import styled from 'styled-components';
-import HeaderSection from '../components/HeaderSection';
-import CardContainer from '../components/CardContainer';
-import Typography from '../components/Typography';
-import ListComponent from '../components/ListComponent';
+import Wrapper from '../components/layout/Wrapper';
+import Card from '../components/data-display/Card';
+import Typography from '../components/common/Typography';
+import ListComponent from '../components/data-display/ListComponent';
 
 export default function ReflectionPage() {
   const challenges = [
@@ -65,76 +63,69 @@ export default function ReflectionPage() {
   ];
 
   return (
-    <ReflectionWrapper>
+    <Wrapper>
       {/* Header Section */}
-      <HeaderSection
-        title="Reflexion und Learnings"
-        subtitle="Ein Blick zurück und nach vorne: Herausforderungen, Learnings und die Vision für die Zukunft von KIM."
-        align="center"
-        isFullWidth
-      />
+      <Wrapper variant="section" bgGradient>
+        <Typography variant="h1" textAlign="center">
+          Reflexion und Learnings
+        </Typography>
+        <Typography variant="h3" textAlign="center">
+          Ein Blick zurück und nach vorne: Herausforderungen, Learnings und die Vision für die Zukunft von KIM.
+        </Typography>
+      </Wrapper>
 
       {/* Herausforderungen */}
-      <CardContainer
-        title="Herausforderungen"
-        textAlign="left"
-        text={
+      <Wrapper variant="section" padding="large">
+        <Card
+          title={<Typography variant="h2">Herausforderungen</Typography>}
+          textAlign="left"
+        >
           <Typography variant="body">
             Während der Entwicklung von KIM gab es zahlreiche Herausforderungen. Hier sind die beiden wichtigsten:
           </Typography>
-        }
-      >
-        <ListComponent items={challenges} variant="standard" />
-      </CardContainer>
+          <ListComponent items={challenges} variant="standard" />
+        </Card>
+      </Wrapper>
 
       {/* Learnings */}
-      <CardContainer
-        title="Learnings"
-        textAlign="left"
-        text={
+      <Wrapper variant="section" padding="large">
+        <Card
+          title={<Typography variant="h2">Learnings</Typography>}
+          textAlign="left"
+        >
           <Typography variant="body">
             Die Entwicklung von KIM hat wertvolle Einsichten geliefert, die über das Projekt hinausgehen:
           </Typography>
-        }
-      >
-        <ListComponent items={learnings} variant="highlighted" />
-      </CardContainer>
+          <ListComponent items={learnings} variant="highlighted" />
+        </Card>
+      </Wrapper>
 
       {/* Was wir anders machen würden */}
-      <CardContainer
-        title="Was wir anders machen würden"
-        textAlign="left"
-        text={
+      <Wrapper variant="section" padding="large">
+        <Card
+          title={<Typography variant="h2">Was wir anders machen würden</Typography>}
+          textAlign="left"
+        >
           <Typography variant="body">
             Mit mehr Zeit hätten wir die Usability-Tests früher integriert und KIM’s KI-Funktionen tiefergehend validiert, um die User Experience
             noch präziser zu gestalten.
           </Typography>
-        }
-      />
+        </Card>
+      </Wrapper>
 
       {/* Zukunftsaussichten */}
-      <CardContainer
-        title="Zukunftsaussichten"
-        textAlign="center"
-        text={
+      <Wrapper variant="section" padding="large">
+        <Card
+          title={<Typography variant="h2">Zukunftsaussichten</Typography>}
+          textAlign="center"
+        >
           <Typography variant="body">
             Langfristig könnte KIM eine innovative Plattform für nachhaltige und tiefe soziale Verbindungen werden – nicht nur digital,
             sondern auch durch reale Treffen und Erlebnisse.
           </Typography>
-        }
-      >
-        <ListComponent items={futureOutlook} variant="highlighted" />
-      </CardContainer>
-    </ReflectionWrapper>
+          <ListComponent items={futureOutlook} variant="highlighted" />
+        </Card>
+      </Wrapper>
+    </Wrapper>
   );
 }
-
-// Styled Components
-const ReflectionWrapper = styled.section`
-  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(4)};
-  max-width: ${({ theme }) => theme.breakpoints.xl};
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(6)};
-`;

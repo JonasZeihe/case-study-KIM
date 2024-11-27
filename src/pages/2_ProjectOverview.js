@@ -1,10 +1,10 @@
-// src/pages/2_ProjectOverview.js
 import React from 'react';
-import styled from 'styled-components';
-import HeaderSection from '../components/HeaderSection';
-import CardContainer from '../components/CardContainer';
-import Typography from '../components/Typography';
-import ListComponent from '../components/ListComponent';
+import Wrapper from '../components/layout/Wrapper';
+import Card from '../components/data-display/Card';
+import ListComponent from '../components/data-display/ListComponent';
+import QuoteComponent from '../components/sections/QuoteComponent';
+import Typography from '../components/common/Typography';
+import HighlightText from '../components/utilities/HighlightText';
 
 // Assets
 import projectOverviewImage from '../assets/images/project_overview.png';
@@ -20,93 +20,85 @@ export default function ProjectOverview() {
   ];
 
   return (
-    <OverviewWrapper>
+    <Wrapper>
       {/* Header Section */}
-      <HeaderSection
+
         title="Projektüberblick"
         subtitle="Ein tiefer Einblick in das Projekt, das Verbindungen neu definiert."
-        backgroundImage={projectOverviewImage}
-        align="center"
-        isFullWidth
-      />
+        background={projectOverviewImage}
+        textAlign="center"
+        overlayColor="rgba(0,0,0,0.4)"
 
       {/* Produktbeschreibung */}
-      <CardContainer
-        title="Produktbeschreibung"
-        textAlign="left"
-        text={
+      <Wrapper variant="section" padding="large">
+        <Card
+          layout="vertical"
+          title={
+            <Typography variant="h2">
+              <HighlightText>Produktbeschreibung</HighlightText>
+            </Typography>
+          }
+        >
           <Typography variant="body">
             <strong>KIM</strong> ist mehr als nur eine Plattform. Sie dient als{' '}
-            <Typography variant="body" highlight="Brücke zwischen Menschen" />{' '}
-            , die auf der Suche nach echten Verbindungen sind. Basierend auf{' '}
-            <Typography variant="body" highlight="gemeinsamen Interessen, Zielen" /> und
-            Persönlichkeiten, die durch KI ermittelt werden, bietet KIM einen neuen Ansatz für
-            authentische Beziehungen.
+            <HighlightText>Brücke zwischen Menschen</HighlightText>, die auf der Suche nach echten
+            Verbindungen sind. Basierend auf{' '}
+            <HighlightText>gemeinsamen Interessen, Zielen</HighlightText> und Persönlichkeiten, die
+            durch KI ermittelt werden, bietet KIM einen neuen Ansatz für authentische Beziehungen.
           </Typography>
-        }
-      />
+        </Card>
+      </Wrapper>
 
       {/* Team & Rollen */}
-      <CardContainer
-        title="Team & Rollen"
-        textAlign="left"
-        text={
-          <>
-            <Typography variant="body">
-              Unser Team besteht aus <strong>Darya, Isabel und Jonas</strong>, die als{' '}
-              <Typography variant="body" highlight="UX/UI-Designer" /> im{' '}
-              <Typography variant="body" highlight="„neue fische“ Bootcamp" /> zusammenarbeiteten.
-              Ziel war es, eine durchdachte, nutzerzentrierte App zu entwickeln, die innovative
-              Technologien einsetzt.
+      <Wrapper variant="section" padding="large">
+        <Card
+          layout="vertical"
+          title={
+            <Typography variant="h2">
+              <HighlightText>Team & Rollen</HighlightText>
             </Typography>
-            <Typography variant="h3">Methoden & Tools</Typography>
-            <ListComponent items={methodsAndTools} />
-          </>
-        }
-      />
+          }
+        >
+          <Typography variant="body">
+            Unser Team besteht aus <strong>Darya, Isabel und Jonas</strong>, die als{' '}
+            <HighlightText>UX/UI-Designer</HighlightText> im{' '}
+            <HighlightText>„neue fische“ Bootcamp</HighlightText> zusammenarbeiteten. Ziel war es,
+            eine durchdachte, nutzerzentrierte App zu entwickeln, die innovative Technologien
+            einsetzt.
+          </Typography>
+          <Typography variant="h3">Methoden & Tools</Typography>
+          <ListComponent items={methodsAndTools} />
+        </Card>
+      </Wrapper>
 
       {/* Problemstellung */}
-      <CardContainer
-        title="Problemstellung"
-        textAlign="left"
-        text={
-          <>
-            <Typography variant="body">
-              Die größte Herausforderung war es, eine Plattform zu entwickeln, die{' '}
-              <Typography variant="body" highlight="tiefere, emotional fundierte Verbindungen" />{' '}
-              ermöglicht, anstatt nur oberflächliche Kontakte zu schaffen. Unsere Wettbewerbsanalyse
-              zeigte, dass bestehende Netzwerke wie LinkedIn, Facebook und XING oft eher
-              „verbindend“ als „verstehend“ sind.
+      <Wrapper variant="section" padding="large" bgGradient>
+        <Card
+          layout="vertical"
+          title={
+            <Typography variant="h2">
+              <HighlightText>Problemstellung</HighlightText>
             </Typography>
-            <QuoteWrapper>
-              <Typography variant="body" highlight="„Verbindungen, die auf Verständnis basieren, statt nur auf Netzwerken.“" />
-            </QuoteWrapper>
-          </>
-        }
-        image={{
-          src: projectOverviewImage,
-          alt: 'Projektübersicht',
-        }}
-      />
-    </OverviewWrapper>
+          }
+          imgSrc={projectOverviewImage}
+          imgAlt="Projektübersicht"
+        >
+          <Typography variant="body">
+            Die größte Herausforderung war es, eine Plattform zu entwickeln, die{' '}
+            <HighlightText>tiefere, emotional fundierte Verbindungen</HighlightText> ermöglicht,
+            anstatt nur oberflächliche Kontakte zu schaffen. Unsere Wettbewerbsanalyse zeigte, dass
+            bestehende Netzwerke wie LinkedIn, Facebook und XING oft eher „verbindend“ als
+            „verstehend“ sind.
+          </Typography>
+          <Wrapper padding="small">
+            <QuoteComponent
+              text="Verbindungen, die auf Verständnis basieren, statt nur auf Netzwerken."
+              author="KIM Vision Statement"
+              highlight
+            />
+          </Wrapper>
+        </Card>
+      </Wrapper>
+    </Wrapper>
   );
 }
-
-// Styled Components
-const OverviewWrapper = styled.section`
-  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(4)};
-  max-width: ${({ theme }) => theme.breakpoints.xl};
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(6)};
-`;
-
-const QuoteWrapper = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(3)};
-  padding: ${({ theme }) => theme.spacing(3)};
-  border-left: 4px solid ${({ theme }) => theme.colors.accent.main};
-  background: ${({ theme }) => theme.colors.neutral.light};
-  font-style: italic;
-  color: ${({ theme }) => theme.colors.primary.dark};
-`;

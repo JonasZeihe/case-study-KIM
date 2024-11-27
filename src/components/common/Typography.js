@@ -6,8 +6,8 @@ import PropTypes from "prop-types";
 const StyledText = styled.span`
   margin: 0;
   padding: 0;
-  line-height: ${(props) => props.theme.typography.lineHeight};
-  color: ${(props) => props.color || props.theme.colors.neutral.dark};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  color: ${({ color, theme }) => color || theme.colors.neutral.dark};
 
   ${({ variant, theme }) => {
     switch (variant) {
@@ -15,29 +15,26 @@ const StyledText = styled.span`
         return css`
           font-size: ${theme.typography.fontSize.h1};
           font-weight: ${theme.typography.fontWeight.bold};
-          margin-bottom: ${theme.spacing(5)};
+          line-height: ${theme.typography.lineHeight.tight};
+          margin-bottom: ${theme.spacing(6)};
         `;
       case "h2":
         return css`
           font-size: ${theme.typography.fontSize.h2};
-          font-weight: ${theme.typography.fontWeight.semiBold};
-          margin-bottom: ${theme.spacing(4)};
+          font-weight: ${theme.typography.fontWeight.bold};
+          margin-bottom: ${theme.spacing(5)};
         `;
       case "h3":
         return css`
           font-size: ${theme.typography.fontSize.h3};
           font-weight: ${theme.typography.fontWeight.medium};
-          margin-bottom: ${theme.spacing(3)};
-        `;
-      case "body":
-        return css`
-          font-size: ${theme.typography.fontSize.body};
-          font-weight: ${theme.typography.fontWeight.regular};
+          margin-bottom: ${theme.spacing(4)};
         `;
       case "caption":
         return css`
           font-size: ${theme.typography.fontSize.caption};
           font-weight: ${theme.typography.fontWeight.light};
+          line-height: ${theme.typography.lineHeight.relaxed};
         `;
       default:
         return css`

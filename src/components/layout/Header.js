@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import SmoothScroller from "../components/SmoothScroller"; // SmoothScroller importieren
-import logoDesktop from "../assets/images/KIM_logo_large.png";
-import logoMobile from "../assets/images/KIM_logo_small.png";
+import SmoothScroller from "../utilities/SmoothScroller";
+import logoDesktop from "../../assets/images/KIM_logo_large.png";
+import logoMobile from "../../assets/images/KIM_logo_small.png";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,10 +19,7 @@ export default function Header() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -41,7 +38,10 @@ export default function Header() {
             </SmoothScroller>
           ))}
         </DesktopNav>
-        <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
+        <MobileMenuButton
+          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           {menuOpen ? "✕" : "☰"}
         </MobileMenuButton>
       </HeaderContent>

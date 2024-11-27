@@ -1,11 +1,9 @@
-// src/pages/6_FinalDesign.js
 import React from 'react';
-import styled from 'styled-components';
-import HeaderSection from '../components/HeaderSection';
-import CardContainer from '../components/CardContainer';
-import Carousel from '../components/Carousel'; // Optimiertes Carousel importieren
-import Typography from '../components/Typography';
-import ListComponent from '../components/ListComponent';
+import Wrapper from '../components/layout/Wrapper';
+import Card from '../components/data-display/Card';
+import Carousel from '../components/data-display/Carousel';
+import Typography from '../components/common/Typography';
+import ListComponent from '../components/data-display/ListComponent';
 
 // Assets
 import appScreen1 from '../assets/images/appscreens/final_app_screens_1.png';
@@ -69,51 +67,43 @@ export default function FinalDesignPage() {
   ];
 
   return (
-    <FinalDesignWrapper>
+    <Wrapper>
       {/* Header Section */}
-      <HeaderSection
-        title="Finale Lösung und Design"
-        subtitle="Einblicke in die Hauptfeatures und das finale visuelle Konzept von KIM."
-        align="center"
-        isFullWidth
-      />
+      <Wrapper variant="section" bgGradient>
+        <Typography variant="h1" textAlign="center">
+          Finale Lösung und Design
+        </Typography>
+        <Typography variant="h3" textAlign="center">
+          Einblicke in die Hauptfeatures und das finale visuelle Konzept von KIM.
+        </Typography>
+      </Wrapper>
 
       {/* Hauptfeatures */}
-      <CardContainer
-        title="Hauptfeatures"
-        textAlign="left"
-        text={
+      <Wrapper variant="section" padding="large">
+        <Card
+          layout="vertical"
+          title={<Typography variant="h2">Hauptfeatures</Typography>}
+        >
           <Typography variant="body">
             Die Hauptfeatures von KIM kombinieren Technologie, emotionales Design und Interaktionen für tiefere Verbindungen.
           </Typography>
-        }
-      >
-        <ListComponent items={features} variant="standard" />
-      </CardContainer>
+          <ListComponent items={features} variant="standard" />
+        </Card>
+      </Wrapper>
 
       {/* Final App Screens */}
-      <CardContainer
-        title="Finale App-Screens"
-        textAlign="center"
-        text={
-          <Typography variant="body">
+      <Wrapper variant="section" padding="large">
+        <Card
+          layout="vertical"
+          title={<Typography variant="h2">Finale App-Screens</Typography>}
+        >
+          <Typography variant="body" textAlign="center">
             Die wichtigsten Features und das finale visuelle Konzept werden in diesen Screens illustriert.
           </Typography>
-        }
-      >
-        {/* Optimiertes Carousel eingebunden */}
-        <Carousel slides={media} autoplay={true} interval={5000} />
-      </CardContainer>
-    </FinalDesignWrapper>
+          {/* Optimiertes Carousel */}
+          <Carousel slides={media} autoplay interval={5000} />
+        </Card>
+      </Wrapper>
+    </Wrapper>
   );
 }
-
-// Styled Components
-const FinalDesignWrapper = styled.section`
-  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(4)};
-  max-width: ${({ theme }) => theme.breakpoints.xl};
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(6)};
-`;
