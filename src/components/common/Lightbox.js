@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -83,6 +83,15 @@ const CloseButton = styled.button`
 const Lightbox = ({ media, currentIndex = 0, onClose }) => {
   const [activeIndex, setActiveIndex] = useState(currentIndex);
 
+  const navigate = useCallback(
+    (direction) => {
+      setActiveIndex((prevIndex) =>
+        (prevIndex + direction + media.length) % media.length
+      );
+    },
+    [media.length]
+  );
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
@@ -91,13 +100,7 @@ const Lightbox = ({ media, currentIndex = 0, onClose }) => {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
-
-  const navigate = (direction) => {
-    setActiveIndex((prevIndex) =>
-      (prevIndex + direction + media.length) % media.length
-    );
-  };
+  }, [onClose, navigate]);
 
   if (!media || media.length === 0) {
     console.error("Lightbox: No media provided or invalid media.");

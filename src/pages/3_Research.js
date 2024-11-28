@@ -3,7 +3,6 @@ import Wrapper from "../components/layout/Wrapper";
 import MediaDisplay from "../components/data-display/MediaDisplay";
 import Typography from "../components/common/Typography";
 import ListComponent from "../components/data-display/ListComponent";
-import QuoteComponent from "../components/sections/QuoteComponent";
 import HighlightText from "../components/utilities/HighlightText";
 
 // Assets
@@ -99,7 +98,7 @@ export default function Research() {
       {/* Header */}
       <Wrapper
         variant="hero"
-        gradient="gradientHighlight"
+        gradient="primaryDynamic"
         textAlign="center"
         padding="large"
       >

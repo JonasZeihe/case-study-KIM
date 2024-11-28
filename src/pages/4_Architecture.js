@@ -23,7 +23,7 @@ export default function Architecture() {
       {/* Header */}
       <Wrapper
         variant="hero"
-        gradient="primaryLightToDark"
+        gradient="secondaryWarm"
         textAlign="center"
         padding="large"
       >

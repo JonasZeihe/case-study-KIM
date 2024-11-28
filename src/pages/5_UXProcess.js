@@ -45,7 +45,7 @@ export default function UXProcess() {
       {/* Header */}
       <Wrapper
         variant="hero"
-        gradient="primaryToSecondary"
+        gradient="secondaryBold"
         textAlign="center"
         padding="large"
       >

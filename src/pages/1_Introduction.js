@@ -23,7 +23,7 @@ export default function Introduction() {
       {/* Hero Section */}
       <Wrapper
         variant="hero"
-        gradient="primaryToSecondary"
+        gradient="primaryLight"
         padding="large"
         textAlign="center"
       >

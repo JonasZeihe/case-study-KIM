@@ -24,7 +24,7 @@ export default function ProjectOverview() {
       {/* Header Section */}
       <Wrapper
         variant="hero"
-        gradient="dramaticPrimaryToAccent"
+        gradient="primaryDark"
         textAlign="center"
         padding="large"
         overlayColor="rgba(0,0,0,0.4)"
