@@ -11,7 +11,7 @@ const HeroContainer = styled.div`
   background: ${({ gradient, theme }) =>
     gradient ||
     `linear-gradient(135deg, ${theme.colors.primary.main}, ${theme.colors.secondary.main})`};
-  color: ${({ theme }) => theme.colors.neutral.white};
+  color: ${({ theme }) => theme.colors.primary.main};
   padding: ${({ theme }) => theme.spacing(8)} ${({ theme }) => theme.spacing(4)};
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius.large};
@@ -37,7 +37,7 @@ const HeroTitle = styled.h1`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: ${({ theme }) => theme.typography.fontSize.h2};
-    margin-bottom: ${({ theme }) => theme.spacing(3)};
+    margin-bottom: ${({ theme }) => theme.spacing(4)};
   }
 `;
 

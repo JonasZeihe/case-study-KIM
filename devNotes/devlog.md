@@ -137,3 +137,92 @@ Wir arbeiten uns **Kategorie für Kategorie** durch, starten aber mit den wichti
 
 am meisten geholfen haben bisher die stylguide files, das ist wirklich unschlagbar und in Kombination mit der codebase toll für jede Iteration
 
+## 20241128 1335
+
+Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare Übersicht, was alles zu tun ist. Hier ist eine detaillierte Aufgabenliste mit Priorisierungen:
+
+---
+
+### **Hauptprobleme und To-Dos**
+#### **1. Header**
+- [x] **Funktionalität**:
+  - Navigation zwischen Seiten funktioniert nicht (Desktop & Mobile).
+  - Mobile Navigation öffnet sich nicht korrekt (Overlay- oder Layout-Problem).
+- [] **Styling**:
+  - Transparenz- und Farbprobleme (kein Hintergrund, weiße Schrift unleserlich).
+  - Buttons sind eckig und nicht konsistent mit dem Designsystem.
+
+#### **2. Footer**
+- [ ] **Funktionalität**:
+  - "Scroll to Top"-Button ohne Funktion.
+- [ ] **Styling**:
+  - Footer war visuell bereits besser – muss überarbeitet werden.
+
+#### **3. Mesh Gradient Background**
+- [ ] **Animation entfernen**:
+  - Der Mesh Gradient bewegt sich unruhig – Animation abschalten.
+- [ ] **Konsistenz sicherstellen**:
+  - Mesh Gradient für jede Seite richtig positionieren.
+
+#### **4. Wrapper und Layout**
+- [ ] **Grundstruktur der Pages**:
+  - Jede Seite benötigt einen konsistenten Wrapper (äußerste Schicht) mit leichtem Gradient-Hintergrund.
+- [ ] **Verschachtelungen der Abschnitte**:
+  - Fließende Übergänge zwischen Hero Banner und anderen Abschnitten sicherstellen.
+  - Farben der Wrapper und Abschnitte harmonisieren.
+
+#### **5. Typografie**
+- [ ] **Farben**:
+  - Kontraste prüfen und anpassen (Lesbarkeit sicherstellen).
+- [ ] **Textfluss und Struktur**:
+  - Überschriften, Unterüberschriften und Absätze klar trennen.
+  - Typografie-Komponente überarbeiten, um diese Standards zu sichern.
+
+#### **6. Abstände und Spacing**
+- [ ] **Zwischen den Abschnitten**:
+  - Gleichmäßige Spacing-Abstände zwischen den Abschnitten jeder Seite.
+- [ ] **Innerhalb der Pages**:
+  - Typografie und Absätze gleichmäßig formatieren.
+  - Seiten wie „Informationsarchitektur“ anpassen (z. B. neue Zeilen für Überschrift und Text).
+
+#### **7. Lightbox**
+- [ ] **Inhalte der Website blockieren**:
+  - Website darf nicht scrollen, während die Lightbox aktiv ist.
+- [ ] **Konsistenz prüfen**:
+  - Elemente in der Lightbox (z. B. Bilder) vollständig mittig und korrekt dargestellt.
+
+---
+
+### **Priorisierte Roadmap**
+#### **Phase 1: Kritische Fehler beheben**
+1. **Header**:
+   - Navigation und Mobile Menu reparieren.
+   - Styling und Button-Rundungen korrigieren.
+2. **Footer**:
+   - "Scroll to Top"-Funktionalität umsetzen.
+3. **Lightbox**:
+   - Scrolling der Website blockieren, während Lightbox aktiv ist.
+
+#### **Phase 2: Layout und Struktur**
+4. **Mesh Gradient**:
+   - Animation entfernen und Gradient fixieren.
+5. **Wrapper und Verschachtelungen**:
+   - Wrapper korrekt implementieren und Farbprobleme lösen.
+6. **Spacing**:
+   - Einheitliche Abstände zwischen Abschnitten und innerhalb von Seiten.
+
+#### **Phase 3: Feinschliff**
+7. **Typografie**:
+   - Farben und Textfluss optimieren.
+   - Typografie-Komponente anpassen, um konsistente Stile zu gewährleisten.
+8. **Lightbox Feintuning**:
+   - Darstellung und mittige Position der Inhalte optimieren.
+
+---
+
+### **Vorgehen**
+1. Soll ich mit der ersten Phase starten und den Fokus auf die kritischen Probleme (Header, Footer, Lightbox) legen?
+2. Oder möchtest du erst einen Überblick über die geplanten Code-Änderungen für einen Bereich (z. B. Header) sehen? 
+
+Sag mir, wie du vorgehen möchtest, und ich lege direkt los! 🚀
+

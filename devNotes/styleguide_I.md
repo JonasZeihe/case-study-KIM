@@ -1,6 +1,3 @@
-Hier ist die vollständige, detaillierte Auflistung von allem, was du für deine React-App möchtest, basierend auf unseren bisherigen Gesprächen. Das Ziel ist, eine flexible, responsive und moderne Web-App zu erstellen, die mit verschiedenen Medienformaten arbeitet und wiederverwendbare Komponenten bietet.
-
----
 
 ### **1. Allgemeine Anforderungen**
 - **Responsivität:** Die gesamte App muss auf Desktop- und Mobilgeräten einwandfrei und optisch ansprechend funktionieren.
@@ -102,30 +99,8 @@ Hier ist die vollständige, detaillierte Auflistung von allem, was du für deine
 
 ---
 
-### **4. Tools und Technologien**
-- **Frontend:** React, Styled Components.
-- **Slider:** `react-slick` oder `swiper`.
-- **Lightbox:** `react-image-lightbox` oder `lightgallery.js`.
-- **Video:** HTML5-Video oder `react-player`.
-- **Responsives Layout:** CSS Grid, Flexbox.
-- **Interaktionen/Animationen:** `react-spring` oder `framer-motion`.
-
----
-
-### **5. Best Practices**
-- Modularer Aufbau: Jede Komponente hat eine eigene Datei (Header, Slider, Lightbox, Buttons).
-- Dokumentation: Einsatz von Storybook, um Komponenten zentral zu dokumentieren und zu testen.
-- Optimierung:
-  - SEO: Alt-Texte für Bilder, semantische HTML-Tags.
-  - Performance: Lazy Loading für Bilder und Videos.
-
----
 
 ### **6. Nächste Schritte**
 1. **Komponenten priorisieren:** Entscheide, mit welchen Komponenten wir starten wollen (z. B. Header, Slider).
 2. **Projektstruktur klären:** Lade Dateien hoch oder zeige, wie dein Projekt derzeit strukturiert ist.
 3. **Prototyp erstellen:** Wir setzen Schritt für Schritt die Komponenten um.
-
----
-
-Ich hoffe, diese umfassende Auflistung deckt alles ab, was du brauchst. Wenn etwas fehlt oder du Änderungen möchtest, sag einfach Bescheid!

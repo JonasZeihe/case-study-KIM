@@ -1,6 +1,3 @@
-Um ein strukturiertes und funktionales Designsystem für deine App zu entwickeln, können wir eine Kombination aus den von dir genannten Ansätzen verwenden: **Golden Ratio**, **Atomic Design**, und eine klare Aufteilung nach **Komponentenarten und Layoutcontainern**. Ziel ist es, ein System zu schaffen, das konsistent, leicht erweiterbar und für deine Anforderungen optimal geeignet ist.
-
----
 
 ### **1. Designansatz und Layoutstruktur**
 
@@ -122,25 +119,3 @@ Um eine einheitliche und flexible Basis für das Layout zu schaffen, definieren 
 #### **Bilddarstellung**
 - Lightbox für Vergrößerung und Zoom.
 - Grid mit verschiedenen Spalten (1-4).
-
-#### **Buttons**
-- Call-to-Action, Scroll-to-Top, Icon-Buttons.
-
-#### **Animationen**
-- Smooth Scrolling, Hover-Effekte, Transitionen.
-
----
-
-### **5. Visualisierung des Systems**
-Um alles greifbarer zu machen, könnten wir:
-1. **Figma oder Sketch nutzen:** Für Mockups der Layouts und Komponenten.
-2. **Storybook aufsetzen:** Als interaktive Dokumentation für die React-Komponenten.
-
----
-
-### **Nächste Schritte**
-1. **Konkretisierung:** Gibt es noch weitere spezielle Anforderungen oder Ideen?
-2. **Prototyp entwickeln:** Wir starten mit der Umsetzung der ersten Atoms und Molecules.
-3. **Designfinalisierung:** Farben, Typografie und Proportionen prüfen.
-
-Damit sind wir bestens vorbereitet, um loszulegen! Was denkst du?
