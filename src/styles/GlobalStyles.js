@@ -20,8 +20,6 @@ const GlobalStyles = createGlobalStyle`
     font-family: ${({ theme }) => theme.typography.fontFamily.secondary};
     font-size: ${({ theme }) => theme.typography.fontSize.body};
     line-height: ${({ theme }) => theme.typography.lineHeight.normal};
-    color: ${({ theme }) => theme.colors.neutral.dark};
-    background: ${({ theme }) => theme.gradients.pageBackground};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -29,6 +27,7 @@ const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     min-height: 100%;
     height: 100%;
+    padding-top: clamp(4rem, 5vw, 5rem);
   }
 
   #root {
@@ -75,6 +74,7 @@ const GlobalStyles = createGlobalStyle`
 
     body {
       padding: 0 ${({ theme }) => theme.spacing(2)};
+      padding-top: 5rem;
     }
   }
 `;

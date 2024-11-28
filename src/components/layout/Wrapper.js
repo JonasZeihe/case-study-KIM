@@ -24,9 +24,9 @@ const WrapperContainer = styled.div`
   /* Dynamischer Hintergrund */
   background: ${({ gradient, theme, background }) =>
     gradient
-      ? theme.gradients[gradient] || theme.colors.background.main
+      ? theme.gradients[gradient] || theme.colors.background.lightest
       : background || theme.colors.background.light};
-  color: ${({ textColor, theme }) => textColor || theme.colors.neutral.dark};
+  color: ${({ textColor, theme }) => textColor || theme.colors.neutral.darkest};
 
   /* Schatten und Border */
   box-shadow: ${({ shadow, theme }) => shadow || theme.boxShadow.medium};

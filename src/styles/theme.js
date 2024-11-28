@@ -102,7 +102,6 @@ const theme = {
   },
 };
 
-// Gradients werden hier nach dem Erstellen des Colors-Objekts hinzugefügt
 theme.gradients = gradients(theme);
 
 export default theme;

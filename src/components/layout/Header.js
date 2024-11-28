@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import SmoothScroller from "../utilities/SmoothScroller";
 import logoDesktop from "../../assets/images/KIM_logo_large.png";
 import logoMobile from "../../assets/images/KIM_logo_small.png";
@@ -7,6 +7,7 @@ import logoMobile from "../../assets/images/KIM_logo_small.png";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const theme = useTheme();
 
   const sections = [
     { id: "introduction", label: "Einführung" },
@@ -24,38 +25,34 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const handleLogoClick = () => {
+    document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false); // Schließt das Menü, wenn das Logo angeklickt wird
+  };
+
+  const renderNavItems = (isMobile) =>
+    sections.map(({ id, label }) => (
+      <SmoothScroller key={id} targetId={id}>
+        <NavItem isMobile={isMobile} onClick={() => isMobile && setMenuOpen(false)}>
+          {label}
+        </NavItem>
+      </SmoothScroller>
+    ));
 
   return (
     <HeaderContainer isScrolled={isScrolled}>
       <HeaderContent>
         <Logo
-          src={window.innerWidth >= 768 ? logoDesktop : logoMobile}
+          src={menuOpen || window.innerWidth >= parseInt(theme.breakpoints.md) ? logoDesktop : logoMobile}
           alt="KIM Logo"
-          onClick={() => SmoothScroller.scrollTo("introduction")}
+          onClick={handleLogoClick}
         />
-        <DesktopNav>
-          {sections.map(({ id, label }) => (
-            <SmoothScroller key={id} targetId={id}>
-              <NavItem>{label}</NavItem>
-            </SmoothScroller>
-          ))}
-        </DesktopNav>
-        <MobileMenuButton onClick={toggleMenu}>
-          <MenuIcon>{menuOpen ? "✕" : "☰"}</MenuIcon>
+        <DesktopNav>{renderNavItems(false)}</DesktopNav>
+        <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? "✕" : "☰"}
         </MobileMenuButton>
       </HeaderContent>
-      {menuOpen && (
-        <MobileMenu>
-          {sections.map(({ id, label }) => (
-            <SmoothScroller key={id} targetId={id}>
-              <MobileNavItem onClick={() => setMenuOpen(false)}>
-                {label}
-              </MobileNavItem>
-            </SmoothScroller>
-          ))}
-        </MobileMenu>
-      )}
+      <MobileMenu isOpen={menuOpen}>{renderNavItems(true)}</MobileMenu>
     </HeaderContainer>
   );
 }
@@ -65,14 +62,12 @@ const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
+  height: 80px;
   z-index: 1000;
   background: ${({ isScrolled, theme }) =>
-    isScrolled ? theme.colors.primary.main : "transparent"};
-  color: ${({ isScrolled, theme }) =>
-    isScrolled ? theme.colors.neutral.white : theme.colors.primary.dark};
-  box-shadow: ${({ isScrolled, theme }) =>
-    isScrolled ? theme.boxShadow.medium : "none"};
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    isScrolled ? theme.colors.primary.main : theme.colors.neutral.white};
+  box-shadow: ${({ isScrolled, theme }) => (isScrolled ? theme.boxShadow.medium : "none")};
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 `;
 
 const HeaderContent = styled.div`
@@ -81,15 +76,19 @@ const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${({ theme }) => theme.spacing(3)};
+  padding: 0 ${({ theme }) => theme.spacing(3)};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0 ${({ theme }) => theme.spacing(2)};
+  }
 `;
 
 const Logo = styled.img`
-  height: 50px;
+  height: 4rem;
   cursor: pointer;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    height: 40px;
+    height: 3rem;
   }
 `;
 
@@ -102,17 +101,33 @@ const DesktopNav = styled.nav`
   }
 `;
 
-const NavItem = styled.button`
-  background: none;
-  border: none;
+const NavItem = styled.div`
   font-size: ${({ theme }) => theme.typography.fontSize.body};
-  color: ${({ theme }) => theme.colors.neutral.white};
-  padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(2)};
+  color: ${({ isMobile, theme }) =>
+    isMobile ? theme.colors.neutral.white : theme.colors.neutral.dark};
   cursor: pointer;
+  position: relative;
   transition: color 0.3s ease;
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.accent.main};
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.25rem;
+    width: 0;
+    height: 2px;
+    background: ${({ theme }) => theme.colors.accent.main};
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.typography.fontSize.h3};
+    text-align: center;
+    width: 100%;
   }
 `;
 
@@ -123,47 +138,25 @@ const MobileMenuButton = styled.button`
     display: block;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
     color: ${({ theme }) => theme.colors.primary.dark};
+    padding: ${({ theme }) => theme.spacing(1)};
   }
 `;
 
-const MenuIcon = styled.span`
-  font-size: 2rem;
-`;
-
 const MobileMenu = styled.div`
-  display: flex;
+  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   flex-direction: column;
   position: fixed;
-  top: 100%;
+  top: 80px;
   left: 0;
   right: 0;
   background: ${({ theme }) => theme.colors.primary.main};
   color: ${({ theme }) => theme.colors.neutral.white};
   box-shadow: ${({ theme }) => theme.boxShadow.medium};
-  padding: ${({ theme }) => theme.spacing(4)};
+  padding: ${({ theme }) => theme.spacing(4)} 0;
   gap: ${({ theme }) => theme.spacing(3)};
-  animation: slideDown 0.3s ease;
-
-  @keyframes slideDown {
-    from {
-      transform: translateY(-20%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
+  text-align: center;
 `;
 
-const MobileNavItem = styled(NavItem)`
-  font-size: ${({ theme }) => theme.typography.fontSize.h3};
-  color: ${({ theme }) => theme.colors.neutral.white};
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.accent.dark};
-  }
-`;
