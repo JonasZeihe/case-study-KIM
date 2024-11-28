@@ -64,7 +64,7 @@ export default function ReflectionPage() {
   return (
     <Wrapper>
       {/* Header Section */}
-      <Wrapper variant="hero" gradient="backgroundToPrimary" padding="large" textAlign="center">
+      <Wrapper variant="hero" gradient="accentPlayful" padding="large" textAlign="center">
         <Typography variant="h1">Reflexion und Learnings</Typography>
         <Typography variant="h3">
           Ein Blick zurück und nach vorne: Herausforderungen, Learnings und Visionen.
@@ -72,7 +72,7 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Herausforderungen */}
-      <Wrapper variant="section" padding="large" gradient="subtlePrimary">
+      <Wrapper variant="section" padding="large" gradient="backgroundSubtle">
         <Typography variant="h2">Herausforderungen</Typography>
         <Typography variant="body">
           Während der Entwicklung von KIM gab es zentrale Herausforderungen, die uns besonders
@@ -82,7 +82,7 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Learnings */}
-      <Wrapper variant="section" padding="large" gradient="accentToPrimary">
+      <Wrapper variant="section" padding="large" gradient="backgroundDramatic">
         <Typography variant="h2">Learnings</Typography>
         <Typography variant="body">
           Diese Erfahrungen gehen über KIM hinaus und zeigen, wie Designprozesse verbessert werden
@@ -101,7 +101,7 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Zukunftsaussichten */}
-      <Wrapper variant="section" padding="large" gradient="primaryToSecondary">
+      <Wrapper variant="section" padding="large" gradient="backgroundVibrant">
         <Typography variant="h2">Zukunftsaussichten</Typography>
         <Typography variant="body">
           Langfristig sehen wir KIM als innovative Plattform, die digitale und reale Verbindungen

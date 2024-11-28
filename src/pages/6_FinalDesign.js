@@ -71,7 +71,7 @@ export default function FinalDesignPage() {
   return (
     <Wrapper>
       {/* Header Section */}
-      <Wrapper variant="hero" gradient="primaryToSecondary" padding="large" textAlign="center">
+      <Wrapper variant="hero" gradient="accentSoft" padding="large" textAlign="center">
         <Typography variant="h1">Finale Lösung und Design</Typography>
         <Typography variant="h3">
           Einblicke in die Hauptfeatures und das finale visuelle Konzept von KIM.
@@ -89,7 +89,7 @@ export default function FinalDesignPage() {
       </Wrapper>
 
       {/* Final App Screens */}
-      <Wrapper variant="section" padding="large" gradient="accentToPrimary">
+      <Wrapper variant="section" padding="large" gradient="accentBright">
         <Typography variant="h2" textAlign="center">Finale App-Screens</Typography>
         <Typography variant="body" textAlign="center">
           Die wichtigsten Features und das finale visuelle Konzept werden in diesen Screens
