@@ -6,69 +6,47 @@ import PropTypes from "prop-types";
 const StyledList = styled.ul`
   margin: ${({ theme }) => theme.spacing(4)} 0;
   padding: 0;
-  list-style: none;
   display: flex;
   flex-direction: ${({ direction }) => (direction === "horizontal" ? "row" : "column")};
   gap: ${({ theme }) => theme.spacing(3)};
+  list-style: ${({ showBullets }) => (showBullets ? "disc" : "none")};
+  list-style-position: inside;
 
   ${({ direction }) =>
     direction === "horizontal" &&
     css`
-      justify-content: space-between;
-      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: flex-start;
     `}
 `;
 
 const StyledListItem = styled.li`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing(3)};
-  padding: ${({ theme }) => theme.spacing(3)};
+  padding: ${({ theme }) => theme.spacing(2)};
   background: ${({ theme, variant }) =>
     variant === "highlighted"
-      ? theme.colors.secondaryAccent.lightest
-      : theme.colors.neutral.light};
-  color: ${({ theme }) => theme.colors.neutral.dark};
+      ? theme.colors.background.darkest
+      : "transparent"};
+  color: ${({ theme }) => theme.colors.neutral.white};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
-  box-shadow: ${({ theme }) => theme.boxShadow.light};
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: ${({ variant, theme }) =>
+    variant === "highlighted" ? theme.boxShadow.light : "none"};
+  transition: transform 0.3s ease;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: ${({ theme }) => theme.boxShadow.medium};
-    background: ${({ theme, variant }) =>
-      variant === "highlighted"
-        ? theme.colors.secondaryAccent.main
-        : theme.colors.primary.light};
-    color: ${({ theme }) => theme.colors.neutral.white};
+    transform: ${({ variant }) => (variant === "highlighted" ? "translateY(-3px)" : "none")};
   }
 
   &::before {
-    content: "${({ icon }) => icon || "•"}";
-    font-size: 1.5rem;
-    color: ${({ theme }) => theme.colors.accent.main};
-
-    ${({ numbered, index, theme }) =>
-      numbered &&
-      css`
-        content: "${index + 1}.";
-        font-weight: bold;
-        color: ${theme.colors.primary.main};
-      `}
-  }
-`;
-
-const StyledButton = styled.button`
-  background: ${({ theme }) => theme.colors.primary.main};
-  color: ${({ theme }) => theme.colors.neutral.white};
-  border: none;
-  border-radius: ${({ theme }) => theme.borderRadius.small};
-  padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(4)};
-  cursor: pointer;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary.dark};
+    content: ${({ icon, numbered, index }) =>
+      icon
+        ? `"${icon}"`
+        : numbered
+        ? `"${index + 1}. "`
+        : "none"};
+    color: ${({ theme, numbered }) => (numbered ? theme.colors.primary.main : theme.colors.accent.main)};
+    font-weight: bold;
+    margin-right: ${({ theme }) => theme.spacing(2)};
   }
 `;
 
@@ -77,25 +55,22 @@ const ListComponent = ({
   items,
   direction = "vertical",
   variant = "standard",
+  showBullets = false,
   numbered = false,
   onClick,
 }) => {
   return (
-    <StyledList direction={direction}>
+    <StyledList direction={direction} showBullets={showBullets}>
       {items.map((item, index) => (
         <StyledListItem
           key={index}
           index={index}
           variant={variant}
-          numbered={numbered}
           icon={item.icon}
+          numbered={numbered}
+          onClick={() => onClick && onClick(item)}
         >
-          <span>{item.content}</span>
-          {item.buttonLabel && (
-            <StyledButton onClick={() => onClick && onClick(item)}>
-              {item.buttonLabel}
-            </StyledButton>
-          )}
+          {item.content}
         </StyledListItem>
       ))}
     </StyledList>
@@ -108,11 +83,11 @@ ListComponent.propTypes = {
     PropTypes.shape({
       content: PropTypes.node.isRequired,
       icon: PropTypes.string,
-      buttonLabel: PropTypes.string,
     })
   ).isRequired,
   direction: PropTypes.oneOf(["vertical", "horizontal"]),
   variant: PropTypes.oneOf(["standard", "highlighted"]),
+  showBullets: PropTypes.bool,
   numbered: PropTypes.bool,
   onClick: PropTypes.func,
 };

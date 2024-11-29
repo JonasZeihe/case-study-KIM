@@ -73,10 +73,14 @@ case-study-KIM/
 │   │   └── utilities/
 │   │       ├── HighlightText.js
 │   │       └── SmoothScroller.js
-│   ├── FuchsScript_2024-11-28_13-05/
+│   ├── FuchsScript_2024-11-29_15-04/
+│   ├── FuchsScript_2024-11-29_15-37/
+│   ├── FuchsScript_2024-11-29_16-16/
+│   ├── FuchsScript_2024-11-29_16-34/
 │   │   ├── webfiles_log.txt
 │   │   └── webfiles_output.txt
 │   ├── pages/
+│   │   ├── FuchsScript_2024-11-29_16-23/
 │   │   ├── 1_Introduction.js
 │   │   ├── 2_ProjectOverview.js
 │   │   ├── 3_Research.js
@@ -98,10 +102,12 @@ case-study-KIM/
 │   ├── reportWebVitals.js
 │   └── setupTests.js
 ├── .gitignore
+├── 20241129_150440_case-study-KIM_structure.txt
 ├── case-study-KIM.code-workspace
 ├── package-lock.json
 ├── package.json
 ├── README.md
 ├── run_React_App.bat
 ├── skryper_2024-10-11_20-05-09 .exe
-└── start_log_2024-28-11T12-33.txt
+├── start_log_2024-29-11T15-14.txt
+└── webfiles_output.txt

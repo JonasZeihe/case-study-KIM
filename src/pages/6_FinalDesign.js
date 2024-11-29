@@ -70,7 +70,6 @@ export default function FinalDesignPage() {
 
   return (
     <Wrapper>
-      {/* Header Section */}
       <Wrapper variant="hero" gradient="accentSoft" padding="large" textAlign="center">
         <Typography variant="h1">Finale Lösung und Design</Typography>
         <Typography variant="h3">
@@ -78,17 +77,15 @@ export default function FinalDesignPage() {
         </Typography>
       </Wrapper>
 
-      {/* Hauptfeatures */}
       <Wrapper variant="section" padding="large">
         <Typography variant="h2">Hauptfeatures</Typography>
         <Typography variant="body">
           Die Hauptfeatures von KIM kombinieren Technologie, emotionales Design und Interaktionen
           für tiefere Verbindungen.
         </Typography>
-        <ListComponent items={features} />
+        <ListComponent items={features} variant="highlighted"  />
       </Wrapper>
 
-      {/* Final App Screens */}
       <Wrapper variant="section" padding="large" gradient="accentBright">
         <Typography variant="h2" textAlign="center">Finale App-Screens</Typography>
         <Typography variant="body" textAlign="center">

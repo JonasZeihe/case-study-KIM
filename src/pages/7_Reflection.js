@@ -78,7 +78,7 @@ export default function ReflectionPage() {
           Während der Entwicklung von KIM gab es zentrale Herausforderungen, die uns besonders
           gefordert haben:
         </Typography>
-        <ListComponent items={challenges} variant="standard" />
+        <ListComponent items={challenges} variant="highlighted" />
       </Wrapper>
 
       {/* Learnings */}

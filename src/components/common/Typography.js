@@ -2,13 +2,13 @@ import React from "react";
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
-/* Styled Components */
+// Styled Components
 const StyledText = styled.span`
   margin: 0;
   padding: 0;
-  color: ${({ color, theme }) => color || theme.colors.neutral.dark};
-  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  color: ${({ color, theme }) => color || theme.colors.neutral.white};
   text-align: ${({ align }) => align || "left"};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
 
   ${({ variant, theme }) => {
     switch (variant) {
@@ -78,16 +78,27 @@ const StyledText = styled.span`
   }
 `;
 
-/* React Component */
+// React Component
 const Typography = ({ variant = "body", color, align, children, ...rest }) => {
+  const tagMap = {
+    h1: "h1",
+    h2: "h2",
+    h3: "h3",
+    lead: "p",
+    caption: "span",
+    muted: "span",
+    body: "p",
+  };
+  const asTag = tagMap[variant] || "p";
+
   return (
-    <StyledText as={variant} variant={variant} color={color} align={align} {...rest}>
+    <StyledText as={asTag} variant={variant} color={color} align={align} {...rest}>
       {children}
     </StyledText>
   );
 };
 
-/* Prop Types */
+// Prop Types
 Typography.propTypes = {
   variant: PropTypes.oneOf(["h1", "h2", "h3", "body", "caption", "lead", "muted"]),
   color: PropTypes.string,
