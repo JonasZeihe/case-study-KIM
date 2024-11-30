@@ -226,3 +226,138 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
 
 Sag mir, wie du vorgehen möchtest, und ich lege direkt los! 🚀
 
+---
+
+## 20241129 1512
+
+
+**Analyse und To-Do-Liste für das Layout und die Typografie der KIM App**
+
+Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wir für das Refactoring der Layouts, Farben und Typografie bearbeiten müssen. Hier ist eine strukturierte Übersicht, welche Dateien betroffen sind und welche Änderungen benötigt werden:
+
+---
+
+### **GlobalStyles und Theme (Basis für alles)**
+#### Dateien:
+1. `src/styles/GlobalStyles.js`
+2. `src/styles/theme.js`
+
+#### Änderungen:
+- **GlobalStyles.js**:
+  - Schriftfarben überarbeiten, die Standard-Textfarbe sollte besser lesbar und konsistent sein.
+  - Abstände (padding/margin) standardisieren, insbesondere für Hauptcontainer und Textelemente.
+  - Globale `line-height` und `font-size` für Überschriften und Absätze konsistenter gestalten.
+
+- **theme.js**:
+  - Farben (`colors`) überprüfen, insbesondere:
+    - Neutralfarben für Texte, um gute Lesbarkeit zu gewährleisten.
+    - Hintergrundfarben und Akzentfarben harmonisieren.
+  - Typografie-Skalierung (z. B. `scaleFont`) überprüfen und anpassen.
+  - Konsistente `spacing`-Faktoren (z. B. `theme.spacing()`), um ein einheitliches Layout zu schaffen.
+
+---
+
+### **Komponenten**
+#### Dateien:
+1. `src/components/layout/Wrapper.js`
+2. `src/components/layout/Header.js`
+3. `src/components/layout/Footer.js`
+4. `src/components/sections/HeroBanner.js`
+5. `src/components/sections/QuoteComponent.js`
+
+#### Änderungen:
+- **Wrapper.js**:
+  - Standardmäßige Padding- und Gap-Werte definieren, um konsistente Abstände zwischen Abschnitten zu gewährleisten.
+  - Textausrichtung und Hintergrundfarben aus dem `theme` dynamisch steuerbar machen.
+
+- **Header.js**:
+  - Hintergrund- und Schriftfarben optimieren, insbesondere bei Scrolling.
+  - Responsive Verhalten prüfen, z. B. Menü-Button und Logo-Darstellung.
+
+- **Footer.js**:
+  - Schriftgröße und Abstände der Textblöcke anpassen, um Lesbarkeit und Design zu verbessern.
+  - Farben harmonisieren.
+
+- **HeroBanner.js**:
+  - Hintergrundfarben und Typografie aus `theme` direkt ableiten.
+  - Padding für verschiedene Viewports anpassen.
+
+- **QuoteComponent.js**:
+  - Farben der Texte und Highlights aus dem `theme` verwenden.
+  - Abstände und Rahmen dynamischer gestalten.
+
+---
+
+### **Datendarstellung**
+#### Dateien:
+1. `src/components/data-display/Carousel.js`
+2. `src/components/data-display/ListComponent.js`
+3. `src/components/data-display/MediaDisplay.js`
+
+#### Änderungen:
+- **Carousel.js**:
+  - Navigation (Buttons und Dots) besser positionieren und mit klaren Farben versehen.
+  - Standard-Abstände innerhalb des Carousels festlegen.
+
+- **ListComponent.js**:
+  - Standardisierte Farben und Hintergründe für Listenitems.
+  - Abstände und Schriftgrößen anpassen.
+
+- **MediaDisplay.js**:
+  - Textbeschriftungen besser positionieren und in der Farbe optimieren.
+  - Gitterlayout prüfen und für verschiedene Viewports anpassen.
+
+---
+
+### **Seiten**
+#### Dateien:
+1. `src/pages/*.js` (alle Seiten)
+2. `src/App.js`
+
+#### Änderungen:
+- **Alle Seiten**:
+  - Einheitliche Layoutstruktur, die Abschnitte klar voneinander abgrenzt (Wrapper optimieren).
+  - Farben und Typografie aus `theme` übernehmen.
+  - Abstände zwischen Abschnitten überprüfen und mit konsistenten Werten versehen.
+
+- **App.js**:
+  - `Main`-Container prüfen, ob die `padding`- und `max-width`-Einstellungen standardisiert sind.
+
+---
+
+### **Sonstige Komponenten**
+#### Dateien:
+1. `src/components/common/Button.js`
+2. `src/components/common/Typography.js`
+3. `src/components/common/Lightbox.js`
+
+#### Änderungen:
+- **Button.js**:
+  - Varianten (z. B. `primary`, `secondary`) aus `theme` ableiten.
+  - Konsistente Schriftgrößen und Paddings für alle Buttons festlegen.
+
+- **Typography.js**:
+  - Typografie-Varianten (`h1`, `h2`, etc.) überarbeiten und Farben/Textgrößen standardisieren.
+  - Responsive Verhalten für unterschiedliche Viewports sicherstellen.
+
+- **Lightbox.js**:
+  - Hintergrundfarben und Übergänge für die Lightbox harmonisieren.
+
+---
+
+### **Schritte für das Refactoring**
+1. **Basis-Anpassungen**:
+   - `GlobalStyles.js` und `theme.js` überarbeiten.
+2. **Komponenten**:
+   - Wrapper, Header, Footer und zentrale Darstellungskomponenten bearbeiten.
+3. **Seiten**:
+   - Layoutstruktur für jede Seite optimieren.
+4. **Testen**:
+   - Farben und Abstände auf allen Seiten visuell prüfen.
+   - Typografie auf Konsistenz überprüfen.
+
+---
+
+### Nächste Schritte
+Lass uns mit den Basis-Anpassungen in `GlobalStyles.js` und `theme.js` starten. Sag Bescheid, wenn ich den ersten Vorschlag für diese Dateien umsetzen soll.
+

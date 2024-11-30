@@ -27,7 +27,7 @@ export default function Header() {
 
   const handleLogoClick = () => {
     document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
-    setMenuOpen(false); // Schließt das Menü, wenn das Logo angeklickt wird
+    setMenuOpen(false);
   };
 
   const renderNavItems = (isMobile) =>
@@ -57,12 +57,11 @@ export default function Header() {
   );
 }
 
-// Styled Components
 const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
-  height: 80px;
+  height: clamp(4rem, 10vw, 5rem);
   z-index: 1000;
   background: ${({ isScrolled, theme }) =>
     isScrolled ? theme.colors.primary.main : theme.colors.neutral.white};
@@ -84,12 +83,8 @@ const HeaderContent = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 4rem;
+  height: clamp(3rem, 5vw, 4rem);
   cursor: pointer;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    height: 3rem;
-  }
 `;
 
 const DesktopNav = styled.nav`
@@ -104,7 +99,7 @@ const DesktopNav = styled.nav`
 const NavItem = styled.div`
   font-size: ${({ theme }) => theme.typography.fontSize.body};
   color: ${({ isMobile, theme }) =>
-    isMobile ? theme.colors.neutral.white : theme.colors.neutral.dark};
+    isMobile ? theme.colors.neutral.white : theme.colors.neutral.darkest};
   cursor: pointer;
   position: relative;
   transition: color 0.3s ease;
@@ -149,7 +144,7 @@ const MobileMenu = styled.div`
   display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   flex-direction: column;
   position: fixed;
-  top: 80px;
+  top: clamp(4rem, 10vw, 5rem);
   left: 0;
   right: 0;
   background: ${({ theme }) => theme.colors.primary.main};
@@ -159,4 +154,3 @@ const MobileMenu = styled.div`
   gap: ${({ theme }) => theme.spacing(3)};
   text-align: center;
 `;
-

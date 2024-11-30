@@ -7,9 +7,12 @@ import Carousel from "../data-display/Carousel";
 // Styled Components
 const MediaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: ${({ theme }) => theme.spacing(4)};
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: ${({ theme }) => theme.spacing(3)};
   justify-content: center;
+  max-width: 100%; /* Begrenzung des Grids */
+  margin: 0 auto; /* Zentrierung */
+  overflow: hidden; /* Kein Layout-Ausbruch */
 `;
 
 const MediaItem = styled.div`
@@ -21,18 +24,15 @@ const MediaItem = styled.div`
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px); /* Leicht reduzierte Hover-Animation */
     box-shadow: ${({ theme }) => theme.boxShadow.medium};
   }
 
   img,
   video {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     object-fit: cover;
-  }
-
-  video {
     border-radius: ${({ theme }) => theme.borderRadius.medium};
   }
 `;
@@ -40,8 +40,8 @@ const MediaItem = styled.div`
 const MediaCaption = styled.div`
   margin-top: ${({ theme }) => theme.spacing(2)};
   text-align: center;
-  font-size: ${({ theme }) => theme.typography.fontSize.body};
-  color: ${({ theme }) => theme.colors.neutral.dark};
+  font-size: ${({ theme }) => theme.typography.fontSize.small};
+  color: ${({ theme }) => theme.colors.neutral.main};
 `;
 
 export default function MediaDisplay({ media, layout = "grid" }) {
@@ -56,8 +56,8 @@ export default function MediaDisplay({ media, layout = "grid" }) {
   const closeLightbox = () => setLightboxOpen(false);
 
   if (!media || media.length === 0) {
-    console.error("MediaDisplay: No media provided.");
-    return null;
+    console.error("MediaDisplay: Keine Medieninhalte gefunden.");
+    return <p>Keine Inhalte zum Anzeigen.</p>;
   }
 
   return (
@@ -72,7 +72,7 @@ export default function MediaDisplay({ media, layout = "grid" }) {
               {item.type === "video" && (
                 <video controls>
                   <source src={item.src} type="video/mp4" />
-                  Your browser does not support the video tag.
+                  Dein Browser unterstützt dieses Videoformat nicht.
                 </video>
               )}
               {item.caption && <MediaCaption>{item.caption}</MediaCaption>}
@@ -81,9 +81,7 @@ export default function MediaDisplay({ media, layout = "grid" }) {
         </MediaGrid>
       )}
 
-      {layout === "carousel" && (
-        <Carousel slides={media} />
-      )}
+      {layout === "carousel" && <Carousel slides={media} />}
 
       {lightboxOpen && (
         <Lightbox
@@ -102,7 +100,7 @@ MediaDisplay.propTypes = {
       type: PropTypes.oneOf(["image", "video"]).isRequired,
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
-      caption: PropTypes.string, // Optional for additional context
+      caption: PropTypes.string, // Optional für zusätzlichen Kontext
     })
   ).isRequired,
   layout: PropTypes.oneOf(["grid", "carousel"]),

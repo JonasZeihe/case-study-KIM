@@ -20,7 +20,7 @@ export default function Architecture() {
 
   return (
     <>
-      {/* Header */}
+      <Wrapper>
       <Wrapper
         variant="hero"
         gradient="secondaryWarm"
@@ -89,6 +89,7 @@ export default function Architecture() {
           <strong>präzise abzubilden</strong>.
         </Typography>
         <MediaDisplay media={[media[3]]} layout="grid" />
+      </Wrapper>
       </Wrapper>
     </>
   );

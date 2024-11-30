@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// Styled Components
 const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,14 +10,12 @@ const HeroContainer = styled.div`
   background: ${({ gradient, theme }) =>
     gradient ||
     `linear-gradient(135deg, ${theme.colors.primary.main}, ${theme.colors.secondary.main})`};
-  color: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.neutral.white};
   padding: ${({ theme }) => theme.spacing(8)} ${({ theme }) => theme.spacing(4)};
   text-align: center;
   border-radius: ${({ theme }) => theme.borderRadius.large};
   box-shadow: ${({ theme }) => theme.boxShadow.medium};
-  position: relative; /* Fix für Header-Überblendung */
-  z-index: 0; /* Sicherstellen, dass es unter dem Header bleibt */
-  width: 100%; /* Passt sich immer an die Breite an */
+  width: 100%;
   box-sizing: border-box;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -32,7 +29,7 @@ const HeroTitle = styled.h1`
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   line-height: ${({ theme }) => theme.typography.lineHeight.tight};
   margin-bottom: ${({ theme }) => theme.spacing(4)};
-  max-width: 90%; /* Begrenzung für kleinere Viewports */
+  max-width: 90%;
   word-wrap: break-word;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -46,6 +43,7 @@ const HeroSubtitle = styled.p`
   line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
   margin-bottom: ${({ theme }) => theme.spacing(5)};
   max-width: 800px;
+  color: ${({ theme }) => theme.colors.neutral.light};
   word-wrap: break-word;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -58,15 +56,15 @@ const CallToAction = styled.button`
   font-size: ${({ theme }) => theme.typography.fontSize.button};
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(4)};
-  color: ${({ theme }) => theme.colors.primary.main};
-  background: ${({ theme }) => theme.colors.neutral.white};
+  color: ${({ theme }) => theme.colors.neutral.white};
+  background: ${({ theme }) => theme.colors.accent.main};
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.neutral.light};
+    background: ${({ theme }) => theme.colors.accent.dark};
     box-shadow: ${({ theme }) => theme.boxShadow.light};
   }
 
@@ -76,7 +74,6 @@ const CallToAction = styled.button`
   }
 `;
 
-// React Component
 const HeroBanner = ({ 
   title, 
   subtitle, 
@@ -93,7 +90,6 @@ const HeroBanner = ({
   );
 };
 
-// PropTypes for validation
 HeroBanner.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
@@ -102,7 +98,6 @@ HeroBanner.propTypes = {
   gradient: PropTypes.string,
 };
 
-// Default Props
 HeroBanner.defaultProps = {
   subtitle: '',
   ctaText: null,

@@ -21,6 +21,7 @@ export default function Introduction() {
   return (
     <>
       {/* Hero Section */}
+      <Wrapper>
       <Wrapper
         variant="hero"
         gradient="primaryLight"
@@ -63,9 +64,7 @@ export default function Introduction() {
       {/* Das Ziel Section */}
       <Wrapper
         variant="section"
-        gradient="primaryLightToDark"
         padding="large"
-        gap="large"
         textAlign="center"
       >
         <Typography variant="h2">
@@ -77,6 +76,7 @@ export default function Introduction() {
           Persönlichkeit und geteilte Interessen der Nutzer.
         </Typography>
         <QuoteComponent text="Verbindungen, die zählen." author="KIM Vision Statement" />
+      </Wrapper>
       </Wrapper>
     </>
   );

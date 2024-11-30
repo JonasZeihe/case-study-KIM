@@ -19,15 +19,23 @@ export default function ProjectOverview() {
     },
   ];
 
+  const mediaContent = [
+    {
+      type: "image",
+      src: projectOverviewImage,
+      alt: "Projektübersicht",
+    },
+  ];
+
   return (
     <>
       {/* Header Section */}
+      <Wrapper>
       <Wrapper
         variant="hero"
         gradient="primaryDark"
         textAlign="center"
         padding="large"
-        overlayColor="rgba(0,0,0,0.4)"
       >
         <Typography variant="h1">Projektüberblick</Typography>
         <Typography variant="h3">
@@ -55,7 +63,7 @@ export default function ProjectOverview() {
           neuen Ansatz für authentische Beziehungen.
         </Typography>
         <MediaDisplay
-          media={[{ type: "image", src: projectOverviewImage, alt: "Projektübersicht" }]}
+          media={mediaContent}
           layout="grid"
         />
       </Wrapper>
@@ -79,7 +87,7 @@ export default function ProjectOverview() {
           App zu entwickeln, die innovative Technologien einsetzt.
         </Typography>
         <Typography variant="h3">Methoden & Tools</Typography>
-        <ListComponent items={methodsAndTools} />
+        <ListComponent items={methodsAndTools} variant="highlighted" />
       </Wrapper>
 
       {/* Problemstellung Section */}
@@ -105,6 +113,8 @@ export default function ProjectOverview() {
           author="KIM Vision Statement"
         />
       </Wrapper>
+      </Wrapper>
+
     </>
   );
 }

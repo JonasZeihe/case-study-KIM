@@ -96,6 +96,7 @@ export default function Research() {
   return (
     <>
       {/* Header */}
+      <Wrapper>
       <Wrapper
         variant="hero"
         gradient="primaryDynamic"
@@ -131,7 +132,7 @@ export default function Research() {
           <strong>5 ausführlichen Interviews</strong> identifizierten wir die Bedürfnisse
           potenzieller Nutzer.
         </Typography>
-        <ListComponent items={insights} />
+        <ListComponent items={insights} variant="highlighted" />
         <MediaDisplay media={[media[1]]} layout="grid" />
       </Wrapper>
 
@@ -140,7 +141,7 @@ export default function Research() {
         <Typography variant="h2">
           <HighlightText>Key Insights</HighlightText>
         </Typography>
-        <ListComponent items={keyInsights} />
+        <ListComponent items={keyInsights} variant="highlighted" />
       </Wrapper>
 
       {/* Persona Section */}
@@ -154,6 +155,7 @@ export default function Research() {
           <HighlightText>gemeinsame Aktivitäten</HighlightText> sucht.
         </Typography>
         <MediaDisplay media={[media[4]]} layout="grid" />
+      </Wrapper>
       </Wrapper>
     </>
   );

@@ -42,8 +42,8 @@ export default function UXProcess() {
 
   return (
     <>
-      {/* Header */}
-      <Wrapper
+    <Wrapper>
+    <Wrapper
         variant="hero"
         gradient="secondaryBold"
         textAlign="center"
@@ -80,7 +80,7 @@ export default function UXProcess() {
           Die <strong>interaktiven Features</strong> der App wurden entwickelt, um Toms Journey
           intuitiv und visuell ansprechend zu gestalten. Dazu gehören:
         </Typography>
-        <ListComponent items={interactiveFeatures} />
+        <ListComponent items={interactiveFeatures} variant="highlighted"/>
         <Typography variant="body">
           KIM fungiert als <HighlightText>Brückenbauer</HighlightText>, der Beziehungen auf
           emotionaler Ebene unterstützt und vertieft.
@@ -100,6 +100,8 @@ export default function UXProcess() {
         </Typography>
         <MediaDisplay media={[media[1]]} layout="grid" />
       </Wrapper>
+      </Wrapper>
+
     </>
   );
 }

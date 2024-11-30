@@ -1,18 +1,15 @@
 import React from "react";
-import styled from "styled-components"; // Styled Components importieren
-import PropTypes from "prop-types"; // PropTypes importieren
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-
-const WrapperContainer = styled.div`
- 
-/* Grundlegendes Layout */
+const WrapperContainer = styled.section`
   width: 100%;
   max-width: ${({ theme }) => theme.breakpoints.xl};
   margin: 0 auto;
   padding: ${({ padding, theme }) => padding || theme.spacing(6)};
   display: flex;
   flex-direction: column;
-  gap: ${({ gap, theme }) => gap || theme.spacing(6)};
+  gap: ${({ gap, theme }) => gap || theme.spacing(4)};
   align-items: ${({ textAlign }) =>
     textAlign === "left"
       ? "flex-start"
@@ -21,19 +18,27 @@ const WrapperContainer = styled.div`
       : "center"};
   justify-content: ${({ justify }) => justify || "center"};
 
-  /* Dynamischer Hintergrund */
+  /* Hintergrund und Farben */
   background: ${({ gradient, theme, background }) =>
     gradient
-      ? theme.gradients[gradient] || theme.colors.background.lightest
+      ? theme.gradients[gradient] || theme.colors.background.light
       : background || theme.colors.background.light};
-  color: ${({ textColor, theme }) => textColor || theme.colors.neutral.darkest};
+  color: ${({ textColor, theme }) => textColor || theme.colors.neutral.main};
 
   /* Schatten und Border */
-  box-shadow: ${({ shadow, theme }) => shadow || theme.boxShadow.medium};
+  box-shadow: ${({ shadow, theme }) => shadow || "none"};
   border-radius: ${({ borderRadius, theme }) =>
-    borderRadius || theme.borderRadius.large};
+    borderRadius || theme.borderRadius.medium};
 
-  /* Optional Overlay */
+  /* Trennung von Abschnitten */
+  ${({ theme }) => `
+    &:not(:last-of-type) {
+      margin-bottom: ${theme.spacing(6)};
+      border-bottom: 1px solid ${theme.colors.neutral.light};
+    }
+  `}
+
+  /* Optionales Overlay */
   ${({ overlayColor }) =>
     overlayColor &&
     `
@@ -46,12 +51,12 @@ const WrapperContainer = styled.div`
       width: 100%;
       height: 100%;
       background: ${overlayColor};
-      opacity: 0.5;
-      z-index: 1;
+      opacity: 0.4;
+      z-index: 0;
     }
   `}
 
-  /* Varianten-Styling */
+  /* Varianten */
   ${({ variant, theme }) =>
     variant === "hero" &&
     `
@@ -60,7 +65,7 @@ const WrapperContainer = styled.div`
     color: ${theme.colors.neutral.white};
     text-align: center;
   `}
-  
+
   ${({ variant, theme }) =>
     variant === "header" &&
     `
@@ -69,15 +74,23 @@ const WrapperContainer = styled.div`
     color: ${theme.colors.primary.dark};
   `}
 
+  ${({ variant, theme }) =>
+    variant === "section" &&
+    `
+    padding: ${theme.spacing(6)};
+    background: ${theme.colors.background.dark};
+    border-radius: ${theme.borderRadius.medium};
+  `}
+
   /* Responsive Anpassungen */
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: ${({ theme }) => theme.spacing(4)};
-    gap: ${({ theme }) => theme.spacing(4)};
+    gap: ${({ theme }) => theme.spacing(3)};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     padding: ${({ theme }) => theme.spacing(3)};
-    gap: ${({ theme }) => theme.spacing(3)};
+    gap: ${({ theme }) => theme.spacing(2)};
     align-items: center;
   }
 `;
@@ -110,10 +123,15 @@ const Wrapper = ({
   padding,
   gap,
   overlayColor,
-  shadow,
+  shadow = "none",
   borderRadius,
   justify = "center",
 }) => {
+  if (!children) {
+    console.error("Wrapper: Kein Inhalt übergeben.");
+    return null;
+  }
+
   return (
     <WrapperContainer
       variant={variant}
