@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledHighlightText = styled.span`
@@ -7,17 +7,12 @@ const StyledHighlightText = styled.span`
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
 `;
 
-const HighlightText = ({ children, color }) => (
-  <StyledHighlightText
-    color={color}
-  >
-    {children}
-  </StyledHighlightText>
-);
+function HighlightText({ children, color }) {
+  return <StyledHighlightText color={color}>{children}</StyledHighlightText>;
+}
 
 HighlightText.propTypes = {
   children: PropTypes.node.isRequired,
-  color: PropTypes.string,
 };
 
 export default HighlightText;

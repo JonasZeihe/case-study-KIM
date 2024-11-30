@@ -1,36 +1,36 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Lightbox from "../common/Lightbox";
-import Carousel from "../data-display/Carousel";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Lightbox from '../common/Lightbox';
 
 // Styled Components
 const MediaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: ${({ theme }) => theme.spacing(3)};
   justify-content: center;
-  max-width: 100%; /* Begrenzung des Grids */
-  margin: 0 auto; /* Zentrierung */
-  overflow: hidden; /* Kein Layout-Ausbruch */
+  margin: 0 auto;
 `;
 
-const MediaItem = styled.div`
-  position: relative;
+const MediaItem = styled.button`
   cursor: pointer;
+  border: none;
+  background: none;
   overflow: hidden;
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   box-shadow: ${({ theme }) => theme.boxShadow.light};
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-3px); /* Leicht reduzierte Hover-Animation */
+    transform: translateY(-3px);
     box-shadow: ${({ theme }) => theme.boxShadow.medium};
   }
 
   img,
   video {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     object-fit: cover;
     border-radius: ${({ theme }) => theme.borderRadius.medium};
@@ -41,10 +41,10 @@ const MediaCaption = styled.div`
   margin-top: ${({ theme }) => theme.spacing(2)};
   text-align: center;
   font-size: ${({ theme }) => theme.typography.fontSize.small};
-  color: ${({ theme }) => theme.colors.neutral.main};
+  color: ${({ theme }) => theme.colors.neutral.medium};
 `;
 
-export default function MediaDisplay({ media, layout = "grid" }) {
+export default function MediaDisplay({ media }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -55,33 +55,28 @@ export default function MediaDisplay({ media, layout = "grid" }) {
 
   const closeLightbox = () => setLightboxOpen(false);
 
-  if (!media || media.length === 0) {
-    console.error("MediaDisplay: Keine Medieninhalte gefunden.");
-    return <p>Keine Inhalte zum Anzeigen.</p>;
-  }
-
   return (
     <>
-      {layout === "grid" && (
-        <MediaGrid>
-          {media.map((item, index) => (
-            <MediaItem key={index} onClick={() => openLightbox(index)}>
-              {item.type === "image" && (
-                <img src={item.src} alt={item.alt || `Media ${index + 1}`} />
-              )}
-              {item.type === "video" && (
-                <video controls>
-                  <source src={item.src} type="video/mp4" />
-                  Dein Browser unterstützt dieses Videoformat nicht.
-                </video>
-              )}
-              {item.caption && <MediaCaption>{item.caption}</MediaCaption>}
-            </MediaItem>
-          ))}
-        </MediaGrid>
-      )}
-
-      {layout === "carousel" && <Carousel slides={media} />}
+      <MediaGrid>
+        {media.map(({ type, src, alt, caption }, index) => (
+          <MediaItem
+            key={src}
+            onClick={() => openLightbox(index)}
+            aria-label={`Open ${type === 'image' ? 'image' : 'video'} ${alt || `Media ${index + 1}`}`}
+          >
+            {type === 'image' && (
+              <img src={src} alt={alt || `Media ${index + 1}`} />
+            )}
+            {type === 'video' && (
+              <video controls aria-label={alt || `Video ${index + 1}`}>
+                <source src={src} type="video/mp4" />
+                Your browser does not support this video format.
+              </video>
+            )}
+            {caption && <MediaCaption>{caption}</MediaCaption>}
+          </MediaItem>
+        ))}
+      </MediaGrid>
 
       {lightboxOpen && (
         <Lightbox
@@ -97,11 +92,10 @@ export default function MediaDisplay({ media, layout = "grid" }) {
 MediaDisplay.propTypes = {
   media: PropTypes.arrayOf(
     PropTypes.shape({
-      type: PropTypes.oneOf(["image", "video"]).isRequired,
+      type: PropTypes.oneOf(['image', 'video']).isRequired,
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
-      caption: PropTypes.string, // Optional für zusätzlichen Kontext
+      caption: PropTypes.string,
     })
   ).isRequired,
-  layout: PropTypes.oneOf(["grid", "carousel"]),
 };

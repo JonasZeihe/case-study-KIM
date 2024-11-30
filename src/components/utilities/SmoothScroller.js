@@ -1,27 +1,31 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const SmoothScroller = ({ targetId, children }) => {
+function SmoothScroller({ targetId, children }) {
   const handleClick = (e) => {
     e.preventDefault();
 
     const target = document.getElementById(targetId);
     if (!target) {
-      console.error(`SmoothScroller: Kein Element mit ID "${targetId}" gefunden.`);
+      console.error(
+        `SmoothScroller: Kein Element mit ID "${targetId}" gefunden.`
+      );
       return;
     }
 
     // Einfacher Fallback zu `scrollIntoView`
-    if ("scrollIntoView" in target) {
+    if ('scrollIntoView' in target) {
       target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+        behavior: 'smooth',
+        block: 'start',
       });
     } else {
-      console.warn("scrollIntoView nicht unterstützt, normales Scrollen wird verwendet.");
+      console.warn(
+        'scrollIntoView nicht unterstützt, normales Scrollen wird verwendet.'
+      );
       window.scrollTo({
         top: target.getBoundingClientRect().top + window.scrollY,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
@@ -32,13 +36,13 @@ const SmoothScroller = ({ targetId, children }) => {
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") handleClick(e);
+        if (e.key === 'Enter' || e.key === ' ') handleClick(e);
       }}
     >
       {children}
     </div>
   );
-};
+}
 
 SmoothScroller.propTypes = {
   targetId: PropTypes.string.isRequired,

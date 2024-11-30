@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled, { useTheme } from "styled-components";
-import SmoothScroller from "../utilities/SmoothScroller";
-import logoDesktop from "../../assets/images/KIM_logo_large.png";
-import logoMobile from "../../assets/images/KIM_logo_small.png";
+import React, { useState, useEffect } from 'react';
+import styled, { useTheme } from 'styled-components';
+import SmoothScroller from '../utilities/SmoothScroller';
+import logoDesktop from '../../assets/images/KIM_logo_large.png';
+import logoMobile from '../../assets/images/KIM_logo_small.png';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,30 +10,35 @@ export default function Header() {
   const theme = useTheme();
 
   const sections = [
-    { id: "introduction", label: "Einführung" },
-    { id: "project-overview", label: "Projektüberblick" },
-    { id: "research", label: "Entdeckungsphase" },
-    { id: "architecture", label: "Architektur" },
-    { id: "ux-process", label: "UX-Prozess" },
-    { id: "final-design", label: "Finales Design" },
-    { id: "reflection", label: "Reflexion" },
+    { id: 'introduction', label: 'Einführung' },
+    { id: 'project-overview', label: 'Projektüberblick' },
+    { id: 'research', label: 'Entdeckungsphase' },
+    { id: 'architecture', label: 'Architektur' },
+    { id: 'ux-process', label: 'UX-Prozess' },
+    { id: 'final-design', label: 'Finales Design' },
+    { id: 'reflection', label: 'Reflexion' },
   ];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleLogoClick = () => {
-    document.getElementById("introduction")?.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById('introduction')
+      ?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
   };
 
   const renderNavItems = (isMobile) =>
     sections.map(({ id, label }) => (
       <SmoothScroller key={id} targetId={id}>
-        <NavItem isMobile={isMobile} onClick={() => isMobile && setMenuOpen(false)}>
+        <NavItem
+          isMobile={isMobile}
+          onClick={() => isMobile && setMenuOpen(false)}
+        >
           {label}
         </NavItem>
       </SmoothScroller>
@@ -43,13 +48,17 @@ export default function Header() {
     <HeaderContainer isScrolled={isScrolled}>
       <HeaderContent>
         <Logo
-          src={menuOpen || window.innerWidth >= parseInt(theme.breakpoints.md) ? logoDesktop : logoMobile}
+          src={
+            menuOpen || window.innerWidth >= parseInt(theme.breakpoints.md)
+              ? logoDesktop
+              : logoMobile
+          }
           alt="KIM Logo"
           onClick={handleLogoClick}
         />
         <DesktopNav>{renderNavItems(false)}</DesktopNav>
         <MobileMenuButton onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? "✕" : "☰"}
+          {menuOpen ? '✕' : '☰'}
         </MobileMenuButton>
       </HeaderContent>
       <MobileMenu isOpen={menuOpen}>{renderNavItems(true)}</MobileMenu>
@@ -65,8 +74,11 @@ const HeaderContainer = styled.header`
   z-index: 1000;
   background: ${({ isScrolled, theme }) =>
     isScrolled ? theme.colors.primary.main : theme.colors.neutral.white};
-  box-shadow: ${({ isScrolled, theme }) => (isScrolled ? theme.boxShadow.medium : "none")};
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: ${({ isScrolled, theme }) =>
+    isScrolled ? theme.boxShadow.medium : 'none'};
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 `;
 
 const HeaderContent = styled.div`
@@ -105,7 +117,7 @@ const NavItem = styled.div`
   transition: color 0.3s ease;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: -0.25rem;
@@ -141,7 +153,7 @@ const MobileMenuButton = styled.button`
 `;
 
 const MobileMenu = styled.div`
-  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
   position: fixed;
   top: clamp(4rem, 10vw, 5rem);

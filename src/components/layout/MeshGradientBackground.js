@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-const MeshGradientBackground = () => {
+function MeshGradientBackground() {
   return (
     <BackgroundContainer>
       <GradientLayer1 />
       <GradientLayer2 />
     </BackgroundContainer>
   );
-};
+}
 
 // Styled Components
 const BackgroundContainer = styled.div`
@@ -48,6 +48,5 @@ const GradientLayer2 = styled.div`
   z-index: 3;
   mix-blend-mode: overlay; /* Überlagerung für mehr Tiefe */
 `;
-
 
 export default MeshGradientBackground;
