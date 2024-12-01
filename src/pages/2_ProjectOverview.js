@@ -1,42 +1,36 @@
-import React from "react";
-import Wrapper from "../components/layout/Wrapper";
-import MediaDisplay from "../components/data-display/MediaDisplay";
-import QuoteComponent from "../components/sections/QuoteComponent";
-import Typography from "../components/common/Typography";
-import HighlightText from "../components/utilities/HighlightText";
-import ListComponent from "../components/data-display/ListComponent";
+import React from 'react';
+import Wrapper from '../components/layout/Wrapper';
+import MediaDisplay from '../components/data-display/MediaDisplay';
+import QuoteComponent from '../components/sections/QuoteComponent';
+import Typography from '../components/common/Typography';
+import HighlightText from '../components/utilities/HighlightText';
+import ListComponent from '../components/data-display/ListComponent';
 
 // Assets
-import projectOverviewImage from "../assets/images/project_overview.png";
+import projectOverviewImage from '../assets/images/project_overview.png';
 
 export default function ProjectOverview() {
   const methodsAndTools = [
-    { content: "🎨 Figma & FigJam: Prototyping, Wireframes und Moodboards" },
-    { content: "📋 Notion: Projektmanagement und zentrale Dokumentation" },
+    { content: '🎨 Figma & FigJam: Prototyping, Wireframes und Moodboards' },
+    { content: '📋 Notion: Projektmanagement und zentrale Dokumentation' },
     {
       content:
-        "🔬 Methoden: Desk Research, User Interviews, quantitative Umfragen, Personas, User Journey Maps, Wireframing, Prototyping, iteratives Testing",
+        '🔬 Methoden: Desk Research, User Interviews, quantitative Umfragen, Personas, User Journey Maps, Wireframing, Prototyping, iteratives Testing',
     },
   ];
 
   const mediaContent = [
     {
-      type: "image",
+      type: 'image',
       src: projectOverviewImage,
-      alt: "Projektübersicht",
+      alt: 'Projektübersicht',
     },
   ];
 
   return (
-    <>
+    <Wrapper backgroundColor="background.light" padding="large" elevated>
       {/* Header Section */}
-      <Wrapper>
-      <Wrapper
-        variant="hero"
-        gradient="primaryDark"
-        textAlign="center"
-        padding="large"
-      >
+      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
         <Typography variant="h1">Projektüberblick</Typography>
         <Typography variant="h3">
           Ein tiefer Einblick in das Projekt, das Verbindungen neu definiert.
@@ -44,45 +38,30 @@ export default function ProjectOverview() {
       </Wrapper>
 
       {/* Produktbeschreibung Section */}
-      <Wrapper
-        variant="section"
-        gradient="subtleSecondary"
-        padding="large"
-        gap="large"
-        textAlign="center"
-      >
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>Produktbeschreibung</HighlightText>
         </Typography>
         <Typography variant="body">
-          <strong>KIM</strong> ist mehr als nur eine Plattform. Sie dient als{" "}
+          <strong>KIM</strong> ist mehr als nur eine Plattform. Sie dient als{' '}
           <HighlightText>Brücke zwischen Menschen</HighlightText>, die auf der
-          Suche nach echten Verbindungen sind. Basierend auf{" "}
+          Suche nach echten Verbindungen sind. Basierend auf{' '}
           <HighlightText>gemeinsamen Interessen, Zielen</HighlightText> und
           Persönlichkeiten, die durch KI ermittelt werden, bietet KIM einen
           neuen Ansatz für authentische Beziehungen.
         </Typography>
-        <MediaDisplay
-          media={mediaContent}
-          layout="grid"
-        />
+        <MediaDisplay media={mediaContent} layout="grid" />
       </Wrapper>
 
       {/* Team & Rollen Section */}
-      <Wrapper
-        variant="section"
-        gradient="accentToPrimary"
-        padding="large"
-        gap="large"
-        textAlign="left"
-      >
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>Team & Rollen</HighlightText>
         </Typography>
         <Typography variant="body">
           Unser Team besteht aus <strong>Darya, Isabel und Jonas</strong>, die
-          als <HighlightText>UX/UI-Designer</HighlightText> im{" "}
-          <HighlightText>„neue fische“ Bootcamp</HighlightText>{" "}
+          als <HighlightText>UX/UI-Designer</HighlightText> im{' '}
+          <HighlightText>„neue fische“ Bootcamp</HighlightText>{' '}
           zusammenarbeiteten. Ziel war es, eine durchdachte, nutzerzentrierte
           App zu entwickeln, die innovative Technologien einsetzt.
         </Typography>
@@ -91,19 +70,15 @@ export default function ProjectOverview() {
       </Wrapper>
 
       {/* Problemstellung Section */}
-      <Wrapper
-        variant="section"
-        gradient="gradientHighlight"
-        padding="large"
-        gap="large"
-        textAlign="center"
-      >
+      <Wrapper backgroundColor="background.main" padding="large">
         <Typography variant="h2">
           <HighlightText>Problemstellung</HighlightText>
         </Typography>
         <Typography variant="body">
-          Die größte Herausforderung war es, eine Plattform zu entwickeln, die{" "}
-          <HighlightText>tiefere, emotional fundierte Verbindungen</HighlightText>{" "}
+          Die größte Herausforderung war es, eine Plattform zu entwickeln, die{' '}
+          <HighlightText>
+            tiefere, emotional fundierte Verbindungen
+          </HighlightText>{' '}
           ermöglicht, anstatt nur oberflächliche Kontakte zu schaffen. Unsere
           Wettbewerbsanalyse zeigte, dass bestehende Netzwerke wie LinkedIn,
           Facebook und XING oft eher „verbindend“ als „verstehend“ sind.
@@ -113,8 +88,6 @@ export default function ProjectOverview() {
           author="KIM Vision Statement"
         />
       </Wrapper>
-      </Wrapper>
-
-    </>
+    </Wrapper>
   );
 }

@@ -3,7 +3,7 @@ import gradients from './Gradient';
 const baseFontSize = 16;
 const goldenRatio = 1.618;
 
-const scaleFont = (level) => `${(baseFontSize * Math.pow(goldenRatio, level)).toFixed(2)}px`;
+const scaleFont = (level) => `${(baseFontSize * goldenRatio ** level) / 16}rem`;
 
 const colors = {
   primary: {
@@ -63,9 +63,8 @@ const theme = {
       h1: scaleFont(3),
       h2: scaleFont(2),
       h3: scaleFont(1),
-      body: `${baseFontSize}px`,
-      detail: scaleFont(-1),
-      small: scaleFont(-2),
+      body: `${baseFontSize / 16}rem`,
+      small: scaleFont(-1),
     },
     fontWeight: {
       light: 300,

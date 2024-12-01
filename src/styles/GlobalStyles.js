@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   *, *::before, *::after {
@@ -16,31 +16,14 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    margin: 0;
     font-family: ${({ theme }) => theme.typography.fontFamily.secondary};
     font-size: ${({ theme }) => theme.typography.fontSize.body};
     line-height: ${({ theme }) => theme.typography.lineHeight.normal};
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    height: 100%;
-    padding-top: clamp(4rem, 5vw, 5rem);
-  }
-
-  #root {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    padding-top: clamp(2rem, 5vw, 5rem);
+    overflow-x: hidden;
   }
 
   a {
@@ -57,8 +40,8 @@ const GlobalStyles = createGlobalStyle`
     font-family: ${({ theme }) => theme.typography.fontFamily.button};
     font-size: ${({ theme }) => theme.typography.fontSize.body};
     cursor: pointer;
-    border: none;
     background: none;
+    border: none;
     padding: 0;
 
     &:focus {
@@ -70,11 +53,6 @@ const GlobalStyles = createGlobalStyle`
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     html {
       font-size: 14px;
-    }
-
-    body {
-      padding: 0 ${({ theme }) => theme.spacing(2)};
-      padding-top: 5rem;
     }
   }
 `;

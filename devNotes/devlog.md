@@ -4,7 +4,6 @@ Einführung von devnotes in die Projekte- das erspart den Wechsel zu Obsidian un
 
 ich habe angefangen grundsätzlich alles nochmal neu zu konzipieren- siehe styleguide I und II, daraus entstanden ist dann eine analyse der bisherigen codebase stand heute, und daraus haben wir eine Übersicht für das refactoring erstellt
 
-
 ### 0249
 
 Alles klar, so weit habe ich haufenweise Komponenten erstellt
@@ -29,7 +28,6 @@ List muss noch als KOmponente überarbeitet und eingebunden werden das ist noch 
 
 Farben könnte man nochmal schauen
 
-
 Dann als nächste Schritte:
 
 GIFs einbinden
@@ -53,85 +51,97 @@ Der aktuellste Stand bewegt sich auf einer langsamen Niveausteigerung wo durch i
 jetzt gerade ist das hier die Priorisierung aller tasks
 
 ### **Ultimative Prioritätsliste: KIM Case Study**
+
 Hier ist die **strukturierte und intuitive Priorisierungsliste** für alle anstehenden Aufgaben. Die Liste ist nach **Kategorien**, **Impact**, und **Abhängigkeiten** geordnet. So können wir die wichtigsten Punkte priorisiert und effizient abarbeiten.
 
 ---
 
 ## **🔥 High Priority: Essentials**
+
 ### 1. **Styles & Theme Konsistenz**
-   - **[DONE] Gradients in Theme integriert**  
-   - **Überprüfung & Feinjustierung der Farbpalette**  
-     - Subtile Anpassungen für Accessibility (Kontrast-Check WCAG).  
-     - Überprüfung, ob die Gradients überall gut wirken.  
-   - **Typography Updates**
-     - Vereinheitlichung der Schriftarten (`primary`, `secondary`) in allen Komponenten.
-     - Test mit responsive Font-Skalierung (Golden Ratio für jede Viewportgröße).
+
+- **[DONE] Gradients in Theme integriert**
+- **Überprüfung & Feinjustierung der Farbpalette**
+  - Subtile Anpassungen für Accessibility (Kontrast-Check WCAG).
+  - Überprüfung, ob die Gradients überall gut wirken.
+- **Typography Updates**
+  - Vereinheitlichung der Schriftarten (`primary`, `secondary`) in allen Komponenten.
+  - Test mit responsive Font-Skalierung (Golden Ratio für jede Viewportgröße).
 
 ### 2. **Wrapper-Komponente optimieren**
-   - Dynamische Integration der Gradients als **Background Option**.
-   - Überarbeitung der bestehenden Varianten (`hero`, `header`, `default`) für bessere Wiederverwendbarkeit.
-   - Flexiblere Steuerung für:
-     - **Padding/Spacing**.
-     - Dynamische Anpassung bei Breakpoints.
+
+- Dynamische Integration der Gradients als **Background Option**.
+- Überarbeitung der bestehenden Varianten (`hero`, `header`, `default`) für bessere Wiederverwendbarkeit.
+- Flexiblere Steuerung für:
+  - **Padding/Spacing**.
+  - Dynamische Anpassung bei Breakpoints.
 
 ### 3. **Mobile First Debugging**
-   - Fix für Textüberlappungen und Layout-Bugs (auf kleineren Viewports).  
-   - Sicherstellen, dass **Wrapper, Cards, und Sections** perfekt für Mobile und Tablets rendern.  
-   - **Testen aller Seiten auf unterschiedlichen Breakpoints (sm, md, lg).**
+
+- Fix für Textüberlappungen und Layout-Bugs (auf kleineren Viewports).
+- Sicherstellen, dass **Wrapper, Cards, und Sections** perfekt für Mobile und Tablets rendern.
+- **Testen aller Seiten auf unterschiedlichen Breakpoints (sm, md, lg).**
 
 ---
 
 ## **💎 Medium Priority: Experience Enhancements**
+
 ### 4. **Components Optimization**
-   - **MediaDisplay Updates:**
-     - Integration der neuen Gradients für einen lebendigen Look.
-     - Verbesserte Hover- und Active-Zustände für Medien (Zoom-Effekt, weichere Übergänge).  
-   - **Lightbox & Carousel**
-     - Performance-Tuning (lazy loading von Images).
-     - Optimierung der Steuerung (z.B. Swipe-Gesten auf Mobile).
-   - **Card Komponente**
-     - Einheitliche Shadow-Styles (`theme.boxShadow`) auf allen Karten.
-     - Optionen für dynamische Breiten basierend auf Layout (`horizontal`, `vertical`).
+
+- **MediaDisplay Updates:**
+  - Integration der neuen Gradients für einen lebendigen Look.
+  - Verbesserte Hover- und Active-Zustände für Medien (Zoom-Effekt, weichere Übergänge).
+- **Lightbox & Carousel**
+  - Performance-Tuning (lazy loading von Images).
+  - Optimierung der Steuerung (z.B. Swipe-Gesten auf Mobile).
+- **Card Komponente**
+  - Einheitliche Shadow-Styles (`theme.boxShadow`) auf allen Karten.
+  - Optionen für dynamische Breiten basierend auf Layout (`horizontal`, `vertical`).
 
 ### 5. **Content & Struktur der Pages**
-   - Sicherstellen, dass alle Seiten:
-     - **Headlines und Subheadlines** konsistent mit `Typography`-Komponenten sind.  
-     - Inhaltlich klare Hierarchien aufweisen (Intro > Key Sections > CTA).  
-   - **Section Übergänge verbessern**:
-     - Subtile Gradients zwischen den Sections verwenden.
-     - Visuelle Abgrenzungen bei langen Seiten wie **Research** und **Final Design**.
+
+- Sicherstellen, dass alle Seiten:
+  - **Headlines und Subheadlines** konsistent mit `Typography`-Komponenten sind.
+  - Inhaltlich klare Hierarchien aufweisen (Intro > Key Sections > CTA).
+- **Section Übergänge verbessern**:
+  - Subtile Gradients zwischen den Sections verwenden.
+  - Visuelle Abgrenzungen bei langen Seiten wie **Research** und **Final Design**.
 
 ---
 
 ## **🚀 Low Priority: Nice-to-Have Add-ons**
+
 ### 6. **Neue Features & Ideen**
-   - **Animations Framework einbinden** (z.B. Framer Motion):
-     - Smooth Scroll für Sections.
-     - Fade-in für Cards und Bilder.
-   - **Tooltip-Komponente** für zusätzliche Hinweise (z.B. bei Interaktionen).  
-   - **CTA Enhancements**:
-     - Animierte Buttons (leichtes Pulsieren, Hover-Effekte).
+
+- **Animations Framework einbinden** (z.B. Framer Motion):
+  - Smooth Scroll für Sections.
+  - Fade-in für Cards und Bilder.
+- **Tooltip-Komponente** für zusätzliche Hinweise (z.B. bei Interaktionen).
+- **CTA Enhancements**:
+  - Animierte Buttons (leichtes Pulsieren, Hover-Effekte).
 
 ### 7. **Global Performance Improvements**
-   - **Image Optimization**:
-     - SVGs für Icons nutzen (statt PNGs oder JPEGs).
-     - Lazy Loading für alle größeren Bilder und Videos.
-   - **Code Splitting**:
-     - Dynamisches Laden von Seiten/Komponenten, um die initiale Ladezeit zu reduzieren.
+
+- **Image Optimization**:
+  - SVGs für Icons nutzen (statt PNGs oder JPEGs).
+  - Lazy Loading für alle größeren Bilder und Videos.
+- **Code Splitting**:
+  - Dynamisches Laden von Seiten/Komponenten, um die initiale Ladezeit zu reduzieren.
 
 ### 8. **Test & Documentation**
-   - **Testing aller Komponenten**:
-     - Unit Tests für kritische Komponenten (`Wrapper`, `Carousel`, `Lightbox`).
-     - End-to-End Tests (z.B. mit Cypress) für die Navigation zwischen den Seiten.  
-   - **Saubere Dokumentation**:
-     - Beschreibungen aller Komponenten und ihrer Props.
-     - README.md aktualisieren für zukünftige Wiederverwendung.
+
+- **Testing aller Komponenten**:
+  - Unit Tests für kritische Komponenten (`Wrapper`, `Carousel`, `Lightbox`).
+  - End-to-End Tests (z.B. mit Cypress) für die Navigation zwischen den Seiten.
+- **Saubere Dokumentation**:
+  - Beschreibungen aller Komponenten und ihrer Props.
+  - README.md aktualisieren für zukünftige Wiederverwendung.
 
 ---
 
 ### **Vorschlag für den Ablauf**
-Wir arbeiten uns **Kategorie für Kategorie** durch, starten aber mit den wichtigsten Punkten aus **Styles**, **Wrapper-Komponente**, und **Mobile Debugging**. Nach jeder Iteration gibt es eine kurze Review-Phase, um sicherzustellen, dass wir den **bestmöglichen Output** haben.
 
+Wir arbeiten uns **Kategorie für Kategorie** durch, starten aber mit den wichtigsten Punkten aus **Styles**, **Wrapper-Komponente**, und **Mobile Debugging**. Nach jeder Iteration gibt es eine kurze Review-Phase, um sicherzustellen, dass wir den **bestmöglichen Output** haben.
 
 ---
 
@@ -144,7 +154,9 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
 ---
 
 ### **Hauptprobleme und To-Dos**
+
 #### **1. Header**
+
 - [x] **Funktionalität**:
   - Navigation zwischen Seiten funktioniert nicht (Desktop & Mobile).
   - Mobile Navigation öffnet sich nicht korrekt (Overlay- oder Layout-Problem).
@@ -153,18 +165,21 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
   - Buttons sind eckig und nicht konsistent mit dem Designsystem.
 
 #### **2. Footer**
+
 - [ ] **Funktionalität**:
   - "Scroll to Top"-Button ohne Funktion.
 - [ ] **Styling**:
   - Footer war visuell bereits besser – muss überarbeitet werden.
 
 #### **3. Mesh Gradient Background**
+
 - [ ] **Animation entfernen**:
   - Der Mesh Gradient bewegt sich unruhig – Animation abschalten.
 - [ ] **Konsistenz sicherstellen**:
   - Mesh Gradient für jede Seite richtig positionieren.
 
 #### **4. Wrapper und Layout**
+
 - [ ] **Grundstruktur der Pages**:
   - Jede Seite benötigt einen konsistenten Wrapper (äußerste Schicht) mit leichtem Gradient-Hintergrund.
 - [ ] **Verschachtelungen der Abschnitte**:
@@ -172,6 +187,7 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
   - Farben der Wrapper und Abschnitte harmonisieren.
 
 #### **5. Typografie**
+
 - [ ] **Farben**:
   - Kontraste prüfen und anpassen (Lesbarkeit sicherstellen).
 - [ ] **Textfluss und Struktur**:
@@ -179,6 +195,7 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
   - Typografie-Komponente überarbeiten, um diese Standards zu sichern.
 
 #### **6. Abstände und Spacing**
+
 - [ ] **Zwischen den Abschnitten**:
   - Gleichmäßige Spacing-Abstände zwischen den Abschnitten jeder Seite.
 - [ ] **Innerhalb der Pages**:
@@ -186,6 +203,7 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
   - Seiten wie „Informationsarchitektur“ anpassen (z. B. neue Zeilen für Überschrift und Text).
 
 #### **7. Lightbox**
+
 - [ ] **Inhalte der Website blockieren**:
   - Website darf nicht scrollen, während die Lightbox aktiv ist.
 - [ ] **Konsistenz prüfen**:
@@ -194,7 +212,9 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
 ---
 
 ### **Priorisierte Roadmap**
+
 #### **Phase 1: Kritische Fehler beheben**
+
 1. **Header**:
    - Navigation und Mobile Menu reparieren.
    - Styling und Button-Rundungen korrigieren.
@@ -204,6 +224,7 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
    - Scrolling der Website blockieren, während Lightbox aktiv ist.
 
 #### **Phase 2: Layout und Struktur**
+
 4. **Mesh Gradient**:
    - Animation entfernen und Gradient fixieren.
 5. **Wrapper und Verschachtelungen**:
@@ -212,6 +233,7 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
    - Einheitliche Abstände zwischen Abschnitten und innerhalb von Seiten.
 
 #### **Phase 3: Feinschliff**
+
 7. **Typografie**:
    - Farben und Textfluss optimieren.
    - Typografie-Komponente anpassen, um konsistente Stile zu gewährleisten.
@@ -221,15 +243,15 @@ Danke für das Transkript! Basierend auf deiner Beschreibung habe ich eine klare
 ---
 
 ### **Vorgehen**
+
 1. Soll ich mit der ersten Phase starten und den Fokus auf die kritischen Probleme (Header, Footer, Lightbox) legen?
-2. Oder möchtest du erst einen Überblick über die geplanten Code-Änderungen für einen Bereich (z. B. Header) sehen? 
+2. Oder möchtest du erst einen Überblick über die geplanten Code-Änderungen für einen Bereich (z. B. Header) sehen?
 
 Sag mir, wie du vorgehen möchtest, und ich lege direkt los! 🚀
 
 ---
 
 ## 20241129 1512
-
 
 **Analyse und To-Do-Liste für das Layout und die Typografie der KIM App**
 
@@ -238,12 +260,16 @@ Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wi
 ---
 
 ### **GlobalStyles und Theme (Basis für alles)**
+
 #### Dateien:
+
 1. `src/styles/GlobalStyles.js`
 2. `src/styles/theme.js`
 
 #### Änderungen:
+
 - **GlobalStyles.js**:
+
   - Schriftfarben überarbeiten, die Standard-Textfarbe sollte besser lesbar und konsistent sein.
   - Abstände (padding/margin) standardisieren, insbesondere für Hauptcontainer und Textelemente.
   - Globale `line-height` und `font-size` für Überschriften und Absätze konsistenter gestalten.
@@ -258,7 +284,9 @@ Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wi
 ---
 
 ### **Komponenten**
+
 #### Dateien:
+
 1. `src/components/layout/Wrapper.js`
 2. `src/components/layout/Header.js`
 3. `src/components/layout/Footer.js`
@@ -266,19 +294,24 @@ Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wi
 5. `src/components/sections/QuoteComponent.js`
 
 #### Änderungen:
+
 - **Wrapper.js**:
+
   - Standardmäßige Padding- und Gap-Werte definieren, um konsistente Abstände zwischen Abschnitten zu gewährleisten.
   - Textausrichtung und Hintergrundfarben aus dem `theme` dynamisch steuerbar machen.
 
 - **Header.js**:
+
   - Hintergrund- und Schriftfarben optimieren, insbesondere bei Scrolling.
   - Responsive Verhalten prüfen, z. B. Menü-Button und Logo-Darstellung.
 
 - **Footer.js**:
+
   - Schriftgröße und Abstände der Textblöcke anpassen, um Lesbarkeit und Design zu verbessern.
   - Farben harmonisieren.
 
 - **HeroBanner.js**:
+
   - Hintergrundfarben und Typografie aus `theme` direkt ableiten.
   - Padding für verschiedene Viewports anpassen.
 
@@ -289,17 +322,22 @@ Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wi
 ---
 
 ### **Datendarstellung**
+
 #### Dateien:
+
 1. `src/components/data-display/Carousel.js`
 2. `src/components/data-display/ListComponent.js`
 3. `src/components/data-display/MediaDisplay.js`
 
 #### Änderungen:
+
 - **Carousel.js**:
+
   - Navigation (Buttons und Dots) besser positionieren und mit klaren Farben versehen.
   - Standard-Abstände innerhalb des Carousels festlegen.
 
 - **ListComponent.js**:
+
   - Standardisierte Farben und Hintergründe für Listenitems.
   - Abstände und Schriftgrößen anpassen.
 
@@ -310,12 +348,16 @@ Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wi
 ---
 
 ### **Seiten**
+
 #### Dateien:
+
 1. `src/pages/*.js` (alle Seiten)
 2. `src/App.js`
 
 #### Änderungen:
+
 - **Alle Seiten**:
+
   - Einheitliche Layoutstruktur, die Abschnitte klar voneinander abgrenzt (Wrapper optimieren).
   - Farben und Typografie aus `theme` übernehmen.
   - Abstände zwischen Abschnitten überprüfen und mit konsistenten Werten versehen.
@@ -326,17 +368,22 @@ Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wi
 ---
 
 ### **Sonstige Komponenten**
+
 #### Dateien:
+
 1. `src/components/common/Button.js`
 2. `src/components/common/Typography.js`
 3. `src/components/common/Lightbox.js`
 
 #### Änderungen:
+
 - **Button.js**:
+
   - Varianten (z. B. `primary`, `secondary`) aus `theme` ableiten.
   - Konsistente Schriftgrößen und Paddings für alle Buttons festlegen.
 
 - **Typography.js**:
+
   - Typografie-Varianten (`h1`, `h2`, etc.) überarbeiten und Farben/Textgrößen standardisieren.
   - Responsive Verhalten für unterschiedliche Viewports sicherstellen.
 
@@ -346,6 +393,7 @@ Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wi
 ---
 
 ### **Schritte für das Refactoring**
+
 1. **Basis-Anpassungen**:
    - `GlobalStyles.js` und `theme.js` überarbeiten.
 2. **Komponenten**:
@@ -359,5 +407,25 @@ Nach der Analyse des Codes habe ich die relevanten Stellen identifiziert, die wi
 ---
 
 ### Nächste Schritte
+
 Lass uns mit den Basis-Anpassungen in `GlobalStyles.js` und `theme.js` starten. Sag Bescheid, wenn ich den ersten Vorschlag für diese Dateien umsetzen soll.
 
+## 20241201 0011
+
+Mehr als ein refactoring
+
+Ich habe frustrierenderweise die boilerplate aller react Projekte einabuen müssen um das Projekt generell in eine Richtung zu lenken
+
+Jedes React Projekt- oder so ziemlich JEDES Webprojekt benötigt Formatting, Linting, all so Zeugs!
+
+Chatgpt ist nicht nützlich ohne all das
+
+An sich war das jetzt alles viel hin und her aber scheinbar habe ich eine bessere Basis geschaffen
+
+Jetzt müssen linting erros beseitigt werden und das Design nochmal überarbeitet werden
+
+Header und solche Komponenten wurde noch nicht entzerrt- da ist noch Luft nach oben!
+
+Au weia jetzt kommen die ganzen Design Baustellen, also Headlines für jede Page müssen einen Gradient bekommen aber subheadline oder Headline müssen dann doch noch aufgewertet werden
+
+Ich lass erstmal gut sein

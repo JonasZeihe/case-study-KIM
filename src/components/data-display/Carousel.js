@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import Lightbox from "../common/Lightbox";
-import Button from "../common/Button";
-import { useSwipeable } from "react-swipeable";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useSwipeable } from 'react-swipeable';
+import Lightbox from '../common/Lightbox';
+import Button from '../common/Button';
 
 // Styled Components
 const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: ${({ theme }) => theme.breakpoints.xl};
+  max-width: ${({ theme }) => theme?.breakpoints?.xl || '1200px'};
   margin: 0 auto;
 `;
 
 const SlideContainer = styled.div`
   display: flex;
   transition: transform 0.5s ease-in-out;
-  transform: translateX(${({ activeIndex }) => -activeIndex * 100}%);
+  transform: translateX(calc(${({ activeIndex }) => -activeIndex} * 100%));
 `;
 
 const Slide = styled.div`
@@ -29,8 +29,8 @@ const Slide = styled.div`
 
   img {
     max-width: 100%;
-    max-height: ${({ theme }) => theme.breakpoints.md ? "400px" : "80vh"};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
+    max-height: ${({ theme }) => (theme?.breakpoints?.md ? '400px' : '80vh')};
+    border-radius: ${({ theme }) => theme?.borderRadius?.medium || '8px'};
     cursor: pointer;
     transition: transform 0.3s ease;
 
@@ -49,72 +49,92 @@ const Controls = styled.div`
   transform: translateY(-50%);
 `;
 
-const Dots = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: ${({ theme }) => theme.spacing(3)};
-  gap: ${({ theme }) => theme.spacing(1)};
+const Dot = styled.button`
+  width: 10px;
+  height: 10px;
+  background: ${({ active, theme }) =>
+    active
+      ? theme?.colors?.primary?.main || '#007BFF'
+      : theme?.colors?.neutral?.medium || '#CCCCCC'};
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
 
-  button {
-    width: 10px;
-    height: 10px;
-    background: ${({ active, theme }) =>
-      active ? theme.colors.primary.main : theme.colors.neutral.medium};
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-
-    &:hover {
-      background: ${({ theme }) => theme.colors.primary.dark};
-    }
+  &:hover {
+    background: ${({ theme }) => theme?.colors?.primary?.dark || '#0056b3'};
   }
 `;
 
-const Carousel = ({ slides }) => {
+const Dots = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: ${({ theme }) => theme?.spacing?.(3) || '12px'};
+  gap: ${({ theme }) => theme?.spacing?.(1) || '8px'};
+`;
+
+// Carousel Component
+function Carousel({ slides }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const openLightbox = () => setLightboxOpen(true);
+
+  const navigate = (direction) => {
+    setActiveIndex(
+      (prev) => (prev + direction + slides.length) % slides.length
+    );
+  };
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => navigate(1),
     onSwipedRight: () => navigate(-1),
   });
 
-  const navigate = (direction) => {
-    setActiveIndex((prev) => (prev + direction + slides.length) % slides.length);
-  };
-
   return (
     <>
       <Wrapper {...swipeHandlers}>
         <SlideContainer activeIndex={activeIndex}>
-          {slides.map((slide, index) => (
-            <Slide key={index}>
-              <img
-                src={slide.src}
-                alt={slide.alt}
+          {slides.map((slide) => (
+            <Slide key={slide.id || `slide-${slide.src}`}>
+              <button
+                type="button"
                 onClick={openLightbox}
-              />
+                aria-label={`Open lightbox for slide ${slide.id || 'unknown'}`}
+              >
+                <img src={slide.src} alt={slide.alt || `Slide ${slide.id}`} />
+              </button>
             </Slide>
           ))}
         </SlideContainer>
         <Controls>
-          <Button variant="icon" size="medium" onClick={() => navigate(-1)}>
+          <Button
+            type="button"
+            variant="icon"
+            size="medium"
+            onClick={() => navigate(-1)}
+            aria-label="Previous Slide"
+          >
             <FaChevronLeft />
           </Button>
-          <Button variant="icon" size="medium" onClick={() => navigate(1)}>
+          <Button
+            type="button"
+            variant="icon"
+            size="medium"
+            onClick={() => navigate(1)}
+            aria-label="Next Slide"
+          >
             <FaChevronRight />
           </Button>
         </Controls>
         <Dots>
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              active={index === activeIndex}
-              onClick={() => setActiveIndex(index)}
-              aria-label={`Slide ${index + 1}`}
+          {slides.map((slide) => (
+            <Dot
+              key={slide.id || `dot-${slide.src}`}
+              type="button"
+              active={slides.indexOf(slide) === activeIndex}
+              onClick={() => setActiveIndex(slides.indexOf(slide))}
+              aria-label={`Go to slide ${slides.indexOf(slide) + 1}`}
             />
           ))}
         </Dots>
@@ -128,11 +148,13 @@ const Carousel = ({ slides }) => {
       )}
     </>
   );
-};
+}
 
+// Prop Types
 Carousel.propTypes = {
   slides: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
     })

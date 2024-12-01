@@ -1,20 +1,19 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import {
   FaFacebook,
   FaTwitter,
   FaInstagram,
   FaLinkedin,
   FaArrowUp,
-} from "react-icons/fa";
-import logoLarge from "../../assets/images/KIM_logo_large.png";
+} from 'react-icons/fa';
+import logoLarge from '../../assets/images/KIM_logo_large.png';
 
 export default function Footer() {
   const scrollToTop = () => {
-    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-    document.body.scrollTo({ top: 0, behavior: "smooth" });
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+    document.body.scrollTo({ top: 0, behavior: 'smooth' });
   };
-  
 
   return (
     <FooterWrapper>
@@ -181,7 +180,9 @@ const ScrollToTopButton = styled.button`
   justify-content: center;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 
   &:hover {
     background: ${({ theme }) => theme.colors.accent.dark};

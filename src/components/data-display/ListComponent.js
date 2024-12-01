@@ -1,95 +1,51 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import PropTypes from "prop-types";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // Styled Components
 const StyledList = styled.ul`
   margin: ${({ theme }) => theme.spacing(4)} 0;
   padding: 0;
   display: flex;
-  flex-direction: ${({ direction }) => (direction === "horizontal" ? "row" : "column")};
+  flex-direction: column;
   gap: ${({ theme }) => theme.spacing(3)};
-  list-style: ${({ showBullets }) => (showBullets ? "disc" : "none")};
-  list-style-position: inside;
-
-  ${({ direction }) =>
-    direction === "horizontal" &&
-    css`
-      flex-wrap: wrap;
-      width: 100%;
-      justify-content: flex-start;
-    `}
+  list-style: none;
 `;
 
 const StyledListItem = styled.li`
   padding: ${({ theme }) => theme.spacing(2)};
-  background: ${({ theme, variant }) =>
-    variant === "highlighted"
-      ? theme.colors.background.darkest
-      : "transparent"};
+  background: ${({ theme }) => theme.colors.background.darkest};
   color: ${({ theme }) => theme.colors.neutral.white};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
-  box-shadow: ${({ variant, theme }) =>
-    variant === "highlighted" ? theme.boxShadow.light : "none"};
+  box-shadow: ${({ theme }) => theme.boxShadow.light};
   transition: transform 0.3s ease;
 
   &:hover {
-    transform: ${({ variant }) => (variant === "highlighted" ? "translateY(-3px)" : "none")};
-  }
-
-  &::before {
-    content: ${({ icon, numbered, index }) =>
-      icon
-        ? `"${icon}"`
-        : numbered
-        ? `"${index + 1}. "`
-        : "none"};
-    color: ${({ theme, numbered }) => (numbered ? theme.colors.primary.main : theme.colors.accent.main)};
-    font-weight: bold;
-    margin-right: ${({ theme }) => theme.spacing(2)};
+    transform: translateY(-3px);
   }
 `;
 
 // React Component
-const ListComponent = ({
-  items,
-  direction = "vertical",
-  variant = "standard",
-  showBullets = false,
-  numbered = false,
-  onClick,
-}) => {
+function ListComponent({ items }) {
   return (
-    <StyledList direction={direction} showBullets={showBullets}>
+    <StyledList>
       {items.map((item, index) => (
-        <StyledListItem
-          key={index}
-          index={index}
-          variant={variant}
-          icon={item.icon}
-          numbered={numbered}
-          onClick={() => onClick && onClick(item)}
-        >
+        <StyledListItem key={item.id || `item-${index}`}>
           {item.content}
         </StyledListItem>
       ))}
     </StyledList>
   );
-};
+}
 
 // Prop Types
 ListComponent.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string,
       content: PropTypes.node.isRequired,
-      icon: PropTypes.string,
     })
   ).isRequired,
-  direction: PropTypes.oneOf(["vertical", "horizontal"]),
-  variant: PropTypes.oneOf(["standard", "highlighted"]),
-  showBullets: PropTypes.bool,
-  numbered: PropTypes.bool,
-  onClick: PropTypes.func,
 };
 
 export default ListComponent;
