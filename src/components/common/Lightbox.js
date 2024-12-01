@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
@@ -40,20 +40,16 @@ const ContentWrapper = styled.div`
   box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   animation: ${fadeIn} 0.3s ease;
+`;
 
-  img,
-  video {
-    max-width: 100%;
-    max-height: 80vh;
-    object-fit: contain;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    img,
-    video {
-      max-height: 70vh;
-    }
-  }
+const ZoomableMedia = styled.img`
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  transform-origin: ${({ zoomX, zoomY }) => `${zoomX}px ${zoomY}px`};
+  transform: ${({ isZoomed }) => (isZoomed ? 'scale(2)' : 'scale(1)')};
+  transition: transform 0.3s ease;
+  cursor: ${({ isZoomed }) => (isZoomed ? 'grab' : 'zoom-in')};
 `;
 
 const NavigationButton = styled.button`
@@ -99,16 +95,31 @@ const CloseButton = styled.button`
 // Lightbox Component
 function Lightbox({ media, currentIndex = 0, onClose }) {
   const [activeIndex, setActiveIndex] = useState(currentIndex);
-  const closeButtonRef = useRef();
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomX, setZoomX] = useState(0);
+  const [zoomY, setZoomY] = useState(0);
+  const mediaRef = useRef();
 
   const navigate = useCallback(
     (direction) => {
       setActiveIndex(
         (prevIndex) => (prevIndex + direction + media.length) % media.length
       );
+      setIsZoomed(false); // Reset zoom on navigation
     },
     [media.length]
   );
+
+  const handleZoom = (e) => {
+    if (isZoomed) {
+      setIsZoomed(false);
+    } else {
+      const rect = mediaRef.current.getBoundingClientRect();
+      setZoomX(e.clientX - rect.left);
+      setZoomY(e.clientY - rect.top);
+      setIsZoomed(true);
+    }
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -121,9 +132,9 @@ function Lightbox({ media, currentIndex = 0, onClose }) {
   }, [onClose, navigate]);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden'; // Blockiert Scrollen der Webseite
+    document.body.style.overflow = 'hidden';
     return () => {
-      document.body.style.overflow = ''; // Wiederherstellen
+      document.body.style.overflow = '';
     };
   }, []);
 
@@ -132,21 +143,22 @@ function Lightbox({ media, currentIndex = 0, onClose }) {
   return ReactDOM.createPortal(
     <Overlay onClick={onClose} aria-modal="true" role="dialog">
       <ContentWrapper onClick={(e) => e.stopPropagation()}>
-        <CloseButton
-          ref={closeButtonRef}
-          onClick={onClose}
-          aria-label="Close Lightbox"
-        >
+        <CloseButton onClick={onClose} aria-label="Close Lightbox">
           <FaTimes size={20} />
         </CloseButton>
         {activeMedia.type === 'image' ? (
-          <img
+          <ZoomableMedia
+            ref={mediaRef}
             src={activeMedia.src}
-            alt={activeMedia.alt || 'Lightbox media'}
+            alt={activeMedia.alt || ''}
+            isZoomed={isZoomed}
+            zoomX={zoomX}
+            zoomY={zoomY}
+            onClick={handleZoom}
           />
         ) : (
           <video src={activeMedia.src} controls>
-            <track kind="captions" srcLang="en" label="English" default />
+            <track kind="captions" srcLang="en" label="English" />
           </video>
         )}
         {media.length > 1 && (
@@ -169,7 +181,7 @@ function Lightbox({ media, currentIndex = 0, onClose }) {
         )}
       </ContentWrapper>
     </Overlay>,
-    document.body // Hier wird die Lightbox direkt in den Body gerendert
+    document.body
   );
 }
 

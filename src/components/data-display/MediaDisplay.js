@@ -58,24 +58,33 @@ export default function MediaDisplay({ media }) {
   return (
     <>
       <MediaGrid>
-        {media.map(({ type, src, alt, caption }, index) => (
-          <MediaItem
-            key={src}
-            onClick={() => openLightbox(index)}
-            aria-label={`Open ${type === 'image' ? 'image' : 'video'} ${alt || `Media ${index + 1}`}`}
-          >
-            {type === 'image' && (
-              <img src={src} alt={alt || `Media ${index + 1}`} />
-            )}
-            {type === 'video' && (
-              <video controls aria-label={alt || `Video ${index + 1}`}>
-                <source src={src} type="video/mp4" />
-                Your browser does not support this video format.
-              </video>
-            )}
-            {caption && <MediaCaption>{caption}</MediaCaption>}
-          </MediaItem>
-        ))}
+        {media.map(
+          ({ type, src, alt, caption, trackSrc, trackLang }, index) => (
+            <MediaItem
+              key={src}
+              onClick={() => openLightbox(index)}
+              aria-label={`Open ${type === 'image' ? 'image' : 'video'} ${alt || `Media ${index + 1}`}`}
+            >
+              {type === 'image' && (
+                <img src={src} alt={alt || `Media ${index + 1}`} />
+              )}
+              {type === 'video' && (
+                <video controls aria-label={alt || `Video ${index + 1}`}>
+                  <source src={src} type="video/mp4" />
+                  <track
+                    src={trackSrc || ''}
+                    kind="captions"
+                    srcLang={trackLang || 'en'}
+                    label={trackLang ? `${trackLang} subtitles` : 'English'}
+                    default={!trackSrc} // Markiere den Dummy-Track als Standard
+                  />
+                  Your browser does not support this video format.
+                </video>
+              )}
+              {caption && <MediaCaption>{caption}</MediaCaption>}
+            </MediaItem>
+          )
+        )}
       </MediaGrid>
 
       {lightboxOpen && (
@@ -96,6 +105,8 @@ MediaDisplay.propTypes = {
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
       caption: PropTypes.string,
+      trackSrc: PropTypes.string, // Optional: Pfad zu den Untertitel-Dateien
+      trackLang: PropTypes.string, // Optional: Sprache der Untertitel
     })
   ).isRequired,
 };

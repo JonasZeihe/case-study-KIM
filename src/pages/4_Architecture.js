@@ -27,8 +27,9 @@ export default function Architecture() {
   ];
 
   return (
-    <Wrapper>
-      <Wrapper>
+    <Wrapper backgroundColor="background.light" padding="large" elevated>
+      {/* Header */}
+      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
         <Typography variant="h1">
           Informationsarchitektur & User Journey Map
         </Typography>
@@ -39,7 +40,7 @@ export default function Architecture() {
       </Wrapper>
 
       {/* Informationsarchitektur */}
-      <Wrapper>
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>Informationsarchitektur</HighlightText>
         </Typography>
@@ -56,7 +57,7 @@ export default function Architecture() {
       </Wrapper>
 
       {/* User Flow */}
-      <Wrapper>
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>User Flow</HighlightText>
         </Typography>
@@ -72,7 +73,7 @@ export default function Architecture() {
       </Wrapper>
 
       {/* User Story */}
-      <Wrapper>
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>User Story</HighlightText>
         </Typography>
@@ -86,7 +87,7 @@ export default function Architecture() {
       </Wrapper>
 
       {/* User Journey Map */}
-      <Wrapper>
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>User Journey Map</HighlightText>
         </Typography>

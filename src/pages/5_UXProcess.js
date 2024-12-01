@@ -51,8 +51,9 @@ export default function UXProcess() {
   ];
 
   return (
-    <Wrapper>
-      <Wrapper>
+    <Wrapper backgroundColor="background.light" padding="large" elevated>
+      {/* Header */}
+      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
         <Typography variant="h1">UX-Designprozess</Typography>
         <Typography variant="h3">
           Vom ersten Konzept bis zur finalen Umsetzung – ein nutzerzentrierter
@@ -61,7 +62,7 @@ export default function UXProcess() {
       </Wrapper>
 
       {/* Ideation und Entwürfe */}
-      <Wrapper>
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>Ideation und Entwürfe</HighlightText>
         </Typography>
@@ -79,7 +80,7 @@ export default function UXProcess() {
       </Wrapper>
 
       {/* Interaktive Features */}
-      <Wrapper>
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>Interaktionen und Features</HighlightText>
         </Typography>
@@ -96,7 +97,7 @@ export default function UXProcess() {
       </Wrapper>
 
       {/* Styleguide */}
-      <Wrapper>
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">
           <HighlightText>Styleguide: Farben und Typografie</HighlightText>
         </Typography>

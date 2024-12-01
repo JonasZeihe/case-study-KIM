@@ -18,9 +18,14 @@ export default function Introduction() {
   ];
 
   return (
-    <Wrapper>
-      <MediaDisplay media={mediaContent} layout="grid" />
-      <Wrapper>
+    <Wrapper backgroundColor="background.light" padding="large" elevated>
+      {/* Media Section */}
+      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
+        <MediaDisplay media={mediaContent} layout="grid" />
+      </Wrapper>
+
+      {/* Kurzbeschreibung */}
+      <Wrapper backgroundColor="background.dark">
         <Typography variant="h2">
           <HighlightText>Kurzbeschreibung</HighlightText>
         </Typography>
@@ -36,7 +41,9 @@ export default function Introduction() {
           tiefgreifender Authentizität.
         </Typography>
       </Wrapper>
-      <Wrapper>
+
+      {/* Ziel */}
+      <Wrapper backgroundColor="background.main">
         <Typography variant="h2">
           <HighlightText>Das Ziel</HighlightText>
         </Typography>

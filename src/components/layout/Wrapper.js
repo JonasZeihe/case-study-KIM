@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const WrapperContainer = styled.div`
@@ -7,35 +7,53 @@ const WrapperContainer = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.xl};
   margin: 0 auto;
   padding: ${({ theme }) => theme.spacing(6)};
-  background-color: ${({ theme, background }) =>
-    background
-      ? theme.colors[background]?.main || theme.colors.background.light
-      : theme.colors.background.light};
+
+  /* Background Handling */
+  background: ${({ theme, gradient, backgroundColor }) => {
+    if (gradient) {
+      return theme.gradients[gradient]; // Gradient hat Vorrang
+    }
+    if (backgroundColor) {
+      const [color, shade] = backgroundColor.split('.');
+      return theme.colors[color]?.[shade] || theme.colors.background.light;
+    }
+    return theme.colors.background.light; // Standard-Background
+  }};
+
   border-radius: ${({ theme }) => theme.borderRadius.medium};
 
+  /* Box Shadow for Elevated Wrapper */
+  box-shadow: ${({ theme, elevated }) =>
+    elevated ? theme.boxShadow.medium : 'none'};
+
+  /* Add Spacing Between Nested Wrappers */
+  & + & {
+    margin-top: ${({ theme }) => theme.spacing(6)}; /* Default spacing */
+  }
+
+  /* Responsive Padding */
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: ${({ theme }) => theme.spacing(4)};
+    & + & {
+      margin-top: ${({ theme }) => theme.spacing(4)};
+    }
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     padding: ${({ theme }) => theme.spacing(3)};
+    & + & {
+      margin-top: ${({ theme }) => theme.spacing(3)};
+    }
   }
-
-  ${({ gradient, theme }) =>
-    gradient &&
-    css`
-      background: ${theme.gradients[gradient] || gradient};
-      color: ${theme.colors.neutral
-        .white}; /* Default Textfarbe für Gradients */
-      border-radius: ${theme.borderRadius.large};
-      text-align: center;
-      padding: ${theme.spacing(8)} ${theme.spacing(6)};
-    `}
 `;
 
-function Wrapper({ children, background, gradient }) {
+function Wrapper({ children, gradient, backgroundColor, elevated }) {
   return (
-    <WrapperContainer background={background} gradient={gradient}>
+    <WrapperContainer
+      gradient={gradient}
+      backgroundColor={backgroundColor}
+      elevated={elevated}
+    >
       {children}
     </WrapperContainer>
   );
@@ -43,13 +61,15 @@ function Wrapper({ children, background, gradient }) {
 
 Wrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  background: PropTypes.string,
-  gradient: PropTypes.string, // Name des Gradients oder benutzerdefinierte CSS-Gradient-Angabe
+  gradient: PropTypes.string, // Gradient-Name aus Theme, z.B. "primaryToSecondary"
+  backgroundColor: PropTypes.string, // Theme-Farbe z.B. "primary.main"
+  elevated: PropTypes.bool, // Option für Box Shadow
 };
 
 Wrapper.defaultProps = {
-  background: null,
   gradient: null,
+  backgroundColor: null,
+  elevated: false,
 };
 
 export default Wrapper;

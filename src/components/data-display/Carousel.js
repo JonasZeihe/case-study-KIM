@@ -49,28 +49,28 @@ const Controls = styled.div`
   transform: translateY(-50%);
 `;
 
+const Dot = styled.button`
+  width: 10px;
+  height: 10px;
+  background: ${({ active, theme }) =>
+    active
+      ? theme?.colors?.primary?.main || '#007BFF'
+      : theme?.colors?.neutral?.medium || '#CCCCCC'};
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme?.colors?.primary?.dark || '#0056b3'};
+  }
+`;
+
 const Dots = styled.div`
   display: flex;
   justify-content: center;
   margin-top: ${({ theme }) => theme?.spacing?.(3) || '12px'};
   gap: ${({ theme }) => theme?.spacing?.(1) || '8px'};
-
-  button {
-    width: 10px;
-    height: 10px;
-    background: ${({ isActive, theme }) =>
-      isActive
-        ? theme?.colors?.primary?.main || '#007BFF'
-        : theme?.colors?.neutral?.medium || '#CCCCCC'};
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-
-    &:hover {
-      background: ${({ theme }) => theme?.colors?.primary?.dark || '#0056b3'};
-    }
-  }
 `;
 
 // Carousel Component
@@ -95,17 +95,15 @@ function Carousel({ slides }) {
     <>
       <Wrapper {...swipeHandlers}>
         <SlideContainer activeIndex={activeIndex}>
-          {slides.map((slide, index) => (
-            <Slide key={slide.id || `${slide.src}-${index}`}>
-              <img
-                src={slide.src}
-                alt={slide.alt || `Slide ${index + 1}`}
+          {slides.map((slide) => (
+            <Slide key={slide.id || `slide-${slide.src}`}>
+              <button
+                type="button"
                 onClick={openLightbox}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') openLightbox();
-                }}
-              />
+                aria-label={`Open lightbox for slide ${slide.id || 'unknown'}`}
+              >
+                <img src={slide.src} alt={slide.alt || `Slide ${slide.id}`} />
+              </button>
             </Slide>
           ))}
         </SlideContainer>
@@ -130,13 +128,13 @@ function Carousel({ slides }) {
           </Button>
         </Controls>
         <Dots>
-          {slides.map((_, index) => (
-            <button
-              key={`dot-${index}`}
+          {slides.map((slide) => (
+            <Dot
+              key={slide.id || `dot-${slide.src}`}
               type="button"
-              isActive={index === activeIndex} // Prop statt "active"
-              onClick={() => setActiveIndex(index)}
-              aria-label={`Go to slide ${index + 1}`}
+              active={slides.indexOf(slide) === activeIndex}
+              onClick={() => setActiveIndex(slides.indexOf(slide))}
+              aria-label={`Go to slide ${slides.indexOf(slide) + 1}`}
             />
           ))}
         </Dots>
@@ -156,7 +154,7 @@ function Carousel({ slides }) {
 Carousel.propTypes = {
   slides: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // Eindeutige ID für Schlüssel
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
     })

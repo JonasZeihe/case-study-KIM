@@ -73,8 +73,9 @@ export default function FinalDesignPage() {
   ];
 
   return (
-    <Wrapper>
-      <Wrapper>
+    <Wrapper backgroundColor="background.light" padding="large" elevated>
+      {/* Header */}
+      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
         <Typography variant="h1">Finale Lösung und Design</Typography>
         <Typography variant="h3">
           Einblicke in die Hauptfeatures und das finale visuelle Konzept von
@@ -82,7 +83,8 @@ export default function FinalDesignPage() {
         </Typography>
       </Wrapper>
 
-      <Wrapper>
+      {/* Hauptfeatures */}
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2">Hauptfeatures</Typography>
         <Typography variant="body">
           Die Hauptfeatures von KIM kombinieren Technologie, emotionales Design
@@ -91,13 +93,10 @@ export default function FinalDesignPage() {
         <ListComponent items={features} variant="highlighted" />
       </Wrapper>
 
-      <Wrapper>
+      {/* App Screens */}
+      <Wrapper backgroundColor="background.dark" padding="large">
         <Typography variant="h2" textAlign="center">
           Finale App-Screens
-        </Typography>
-        <Typography variant="body" textAlign="center">
-          Die wichtigsten Features und das finale visuelle Konzept werden in
-          diesen Screens illustriert.
         </Typography>
         <Carousel slides={media} autoplay interval={5000} />
       </Wrapper>
