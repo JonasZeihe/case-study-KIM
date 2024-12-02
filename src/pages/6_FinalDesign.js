@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import Carousel from '../components/data-display/Carousel';
-import Typography from '../components/common/Typography';
+import Typography, { TypoProvider } from '../components/common/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 import HighlightText from '../components/utilities/HighlightText';
 
@@ -75,31 +75,37 @@ export default function FinalDesignPage() {
   return (
     <Wrapper backgroundColor="background.light" padding="large" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
-        <Typography variant="h1">Finale Lösung und Design</Typography>
-        <Typography variant="h3">
-          Einblicke in die Hauptfeatures und das finale visuelle Konzept von
-          KIM.
-        </Typography>
-      </Wrapper>
+      <TypoProvider variant="h1" color="primary.main" align="center">
+        <Wrapper gradient="primaryToSecondary" padding="large">
+          <Typography>Finale Lösung und Design</Typography>
+          <Typography variant="h3">
+            Einblicke in die Hauptfeatures und das finale visuelle Konzept von
+            KIM.
+          </Typography>
+        </Wrapper>
+      </TypoProvider>
 
       {/* Hauptfeatures */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">Hauptfeatures</Typography>
-        <Typography variant="body">
-          Die Hauptfeatures von KIM kombinieren Technologie, emotionales Design
-          und Interaktionen für tiefere Verbindungen.
-        </Typography>
-        <ListComponent items={features} variant="highlighted" />
-      </Wrapper>
+      <TypoProvider variant="body" color="neutral.light">
+        <Wrapper backgroundColor="background.dark" padding="large">
+          <Typography variant="h2">Hauptfeatures</Typography>
+          <Typography>
+            Die Hauptfeatures von KIM kombinieren Technologie, emotionales
+            Design und Interaktionen für tiefere Verbindungen.
+          </Typography>
+          <ListComponent items={features} variant="highlighted" />
+        </Wrapper>
+      </TypoProvider>
 
       {/* App Screens */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2" textAlign="center">
-          Finale App-Screens
-        </Typography>
-        <Carousel slides={media} autoplay interval={5000} />
-      </Wrapper>
+      <TypoProvider variant="body" color="neutral.light">
+        <Wrapper backgroundColor="background.dark" padding="large">
+          <Typography variant="h2" textAlign="center">
+            Finale App-Screens
+          </Typography>
+          <Carousel slides={media} autoplay interval={5000} />
+        </Wrapper>
+      </TypoProvider>
     </Wrapper>
   );
 }

@@ -1,6 +1,6 @@
 import gradients from './Gradient';
 
-const baseFontSize = 16;
+const baseFontSize = 18; // Vergrößert für bessere Lesbarkeit
 const goldenRatio = 1.618;
 
 const scaleFont = (level) => `${(baseFontSize * goldenRatio ** level) / 16}rem`;
@@ -73,12 +73,12 @@ const theme = {
       bold: 700,
     },
     lineHeight: {
-      tight: 1.2,
-      normal: 1.5,
+      tight: 1.3,
+      normal: 1.6,
       relaxed: 1.8,
     },
   },
-  spacing: (factor) => `${0.25 * factor}rem`,
+  spacing: (factor) => `${0.5 * factor}rem`,
   borderRadius: {
     none: '0',
     small: '0.25rem',

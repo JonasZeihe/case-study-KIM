@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 
-// Styled Components
+// Typo-Kontext erstellen
+const TypoContext = createContext({
+  variant: 'body',
+  color: 'neutral.dark',
+  align: 'left',
+});
+
+// TypoProvider-Komponente
+export function TypoProvider({ children, variant, color, align }) {
+  // Memoized contextValue, um unnötige Re-Renders zu verhindern
+  const contextValue = useMemo(
+    () => ({
+      variant,
+      color,
+      align,
+    }),
+    [variant, color, align]
+  );
+
+  return (
+    <TypoContext.Provider value={contextValue}>{children}</TypoContext.Provider>
+  );
+}
+
+// useTypo-Hook
+export function useTypo() {
+  return useContext(TypoContext);
+}
+
+// StyledTypography-Komponente
 const StyledTypography = styled.span`
   margin: 0;
   padding: 0;
   color: ${({ theme, color }) =>
-    theme.colors[color]?.main || theme.colors.neutral.white};
+    theme.colors[color]?.main || theme.colors.neutral.dark};
   text-align: ${({ align }) => align || 'left'};
   line-height: ${({ theme }) => theme.typography.lineHeight.normal};
 
@@ -57,12 +86,13 @@ const StyledTypography = styled.span`
   }}
 `;
 
-function Typography({
-  variant = 'body',
-  color = 'neutral',
-  align = 'left',
-  children,
-}) {
+// Typo-Komponente
+function Typography({ variant, color, align, children }) {
+  const context = useTypo();
+  const finalVariant = variant || context.variant;
+  const finalColor = color || context.color;
+  const finalAlign = align || context.align;
+
   const tagMap = {
     h1: 'h1',
     h2: 'h2',
@@ -70,13 +100,20 @@ function Typography({
     caption: 'span',
     body: 'p',
   };
-  const asTag = tagMap[variant] || 'p';
+  const asTag = tagMap[finalVariant] || 'p';
 
   return (
-    <StyledTypography as={asTag} variant={variant} color={color} align={align}>
+    <StyledTypography
+      as={asTag}
+      variant={finalVariant}
+      color={finalColor}
+      align={finalAlign}
+    >
       {children}
     </StyledTypography>
   );
 }
 
+// Exporte
+export { Typography };
 export default Typography;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
-import Typography from '../components/common/Typography';
+import Typography, { TypoProvider } from '../components/common/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 import HighlightText from '../components/utilities/HighlightText';
 
@@ -70,62 +70,72 @@ export default function Research() {
   return (
     <Wrapper backgroundColor="background.light" padding="large" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
-        <Typography variant="h1">Entdeckungsphase</Typography>
-        <Typography variant="h3">
-          Von der ersten Idee bis zu entscheidenden Nutzererkenntnissen.
-        </Typography>
-      </Wrapper>
+      <TypoProvider variant="h1" color="primary.main" align="center">
+        <Wrapper gradient="primaryToSecondary" padding="large">
+          <Typography>Entdeckungsphase</Typography>
+          <Typography variant="h3">
+            Von der ersten Idee bis zu entscheidenden Nutzererkenntnissen.
+          </Typography>
+        </Wrapper>
+      </TypoProvider>
 
       {/* Desk Research & Wettbewerbsanalyse */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Desk Research & Wettbewerbsanalyse</HighlightText>
-        </Typography>
-        <Typography variant="body">
-          Die Ausgangsidee war ursprünglich stark arbeitsfokussiert – eine
-          Plattform für Teambuilding und Networking. Durch intensiven Desk
-          Research identifizierten wir zwei Ansätze: Teambuilding im
-          Berufsumfeld und Verbindungen im persönlichen Bereich.
-        </Typography>
-        <MediaDisplay media={[media[0]]} layout="grid" />
-      </Wrapper>
+      <TypoProvider variant="body" color="neutral.light">
+        <Wrapper backgroundColor="background.dark" padding="large">
+          <Typography variant="h2">
+            <HighlightText>Desk Research & Wettbewerbsanalyse</HighlightText>
+          </Typography>
+          <Typography>
+            Die Ausgangsidee war ursprünglich stark arbeitsfokussiert – eine
+            Plattform für Teambuilding und Networking. Durch intensiven Desk
+            Research identifizierten wir zwei Ansätze: Teambuilding im
+            Berufsumfeld und Verbindungen im persönlichen Bereich.
+          </Typography>
+          <MediaDisplay media={[media[0]]} layout="grid" />
+        </Wrapper>
+      </TypoProvider>
 
       {/* User Research */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>User Research</HighlightText>
-        </Typography>
-        <Typography variant="body">
-          Mithilfe von <strong>70 Umfrageteilnehmern</strong> und{' '}
-          <strong>5 ausführlichen Interviews</strong> identifizierten wir die
-          Bedürfnisse potenzieller Nutzer.
-        </Typography>
-        <ListComponent items={insights} variant="highlighted" />
-        <MediaDisplay media={[media[1]]} layout="grid" />
-      </Wrapper>
+      <TypoProvider variant="body" color="neutral.light">
+        <Wrapper backgroundColor="background.dark" padding="large">
+          <Typography variant="h2">
+            <HighlightText>User Research</HighlightText>
+          </Typography>
+          <Typography>
+            Mithilfe von <strong>70 Umfrageteilnehmern</strong> und{' '}
+            <strong>5 ausführlichen Interviews</strong> identifizierten wir die
+            Bedürfnisse potenzieller Nutzer.
+          </Typography>
+          <ListComponent items={insights} variant="highlighted" />
+          <MediaDisplay media={[media[1]]} layout="grid" />
+        </Wrapper>
+      </TypoProvider>
 
       {/* Key Insights */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Key Insights</HighlightText>
-        </Typography>
-        <ListComponent items={keyInsights} variant="highlighted" />
-      </Wrapper>
+      <TypoProvider variant="body" color="neutral.light">
+        <Wrapper backgroundColor="background.dark" padding="large">
+          <Typography variant="h2">
+            <HighlightText>Key Insights</HighlightText>
+          </Typography>
+          <ListComponent items={keyInsights} variant="highlighted" />
+        </Wrapper>
+      </TypoProvider>
 
       {/* Persona Section */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Persona-Entwicklung</HighlightText>
-        </Typography>
-        <Typography variant="body">
-          Die wichtigste Persona, <strong>Tom</strong>, repräsentiert die
-          Zielgruppe: Ein junger Berufseinsteiger, der{' '}
-          <HighlightText>tiefe Freundschaften</HighlightText> und{' '}
-          <HighlightText>gemeinsame Aktivitäten</HighlightText> sucht.
-        </Typography>
-        <MediaDisplay media={[media[4]]} layout="grid" />
-      </Wrapper>
+      <TypoProvider variant="body" color="neutral.light">
+        <Wrapper backgroundColor="background.dark" padding="large">
+          <Typography variant="h2">
+            <HighlightText>Persona-Entwicklung</HighlightText>
+          </Typography>
+          <Typography>
+            Die wichtigste Persona, <strong>Tom</strong>, repräsentiert die
+            Zielgruppe: Ein junger Berufseinsteiger, der{' '}
+            <HighlightText>tiefe Freundschaften</HighlightText> und{' '}
+            <HighlightText>gemeinsame Aktivitäten</HighlightText> sucht.
+          </Typography>
+          <MediaDisplay media={[media[4]]} layout="grid" />
+        </Wrapper>
+      </TypoProvider>
     </Wrapper>
   );
 }
