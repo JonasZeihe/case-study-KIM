@@ -2,7 +2,7 @@ import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
 import QuoteComponent from '../components/sections/QuoteComponent';
-import Typography, { TypoProvider } from '../components/common/Typography';
+import { Typography, TypoProvider } from '../components/common/Typography';
 import HighlightText from '../components/utilities/HighlightText';
 
 // Assets
@@ -25,9 +25,9 @@ export default function Introduction() {
       </Wrapper>
 
       {/* Einführung zur Case Study */}
-      <TypoProvider variant="body" color="neutral.dark" align="center">
+      <TypoProvider>
         <Wrapper backgroundColor="neutral.white" elevated>
-          <Typography variant="h2" color="primary.main">
+          <Typography variant="h2" align="center">
             Case Study: <strong>KIM</strong>
           </Typography>
           <Typography>
@@ -40,7 +40,7 @@ export default function Introduction() {
 
         {/* Kurzbeschreibung */}
         <Wrapper backgroundColor="neutral.white">
-          <Typography variant="h2" color="secondary.main">
+          <Typography variant="h2" color="secondary.main" align="center">
             <HighlightText>Kurzbeschreibung</HighlightText>
           </Typography>
           <Typography>
@@ -60,7 +60,7 @@ export default function Introduction() {
       {/* Ziel */}
       <TypoProvider variant="body" color="neutral.light">
         <Wrapper backgroundColor="neutral.white">
-          <Typography variant="h2" color="neutral.white">
+          <Typography variant="h2" color="neutral.white" align="center">
             <HighlightText>Das Ziel</HighlightText>
           </Typography>
           <Typography>

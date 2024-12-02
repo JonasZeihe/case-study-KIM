@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
-import Typography, { TypoProvider } from '../components/common/Typography';
+import { Typography, TypoProvider } from '../components/common/Typography';
 import HighlightText from '../components/utilities/HighlightText';
 import ListComponent from '../components/data-display/ListComponent';
 

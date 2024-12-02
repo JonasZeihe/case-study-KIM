@@ -523,3 +523,5 @@ mit switcher toggle
 Nachwievor List nicht konsistent eingebaut in den pages mit highlight text und strong elementen
 
 Quote ist nicht responsive- mobile sieht es gut aus aber desktop ist viel zu breit
+
+Hab noch gerade in introduction rumgespielt- typography js ist fehlerhaft- Farbe und alles wird nicht richtig übernommen

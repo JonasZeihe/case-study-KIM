@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import Carousel from '../components/data-display/Carousel';
-import Typography, { TypoProvider } from '../components/common/Typography';
+import { Typography, TypoProvider } from '../components/common/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 import HighlightText from '../components/utilities/HighlightText';
 

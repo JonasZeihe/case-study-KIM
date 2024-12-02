@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
-import Typography, { TypoProvider } from '../components/common/Typography';
+import { Typography, TypoProvider } from '../components/common/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 
 export default function ReflectionPage() {
