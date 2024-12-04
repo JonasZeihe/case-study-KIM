@@ -8,15 +8,8 @@ const StyledTypography = styled.span`
 
   // Farbe aus dem Theme
   color: ${({ theme, color }) => {
-    if (!color) return theme.colors.primary.main; // Fallback zu Primary Main
-    const [colorKey, shade] = color.split('.');
-    const themeColor = theme.colors[colorKey]?.[shade];
-    if (!themeColor) {
-      console.warn(
-        `Farbe "${color}" wurde nicht im Theme gefunden. Fallback auf "primary.main".`
-      );
-    }
-    return themeColor || theme.colors.primary.main;
+    const [colorKey, shade] = (color || 'primary.main').split('.');
+    return theme.colors[colorKey]?.[shade] || theme.colors.primary.main;
   }};
 
   text-align: ${({ align }) => align || 'left'};
@@ -56,12 +49,6 @@ const StyledTypography = styled.span`
         margin-bottom: ${theme.spacing(3)};
       `,
     };
-
-    if (!variantStyles[variant]) {
-      console.warn(
-        `Variant "${variant}" ist nicht definiert. Fallback auf "body".`
-      );
-    }
 
     return variantStyles[variant] || variantStyles.body;
   }}
