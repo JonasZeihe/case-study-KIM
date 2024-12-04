@@ -22,18 +22,8 @@ const GlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    padding-top: clamp(2rem, 5vw, 5rem);
+    padding-top: clamp(1rem, 5vw, 2rem);
     overflow-x: hidden;
-  }
-
-  a {
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.primary.main};
-    transition: color 0.3s ease;
-
-    &:hover, &:focus {
-      color: ${({ theme }) => theme.colors.primary.dark};
-    }
   }
 
   button {
@@ -47,12 +37,6 @@ const GlobalStyles = createGlobalStyle`
     &:focus {
       outline: 2px solid ${({ theme }) => theme.colors.accent.main};
       outline-offset: 2px;
-    }
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    html {
-      font-size: 14px;
     }
   }
 `;

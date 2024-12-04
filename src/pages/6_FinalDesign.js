@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import Carousel from '../components/data-display/Carousel';
-import { Typography, TypoProvider } from '../components/common/Typography';
+import Typography from '../components/common/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 import HighlightText from '../components/utilities/HighlightText';
 
@@ -73,39 +73,38 @@ export default function FinalDesignPage() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.light" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" padding="large" elevated>
       {/* Header */}
-      <TypoProvider variant="h1" color="primary.main" align="center">
-        <Wrapper gradient="primaryToSecondary" padding="large">
-          <Typography>Finale Lösung und Design</Typography>
-          <Typography variant="h3">
-            Einblicke in die Hauptfeatures und das finale visuelle Konzept von
-            KIM.
-          </Typography>
-        </Wrapper>
-      </TypoProvider>
+      <Wrapper gradient="primaryToSecondary" padding="large">
+        <Typography variant="h1" align="center" color="neutral.white">
+          Finale Lösung und Design
+        </Typography>
+        <Typography variant="h3" color="neutral.white" align="center">
+          Einblicke in die Hauptfeatures und das finale visuelle Konzept von
+          KIM.
+        </Typography>
+      </Wrapper>
 
       {/* Hauptfeatures */}
-      <TypoProvider variant="body" color="neutral.light">
-        <Wrapper backgroundColor="background.dark" padding="large">
-          <Typography variant="h2">Hauptfeatures</Typography>
-          <Typography>
-            Die Hauptfeatures von KIM kombinieren Technologie, emotionales
-            Design und Interaktionen für tiefere Verbindungen.
-          </Typography>
-          <ListComponent items={features} variant="highlighted" />
-        </Wrapper>
-      </TypoProvider>
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Hauptfeatures
+        </Typography>
+        <Typography color="primary.main">
+          Die Hauptfeatures von KIM kombinieren Technologie,{' '}
+          <HighlightText>emotionales Design</HighlightText> und Interaktionen
+          für tiefere Verbindungen.
+        </Typography>
+        <ListComponent items={features} variant="highlighted" />
+      </Wrapper>
 
       {/* App Screens */}
-      <TypoProvider variant="body" color="neutral.light">
-        <Wrapper backgroundColor="background.dark" padding="large">
-          <Typography variant="h2" textAlign="center">
-            Finale App-Screens
-          </Typography>
-          <Carousel slides={media} autoplay interval={5000} />
-        </Wrapper>
-      </TypoProvider>
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main" textAlign="center">
+          Finale App-Screens
+        </Typography>
+        <Carousel slides={media} autoplay interval={5000} />
+      </Wrapper>
     </Wrapper>
   );
 }

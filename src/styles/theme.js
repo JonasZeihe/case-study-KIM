@@ -1,9 +1,12 @@
 import gradients from './Gradient';
 
-const baseFontSize = 18; // Vergrößert für bessere Lesbarkeit
+const baseFontSize = 18;
 const goldenRatio = 1.618;
 
 const scaleFont = (level) => `${(baseFontSize * goldenRatio ** level) / 16}rem`;
+
+const responsiveFontSize = (minSize, maxSize) =>
+  `clamp(${minSize}, calc(${minSize} + (${maxSize} - ${minSize}) * ((100vw - 320px) / (1200 - 320))), ${maxSize})`;
 
 const colors = {
   primary: {
@@ -60,11 +63,11 @@ const theme = {
       button: "'Futura', sans-serif",
     },
     fontSize: {
-      h1: scaleFont(3),
-      h2: scaleFont(2),
-      h3: scaleFont(1),
-      body: `${baseFontSize / 16}rem`,
-      small: scaleFont(-1),
+      h1: responsiveFontSize(scaleFont(3), scaleFont(4)),
+      h2: responsiveFontSize(scaleFont(2), scaleFont(3)),
+      h3: responsiveFontSize(scaleFont(1), scaleFont(2)),
+      body: responsiveFontSize(scaleFont(0), scaleFont(1)),
+      small: responsiveFontSize(scaleFont(-1), scaleFont(0)),
     },
     fontWeight: {
       light: 300,
@@ -78,7 +81,13 @@ const theme = {
       relaxed: 1.8,
     },
   },
-  spacing: (factor) => `${0.5 * factor}rem`,
+  spacing: (factor) => `${8 * factor}px`,
+  spacingValues: {
+    small: '8px',
+    medium: '16px',
+    large: '24px',
+    extraLarge: '32px',
+  },
   borderRadius: {
     none: '0',
     small: '0.25rem',
@@ -93,11 +102,11 @@ const theme = {
     glow: '0 0 10px rgba(52, 65, 249, 0.5)',
   },
   breakpoints: {
-    xs: '20rem',
-    sm: '36rem',
-    md: '48rem',
-    lg: '62rem',
-    xl: '75rem',
+    xs: '320px',
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px',
   },
 };
 

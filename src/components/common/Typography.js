@@ -1,98 +1,81 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
-// Typo-Kontext erstellen
-const TypoContext = createContext({
-  variant: 'body',
-  color: 'neutral.dark',
-  align: 'left',
-});
-
-// TypoProvider-Komponente
-export function TypoProvider({ children, variant, color, align }) {
-  // Memoized contextValue, um unnötige Re-Renders zu verhindern
-  const contextValue = useMemo(
-    () => ({
-      variant,
-      color,
-      align,
-    }),
-    [variant, color, align]
-  );
-
-  return (
-    <TypoContext.Provider value={contextValue}>{children}</TypoContext.Provider>
-  );
-}
-
-// useTypo-Hook
-export function useTypo() {
-  return useContext(TypoContext);
-}
-
-// StyledTypography-Komponente
+// Styled Component für die Typografie
 const StyledTypography = styled.span`
   margin: 0;
   padding: 0;
-  color: ${({ theme, color }) =>
-    theme.colors[color]?.main || theme.colors.neutral.dark};
+
+  // Farbe aus dem Theme
+  color: ${({ theme, color }) => {
+    if (!color) return theme.colors.primary.main; // Fallback zu Primary Main
+    const [colorKey, shade] = color.split('.');
+    const themeColor = theme.colors[colorKey]?.[shade];
+    if (!themeColor) {
+      console.warn(
+        `Farbe "${color}" wurde nicht im Theme gefunden. Fallback auf "primary.main".`
+      );
+    }
+    return themeColor || theme.colors.primary.main;
+  }};
+
   text-align: ${({ align }) => align || 'left'};
-  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  line-height: ${({ theme, lineHeight }) =>
+    lineHeight || theme.typography.lineHeight.normal};
 
   ${({ variant, theme }) => {
-    switch (variant) {
-      case 'h1':
-        return css`
-          font-size: clamp(
-            ${theme.typography.fontSize.h1Small},
-            5vw,
-            ${theme.typography.fontSize.h1}
-          );
-          font-weight: ${theme.typography.fontWeight.bold};
-          margin-bottom: ${theme.spacing(6)};
-        `;
-      case 'h2':
-        return css`
-          font-size: clamp(
-            ${theme.typography.fontSize.h2Small},
-            4vw,
-            ${theme.typography.fontSize.h2}
-          );
-          font-weight: ${theme.typography.fontWeight.bold};
-          margin-bottom: ${theme.spacing(5)};
-        `;
-      case 'h3':
-        return css`
-          font-size: clamp(
-            ${theme.typography.fontSize.h3Small},
-            3.5vw,
-            ${theme.typography.fontSize.h3}
-          );
-          font-weight: ${theme.typography.fontWeight.medium};
-          margin-bottom: ${theme.spacing(4)};
-        `;
-      case 'caption':
-        return css`
-          font-size: ${theme.typography.fontSize.small};
-          font-weight: ${theme.typography.fontWeight.light};
-          color: ${theme.colors.neutral.medium};
-        `;
-      default:
-        return css`
-          font-size: ${theme.typography.fontSize.body};
-          font-weight: ${theme.typography.fontWeight.regular};
-        `;
+    const variantStyles = {
+      h1: css`
+        font-size: ${theme.typography.fontSize.h1};
+        font-weight: ${theme.typography.fontWeight.bold};
+        line-height: ${theme.typography.lineHeight.tight};
+        margin-bottom: ${theme.spacing(6)};
+      `,
+      h2: css`
+        font-size: ${theme.typography.fontSize.h2};
+        font-weight: ${theme.typography.fontWeight.bold};
+        line-height: ${theme.typography.lineHeight.tight};
+        margin-bottom: ${theme.spacing(5)};
+      `,
+      h3: css`
+        font-size: ${theme.typography.fontSize.h3};
+        font-weight: ${theme.typography.fontWeight.medium};
+        line-height: ${theme.typography.lineHeight.normal};
+        margin-bottom: ${theme.spacing(4)};
+      `,
+      caption: css`
+        font-size: ${theme.typography.fontSize.small};
+        font-weight: ${theme.typography.fontWeight.light};
+        line-height: ${theme.typography.lineHeight.tight};
+        color: ${theme.colors.neutral.medium};
+      `,
+      body: css`
+        font-size: ${theme.typography.fontSize.body};
+        font-weight: ${theme.typography.fontWeight.regular};
+        line-height: ${theme.typography.lineHeight.normal};
+        margin-bottom: ${theme.spacing(3)};
+      `,
+    };
+
+    if (!variantStyles[variant]) {
+      console.warn(
+        `Variant "${variant}" ist nicht definiert. Fallback auf "body".`
+      );
     }
+
+    return variantStyles[variant] || variantStyles.body;
   }}
 `;
 
-// Typo-Komponente
-function Typography({ variant, color, align, children }) {
-  const context = useTypo();
-  const finalVariant = variant || context.variant;
-  const finalColor = color || context.color;
-  const finalAlign = align || context.align;
-
+// Funktionale Typography-Komponente
+function Typography({
+  variant = 'body',
+  color = 'neutral.dark',
+  align = 'left',
+  lineHeight,
+  children,
+}) {
+  // Tag-Mapping
   const tagMap = {
     h1: 'h1',
     h2: 'h2',
@@ -100,20 +83,20 @@ function Typography({ variant, color, align, children }) {
     caption: 'span',
     body: 'p',
   };
-  const asTag = tagMap[finalVariant] || 'p';
+
+  const asTag = tagMap[variant] || 'p';
 
   return (
     <StyledTypography
       as={asTag}
-      variant={finalVariant}
-      color={finalColor}
-      align={finalAlign}
+      variant={variant}
+      color={color}
+      align={align}
+      lineHeight={lineHeight}
     >
       {children}
     </StyledTypography>
   );
 }
 
-// Exporte
-export { Typography };
 export default Typography;
