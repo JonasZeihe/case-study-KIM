@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import Carousel from '../components/data-display/Carousel';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 import HighlightText from '../components/utilities/HighlightText';
 
@@ -79,9 +79,9 @@ export default function FinalDesignPage() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           Finale Lösung und Design
         </Typography>
@@ -92,7 +92,7 @@ export default function FinalDesignPage() {
       </Wrapper>
 
       {/* Hauptfeatures */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Hauptfeatures
         </Typography>
@@ -105,7 +105,7 @@ export default function FinalDesignPage() {
       </Wrapper>
 
       {/* App Screens */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main" textAlign="center">
           Finale App-Screens
         </Typography>

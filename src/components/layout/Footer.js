@@ -66,7 +66,7 @@ export default function Footer() {
 const FooterWrapper = styled.footer`
   background: ${({ theme }) => theme.colors.primary.dark};
   color: ${({ theme }) => theme.colors.neutral.white};
-  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(4)};
+  padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(4)};
   display: flex;
   flex-direction: column;
   align-items: center;

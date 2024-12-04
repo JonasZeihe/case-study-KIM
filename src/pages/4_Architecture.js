@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import HighlightText from '../components/utilities/HighlightText';
 
 // Assets
@@ -27,9 +27,9 @@ export default function Architecture() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           Informationsarchitektur & User Journey Map
         </Typography>
@@ -40,7 +40,7 @@ export default function Architecture() {
       </Wrapper>
 
       {/* Informationsarchitektur */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Informationsarchitektur
         </Typography>
@@ -58,7 +58,7 @@ export default function Architecture() {
       </Wrapper>
 
       {/* User Flow */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           User Flow
         </Typography>
@@ -74,7 +74,7 @@ export default function Architecture() {
       </Wrapper>
 
       {/* User Story */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           User Story
         </Typography>
@@ -86,7 +86,7 @@ export default function Architecture() {
       </Wrapper>
 
       {/* User Journey Map */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           User Journey Map
         </Typography>

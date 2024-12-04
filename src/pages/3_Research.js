@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import HighlightText from '../components/utilities/HighlightText';
 import QuoteComponent from '../components/sections/QuoteComponent';
 import ListComponent from '../components/data-display/ListComponent';
@@ -92,9 +92,9 @@ export default function Research() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           Entdeckungsphase
         </Typography>
@@ -104,7 +104,7 @@ export default function Research() {
       </Wrapper>
 
       {/* Desk Research & Wettbewerbsanalyse */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Desk Research & Wettbewerbsanalyse
         </Typography>
@@ -128,7 +128,7 @@ export default function Research() {
       </Wrapper>
 
       {/* User Research */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           User Research (quantitativ & qualitativ)
         </Typography>
@@ -150,7 +150,7 @@ export default function Research() {
         />
 
         {/* Key Insights */}
-        <Wrapper backgroundColor="neutral.white" padding="large" elevated>
+        <Wrapper backgroundColor="neutral.white" elevated>
           <Typography variant="h2" color="primary.main">
             Key Insights
           </Typography>
@@ -159,7 +159,7 @@ export default function Research() {
       </Wrapper>
 
       {/* Interviews */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Interviews
         </Typography>
@@ -179,7 +179,6 @@ export default function Research() {
           wäre das einfacher."
         />
 
-        <blockquote>„“</blockquote>
         <MediaDisplay
           media={[
             { type: 'image', src: interviewQuotes, alt: 'Interview Quotes' },
@@ -188,7 +187,7 @@ export default function Research() {
       </Wrapper>
 
       {/* How Might We */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           How Might We (HMW)-Frage
         </Typography>
@@ -203,7 +202,7 @@ export default function Research() {
       </Wrapper>
 
       {/* Persona Section */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Persona-Entwicklung
         </Typography>

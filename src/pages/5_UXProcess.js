@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import HighlightText from '../components/utilities/HighlightText';
 import ListComponent from '../components/data-display/ListComponent';
 
@@ -51,9 +51,9 @@ export default function UXProcess() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           UX-Designprozess
         </Typography>
@@ -64,7 +64,7 @@ export default function UXProcess() {
       </Wrapper>
 
       {/* Ideation und Entwürfe */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Ideation und Entwürfe
         </Typography>
@@ -96,7 +96,7 @@ export default function UXProcess() {
       </Wrapper>
 
       {/* Interaktive Features */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Interaktionen und Features
         </Typography>
@@ -115,7 +115,7 @@ export default function UXProcess() {
       </Wrapper>
 
       {/* Styleguide */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Styleguide: Farben und Typografie
         </Typography>
