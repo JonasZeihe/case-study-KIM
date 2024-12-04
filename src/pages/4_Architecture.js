@@ -80,9 +80,7 @@ export default function Architecture() {
         </Typography>
         <Typography color="primary.main">
           <HighlightText>Toms User Story</HighlightText> treibt den
-          Designprozess an. Sie zeigt, wie Tom durch eine{' '}
-          <HighlightText>emotional fesselnde Journey</HighlightText> geführt
-          wird, um echte Verbindungen aufzubauen.
+          Designprozess an.
         </Typography>
         <MediaDisplay media={[media[2]]} layout="grid" />
       </Wrapper>

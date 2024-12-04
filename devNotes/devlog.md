@@ -525,3 +525,20 @@ Nachwievor List nicht konsistent eingebaut in den pages mit highlight text und s
 Quote ist nicht responsive- mobile sieht es gut aus aber desktop ist viel zu breit
 
 Hab noch gerade in introduction rumgespielt- typography js ist fehlerhaft- Farbe und alles wird nicht richtig übernommen
+
+## 20241204 1622
+
+Plan für Case study Todo
+
+Logo muss gemacht werden
+UX unvollständig, Interviews etc fehlen und hmw --DONE
+Vídeo einbinden neue Page und Link zum Prototyp
+Background Nachbearbeitung --DONE
+Hero Banner container und generell light Box und Mediadisplay noch nicht final
+Buttons nicht korrekt designt
+Buttons in mobile teilweise überflüssig carousel etc
+Bilder füllen nicht ganz aus
+Swipe gesten
+Wenn alles passt dann
+Performance Lighthouse etc
+SEO SEA
