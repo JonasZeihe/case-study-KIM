@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 // Styled Components
 const StyledList = styled.ul`
-  margin: ${({ theme }) => theme.spacing(4)} 0;
+  margin: ${({ theme }) => theme.spacing(3)} 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(3)};
+  gap: ${({ theme }) => theme.spacing(2)};
   list-style: none;
 `;
 

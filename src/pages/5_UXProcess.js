@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import HighlightText from '../components/utilities/HighlightText';
 import ListComponent from '../components/data-display/ListComponent';
 
@@ -27,33 +27,33 @@ export default function UXProcess() {
     {
       content: (
         <>
-          📊 <HighlightText>Verbindungstiefen-Radialdiagramm</HighlightText>:
-          Toms Fortschritte und Gruppenzugehörigkeit visualisieren.
+          📊 Ein <HighlightText>Verbindungstiefen-Radialdiagramm</HighlightText>
+          , das Toms Fortschritte und die Kompatibilität der Gruppe darstellt.
         </>
       ),
     },
     {
       content: (
         <>
-          🤖 <HighlightText>KI-Chat-Funktion</HighlightText>: Vereinfachung der
-          ersten Kontaktaufnahme.
+          🤖 Eine intuitive <HighlightText>KI-Chat-Funktion</HighlightText>, die
+          den ersten Kontakt erleichtert.
         </>
       ),
     },
     {
       content: (
         <>
-          ❄️ <HighlightText>Icebreaker-Fragen</HighlightText>: Abbau sozialer
-          Hemmungen durch spielerische Fragen.
+          ❄️ Interaktive <HighlightText>Icebreaker-Fragen</HighlightText>, die
+          soziale Hemmungen spielerisch abbauen.
         </>
       ),
     },
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           UX-Designprozess
         </Typography>
@@ -64,25 +64,39 @@ export default function UXProcess() {
       </Wrapper>
 
       {/* Ideation und Entwürfe */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Ideation und Entwürfe
         </Typography>
         <Typography color="primary.main">
           Die ersten Schritte im Designprozess bestanden aus{' '}
-          <HighlightText>Low-Fidelity-Wireframes</HighlightText> und{' '}
-          <HighlightText>User Journey Maps</HighlightText>, um die grundlegende
-          Struktur der App zu klären. Eine große Herausforderung war es,{' '}
-          <HighlightText>KIM</HighlightText> als{' '}
+          <HighlightText>Low-Fidelity-Wireframes</HighlightText> und
+          detaillierten <HighlightText>User Journey Maps</HighlightText>, um die
+          grundlegende Struktur der App zu klären. Eine große Herausforderung
+          war es, <HighlightText>KIM</HighlightText> als{' '}
           <HighlightText>persönlichen Verbindungs-Assistenten</HighlightText> zu
           gestalten, statt nur eine Plattform für Klick-Interaktionen zu
           schaffen.
+        </Typography>
+        <Typography color="primary.main">
+          Um das <HighlightText>Storytelling</HighlightText> und die emotionale
+          Verbindung zu verbessern, wechselten wir auf eine{' '}
+          <HighlightText>mid-fidelity Struktur</HighlightText>, die Toms Journey
+          detaillierter und ansprechender darstellt.
+        </Typography>
+        <Typography color="primary.main">
+          Der <HighlightText>Prototyping-Prozess</HighlightText> war geprägt von
+          kontinuierlichem Testing und iterativen Verbesserungen. Besonders der
+          Wechsel auf <HighlightText>mid-fidelity Wireframes</HighlightText>{' '}
+          half uns, die App-Nutzung und das{' '}
+          <HighlightText>Storytelling</HighlightText> besser zu veranschaulichen
+          – speziell für den KI-Chat.
         </Typography>
         <MediaDisplay media={[media[0]]} layout="grid" />
       </Wrapper>
 
       {/* Interaktive Features */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Interaktionen und Features
         </Typography>
@@ -93,19 +107,21 @@ export default function UXProcess() {
         </Typography>
         <ListComponent items={interactiveFeatures} variant="highlighted" />
         <Typography color="primary.main">
-          KIM fungiert als <HighlightText>Brückenbauer</HighlightText>, der
-          Beziehungen auf emotionaler Ebene unterstützt und vertieft.
+          Der psychologische Ansatz stand im Mittelpunkt, um KIM als{' '}
+          <HighlightText>„Brückenbauer“</HighlightText> zu inszenieren, der
+          Beziehungen zu einer <HighlightText>emotionalen Tiefe</HighlightText>{' '}
+          führt.
         </Typography>
       </Wrapper>
 
       {/* Styleguide */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Styleguide: Farben und Typografie
         </Typography>
         <Typography color="primary.main">
           Der <HighlightText>Styleguide</HighlightText> von KIM sichert die
-          konsistente Anwendung von Farben und Typografie. Die Farbpalette und
+          konsistente Anwendung von Farben und Typografie. Die Hauptfarben und
           Schriftarten wurden sorgfältig ausgewählt, um eine{' '}
           <HighlightText>emotionale</HighlightText> und{' '}
           <HighlightText>moderne Nutzererfahrung</HighlightText> zu schaffen.

@@ -22,7 +22,6 @@ const GlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    padding-top: clamp(1rem, 5vw, 2rem);
     overflow-x: hidden;
   }
 

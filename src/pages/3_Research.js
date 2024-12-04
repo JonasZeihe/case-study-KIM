@@ -1,8 +1,9 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import HighlightText from '../components/utilities/HighlightText';
+import QuoteComponent from '../components/sections/QuoteComponent';
 import ListComponent from '../components/data-display/ListComponent';
 
 // Assets
@@ -90,26 +91,10 @@ export default function Research() {
     },
   ];
 
-  const media = [
-    {
-      type: 'image',
-      src: competitorAnalysis,
-      alt: 'Wettbewerbsanalyse-Diagramm',
-    },
-    {
-      type: 'image',
-      src: userResearchInsights,
-      alt: 'Diagramme aus dem User Research',
-    },
-    { type: 'image', src: interviewQuotes, alt: 'Zitate aus Interviews' },
-    { type: 'image', src: conceptualInsights, alt: 'HMW-Diagramm' },
-    { type: 'image', src: personaTom, alt: 'Persona-Karte von Tom' },
-  ];
-
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           Entdeckungsphase
         </Typography>
@@ -119,7 +104,7 @@ export default function Research() {
       </Wrapper>
 
       {/* Desk Research & Wettbewerbsanalyse */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Desk Research & Wettbewerbsanalyse
         </Typography>
@@ -131,33 +116,93 @@ export default function Research() {
           <HighlightText>Teambuilding im Berufsumfeld</HighlightText> und{' '}
           <HighlightText>Verbindungen im persönlichen Bereich</HighlightText>.
         </Typography>
-        <MediaDisplay media={[media[0]]} layout="grid" />
+        <MediaDisplay
+          media={[
+            {
+              type: 'image',
+              src: competitorAnalysis,
+              alt: 'Wettbewerbsanalyse-Diagramm',
+            },
+          ]}
+        />
       </Wrapper>
 
       {/* User Research */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
-          User Research
+          User Research (quantitativ & qualitativ)
         </Typography>
         <Typography color="primary.main">
           Mithilfe von <HighlightText>70 Umfrageteilnehmern</HighlightText> und{' '}
           <HighlightText>5 ausführlichen Interviews</HighlightText>{' '}
-          identifizierten wir die Bedürfnisse potenzieller Nutzer.
+          identifizierten wir die Bedürfnisse potenzieller Nutzer. Die folgenden
+          Ergebnisse zeigten klare Trends:
         </Typography>
-        <ListComponent items={insights} variant="highlighted" />
-        <MediaDisplay media={[media[1]]} layout="grid" />
+        <ListComponent items={insights} />
+        <MediaDisplay
+          media={[
+            {
+              type: 'image',
+              src: userResearchInsights,
+              alt: 'Diagramme aus dem User Research',
+            },
+          ]}
+        />
+
+        {/* Key Insights */}
+        <Wrapper backgroundColor="neutral.white" elevated>
+          <Typography variant="h2" color="primary.main">
+            Key Insights
+          </Typography>
+          <ListComponent items={keyInsights} />
+        </Wrapper>
       </Wrapper>
 
-      {/* Key Insights */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      {/* Interviews */}
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
-          Key Insights
+          Interviews
         </Typography>
-        <ListComponent items={keyInsights} variant="highlighted" />
+        <Typography color="primary.main">
+          Teilnehmer beschrieben wiederholt das Bedürfnis nach Tiefe in
+          Verbindungen:
+        </Typography>
+        <QuoteComponent
+          text="„Ich kenne viele Leute, aber es sind meist oberflächliche Kontakte.
+          Mir fehlt der Austausch, bei dem es wirklich um gemeinsame Interessen
+          oder Werte geht."
+        />
+
+        <QuoteComponent
+          text="„Es fällt mir schwer, auf fremde Menschen zuzugehen, besonders in
+          großen Gruppen. Wenn ich wüsste, dass wir schon Gemeinsamkeiten haben,
+          wäre das einfacher."
+        />
+
+        <MediaDisplay
+          media={[
+            { type: 'image', src: interviewQuotes, alt: 'Interview Quotes' },
+          ]}
+        />
+      </Wrapper>
+
+      {/* How Might We */}
+      <Wrapper backgroundColor="neutral.white">
+        <Typography variant="h2" color="primary.main">
+          How Might We (HMW)-Frage
+        </Typography>
+        <Typography color="primary.main">
+          Unsere zentrale Frage nach dem Research lautete:
+        </Typography>
+        <MediaDisplay
+          media={[
+            { type: 'image', src: conceptualInsights, alt: 'HMW-Diagramm' },
+          ]}
+        />
       </Wrapper>
 
       {/* Persona Section */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Persona-Entwicklung
         </Typography>
@@ -165,9 +210,16 @@ export default function Research() {
           Die wichtigste Persona, <HighlightText>Tom</HighlightText>,
           repräsentiert die Zielgruppe: Ein junger Berufseinsteiger, der{' '}
           <HighlightText>tiefe Freundschaften</HighlightText> und{' '}
-          <HighlightText>gemeinsame Aktivitäten</HighlightText> sucht.
+          <HighlightText>gemeinsame Aktivitäten</HighlightText> sucht, sich aber
+          in Netzwerken oft gehemmt fühlt. Toms Persönlichkeit und Bedürfnisse
+          wurden zum zentralen Punkt, um die Designentscheidungen bei KIM
+          nutzerzentriert auszurichten.
         </Typography>
-        <MediaDisplay media={[media[4]]} layout="grid" />
+        <MediaDisplay
+          media={[
+            { type: 'image', src: personaTom, alt: 'Persona-Karte von Tom' },
+          ]}
+        />
       </Wrapper>
     </Wrapper>
   );

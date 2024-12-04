@@ -16,35 +16,35 @@ const WrapperContainer = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   box-shadow: ${({ theme, elevated }) =>
     elevated ? theme.boxShadow.medium : 'none'};
-  padding: ${({ theme }) => theme.spacing(4)};
-  margin: ${({ theme }) => theme.spacing(4)} auto; /* Standard Margin für äußere Abstände */
+  padding: ${({ theme }) => theme.spacing(2)};
+  margin: ${({ theme }) => theme.spacing(2)} auto; /* Standard Margin für äußere Abstände */
   width: 100%;
   max-width: ${({ theme }) => theme.breakpoints.xl};
 
   /* Abstände zwischen mehreren Wrappern */
   & + & {
-    margin-top: ${({ theme }) => theme.spacing(6)};
+    margin-top: ${({ theme }) => theme.spacing(2)};
   }
 
   /* Medienanfragen für kleinere Bildschirme */
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     padding: ${({ theme }) => theme.spacing(3)};
     & + & {
-      margin-top: ${({ theme }) => theme.spacing(5)};
+      margin-top: ${({ theme }) => theme.spacing(2)};
     }
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: ${({ theme }) => theme.spacing(3)};
     & + & {
-      margin-top: ${({ theme }) => theme.spacing(4)};
+      margin-top: ${({ theme }) => theme.spacing(2)};
     }
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     padding: ${({ theme }) => theme.spacing(2)};
     & + & {
-      margin-top: ${({ theme }) => theme.spacing(3)};
+      margin-top: ${({ theme }) => theme.spacing(2)};
     }
   }
 `;

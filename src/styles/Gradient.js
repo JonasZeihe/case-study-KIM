@@ -79,6 +79,10 @@ const gradients = (theme) => ({
     theme.colors.neutral.light,
     theme.colors.neutral.medium
   ),
+  neutralLight: createGradient(
+    theme.colors.neutral.white,
+    theme.colors.neutral.white
+  ),
   neutralStrong: createGradient(
     theme.colors.neutral.dark,
     theme.colors.neutral.black

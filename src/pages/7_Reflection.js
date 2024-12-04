@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 import HighlightText from '../components/utilities/HighlightText';
 
@@ -67,9 +67,9 @@ export default function ReflectionPage() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           Reflexion und Learnings
         </Typography>
@@ -80,7 +80,7 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Herausforderungen */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Herausforderungen
         </Typography>
@@ -92,7 +92,7 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Learnings */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Learnings
         </Typography>
@@ -104,7 +104,7 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Verbesserungen */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Was wir anders machen würden
         </Typography>
@@ -116,7 +116,7 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Zukunftsaussichten */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h2" align="center" color="neutral.white">
           Zukunftsaussichten
         </Typography>

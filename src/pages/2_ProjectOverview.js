@@ -2,7 +2,7 @@ import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import MediaDisplay from '../components/data-display/MediaDisplay';
 import QuoteComponent from '../components/sections/QuoteComponent';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import HighlightText from '../components/utilities/HighlightText';
 import ListComponent from '../components/data-display/ListComponent';
 
@@ -47,9 +47,9 @@ export default function ProjectOverview() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header Section */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           Projektüberblick
         </Typography>
@@ -59,7 +59,7 @@ export default function ProjectOverview() {
       </Wrapper>
 
       {/* Produktbeschreibung Section */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Produktbeschreibung
         </Typography>
@@ -75,7 +75,7 @@ export default function ProjectOverview() {
       </Wrapper>
 
       {/* Team & Rollen Section */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Team & Rollen
         </Typography>
@@ -94,7 +94,7 @@ export default function ProjectOverview() {
       </Wrapper>
 
       {/* Problemstellung Section */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Problemstellung
         </Typography>

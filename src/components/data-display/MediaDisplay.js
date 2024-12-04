@@ -7,9 +7,8 @@ import Lightbox from '../common/Lightbox';
 const MediaGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: ${({ theme }) => theme.spacing(3)};
+  gap: ${({ theme }) => theme.spacing(2)};
   justify-content: center;
-  margin: ${({ theme }) => theme.spacing(4)} auto; /* Added spacing above and below */
   width: 100%; /* Ensures the grid spans the Wrapper */
 `;
 

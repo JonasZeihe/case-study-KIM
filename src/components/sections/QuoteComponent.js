@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 // Wrapper für das Zitat
 const QuoteWrapper = styled.blockquote`
   position: relative;
-  margin: ${({ theme }) => theme.spacing(4)} auto;
-  padding: ${({ theme }) => theme.spacing(4)};
+  margin: ${({ theme }) => theme.spacing(3)} auto;
+  padding: ${({ theme }) => theme.spacing(3)};
   max-width: 600px; /* Begrenzte Breite für bessere Lesbarkeit */
   background: ${({ theme }) => theme.colors.background.main};
   color: ${({ theme }) => theme.colors.neutral.white};
   font-style: italic;
-  border-left: 6px solid ${({ theme }) => theme.colors.primary.main}; /* Breiterer Balken */
+  border-left: 8px solid ${({ theme }) => theme.colors.primary.main}; /* Breiterer Balken */
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   box-shadow: ${({ theme }) => theme.boxShadow.light};
 

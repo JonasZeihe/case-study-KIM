@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import Carousel from '../components/data-display/Carousel';
-import Typography from '../components/common/Typography';
+import Typography from '../styles/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 import HighlightText from '../components/utilities/HighlightText';
 
@@ -37,8 +37,9 @@ export default function FinalDesignPage() {
     {
       content: (
         <>
-          🤖 <HighlightText>KI-gestützter Chat:</HighlightText> Dynamische
-          Persönlichkeitsprofile, die auf den Antworten des Nutzers basieren.
+          🤖 <HighlightText>KI-gestützter Chat:</HighlightText> KIM erstellt ein
+          dynamisches Persönlichkeitsprofil basierend auf den Antworten des
+          Nutzers und passt die Fragen im Verlauf des Gesprächs an.
         </>
       ),
     },
@@ -49,8 +50,8 @@ export default function FinalDesignPage() {
           <HighlightText>
             Gruppenvorschläge mit Kompatibilitätsscore:
           </HighlightText>{' '}
-          Basierend auf dem Persönlichkeitsprofil zeigt KIM Gruppen mit hoher
-          Übereinstimmung an.
+          Nutzer erhalten Vorschläge für Gruppen mit hoher Übereinstimmung, was
+          schnelle Verbindungen und tiefere Beziehungen fördert.
         </>
       ),
     },
@@ -58,24 +59,29 @@ export default function FinalDesignPage() {
       content: (
         <>
           ❄️ <HighlightText>Automatisierte Icebreaker:</HighlightText> Spannende
-          Fragen erleichtern Gruppentreffen und brechen das Eis.
+          Fragen erleichtern Gruppentreffen und brechen das Eis. KIM plant zudem
+          das erste Treffen der Gruppe, um echte Begegnungen ohne Planungsstress
+          zu ermöglichen.
         </>
       ),
     },
     {
       content: (
         <>
-          🎨 <HighlightText>Visuelles Design:</HighlightText> Moderne Farben und
-          klare Typografie schaffen eine warme Atmosphäre.
+          🎨 <HighlightText>Visuelles Design:</HighlightText> Die Farbpalette
+          und Typografie greifen das Thema der emotionalen Tiefe auf und
+          schaffen eine einladende, warme Umgebung für den Nutzer. Das{' '}
+          <HighlightText>✨-Symbol</HighlightText> repräsentiert KIM als den
+          „Funken der Verbindungen“.
         </>
       ),
     },
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large">
+      <Wrapper gradient="primaryToSecondary">
         <Typography variant="h1" align="center" color="neutral.white">
           Finale Lösung und Design
         </Typography>
@@ -86,7 +92,7 @@ export default function FinalDesignPage() {
       </Wrapper>
 
       {/* Hauptfeatures */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">
           Hauptfeatures
         </Typography>
@@ -99,9 +105,13 @@ export default function FinalDesignPage() {
       </Wrapper>
 
       {/* App Screens */}
-      <Wrapper backgroundColor="neutral.white" padding="large">
+      <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main" textAlign="center">
           Finale App-Screens
+        </Typography>
+        <Typography color="primary.main" align="center">
+          Die finalen Screens von KIM illustrieren die Hauptfeatures wie die
+          Icebreaker-Funktion, das Dashboard und vieles mehr.
         </Typography>
         <Carousel slides={media} autoplay interval={5000} />
       </Wrapper>
