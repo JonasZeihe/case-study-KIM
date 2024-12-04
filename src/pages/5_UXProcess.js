@@ -43,35 +43,37 @@ export default function UXProcess() {
     {
       content: (
         <>
-          ❄️ <strong>Icebreaker-Fragen:</strong> Abbau sozialer Hemmungen durch
-          spielerische Fragen.
+          ❄️ <HighlightText>Icebreaker-Fragen</HighlightText>: Abbau sozialer
+          Hemmungen durch spielerische Fragen.
         </>
       ),
     },
   ];
 
   return (
-    <Wrapper backgroundColor="background.light" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" padding="large" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
-        <Typography variant="h1">UX-Designprozess</Typography>
-        <Typography variant="h3">
+      <Wrapper gradient="primaryToSecondary" padding="large">
+        <Typography variant="h1" align="center" color="neutral.white">
+          UX-Designprozess
+        </Typography>
+        <Typography variant="h3" color="neutral.white" align="center">
           Vom ersten Konzept bis zur finalen Umsetzung – ein nutzerzentrierter
           Ansatz.
         </Typography>
       </Wrapper>
 
       {/* Ideation und Entwürfe */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Ideation und Entwürfe</HighlightText>
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Ideation und Entwürfe
         </Typography>
-        <Typography variant="body">
+        <Typography color="primary.main">
           Die ersten Schritte im Designprozess bestanden aus{' '}
           <HighlightText>Low-Fidelity-Wireframes</HighlightText> und{' '}
           <HighlightText>User Journey Maps</HighlightText>, um die grundlegende
           Struktur der App zu klären. Eine große Herausforderung war es,{' '}
-          <strong>KIM</strong> als{' '}
+          <HighlightText>KIM</HighlightText> als{' '}
           <HighlightText>persönlichen Verbindungs-Assistenten</HighlightText> zu
           gestalten, statt nur eine Plattform für Klick-Interaktionen zu
           schaffen.
@@ -80,33 +82,33 @@ export default function UXProcess() {
       </Wrapper>
 
       {/* Interaktive Features */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Interaktionen und Features</HighlightText>
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Interaktionen und Features
         </Typography>
-        <Typography variant="body">
-          Die <strong>interaktiven Features</strong> der App wurden entwickelt,
-          um Toms Journey intuitiv und visuell ansprechend zu gestalten. Dazu
-          gehören:
+        <Typography color="primary.main">
+          Die <HighlightText>interaktiven Features</HighlightText> der App
+          wurden entwickelt, um Toms Journey intuitiv und visuell ansprechend zu
+          gestalten. Dazu gehören:
         </Typography>
         <ListComponent items={interactiveFeatures} variant="highlighted" />
-        <Typography variant="body">
+        <Typography color="primary.main">
           KIM fungiert als <HighlightText>Brückenbauer</HighlightText>, der
           Beziehungen auf emotionaler Ebene unterstützt und vertieft.
         </Typography>
       </Wrapper>
 
       {/* Styleguide */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Styleguide: Farben und Typografie</HighlightText>
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Styleguide: Farben und Typografie
         </Typography>
-        <Typography variant="body">
+        <Typography color="primary.main">
           Der <HighlightText>Styleguide</HighlightText> von KIM sichert die
           konsistente Anwendung von Farben und Typografie. Die Farbpalette und
           Schriftarten wurden sorgfältig ausgewählt, um eine{' '}
-          <strong>emotionale</strong> und{' '}
-          <strong>moderne Nutzererfahrung</strong> zu schaffen.
+          <HighlightText>emotionale</HighlightText> und{' '}
+          <HighlightText>moderne Nutzererfahrung</HighlightText> zu schaffen.
         </Typography>
         <MediaDisplay media={[media[1]]} layout="grid" />
       </Wrapper>

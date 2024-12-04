@@ -2,23 +2,25 @@ import React from 'react';
 import Wrapper from '../components/layout/Wrapper';
 import Typography from '../components/common/Typography';
 import ListComponent from '../components/data-display/ListComponent';
+import HighlightText from '../components/utilities/HighlightText';
 
 export default function ReflectionPage() {
   const challenges = [
     {
       content: (
         <>
-          🧠 <strong>Emotionalität vs. Funktionalität:</strong> Eine Plattform
-          zu schaffen, die beides vereint und dennoch zugänglich bleibt.
+          🧠 <HighlightText>Emotionalität vs. Funktionalität:</HighlightText>{' '}
+          Eine Plattform zu schaffen, die beides vereint und dennoch zugänglich
+          bleibt.
         </>
       ),
     },
     {
       content: (
         <>
-          🎨 <strong>Design mit Seele:</strong> Nutzern eine emotionale
-          Verbindung zu bieten und gleichzeitig klare Interaktionen zu
-          gewährleisten.
+          🎨 <HighlightText>Design mit Seele:</HighlightText> Nutzern eine
+          emotionale Verbindung zu bieten und gleichzeitig klare Interaktionen
+          zu gewährleisten.
         </>
       ),
     },
@@ -28,17 +30,18 @@ export default function ReflectionPage() {
     {
       content: (
         <>
-          🔄 <strong>Iterative Prozesse:</strong> Nutzerfeedback zeigt den Weg
-          zu echten Lösungen, wenn man bereit ist, Anpassungen vorzunehmen.
+          🔄 <HighlightText>Iterative Prozesse:</HighlightText> Nutzerfeedback
+          zeigt den Weg zu echten Lösungen, wenn man bereit ist, Anpassungen
+          vorzunehmen.
         </>
       ),
     },
     {
       content: (
         <>
-          🎯 <strong>Flexibilität im Design:</strong> Nutzerbedürfnisse
-          erfordern Offenheit für Änderungen – ein entscheidender Faktor für den
-          Erfolg.
+          🎯 <HighlightText>Flexibilität im Design:</HighlightText>{' '}
+          Nutzerbedürfnisse erfordern Offenheit für Änderungen – ein
+          entscheidender Faktor für den Erfolg.
         </>
       ),
     },
@@ -48,36 +51,40 @@ export default function ReflectionPage() {
     {
       content: (
         <>
-          🌍 <strong>Globale Skalierbarkeit:</strong> KIM könnte eine Plattform
-          für tiefere Verbindungen weltweit werden.
+          🌍 <HighlightText>Globale Skalierbarkeit:</HighlightText> KIM könnte
+          eine Plattform für tiefere Verbindungen weltweit werden.
         </>
       ),
     },
     {
       content: (
         <>
-          🌟 <strong>Brückenbauer für reale Treffen:</strong> KIM könnte
-          langfristig Beziehungen auch offline fördern.
+          🌟 <HighlightText>Brückenbauer für reale Treffen:</HighlightText> KIM
+          könnte langfristig Beziehungen auch offline fördern.
         </>
       ),
     },
   ];
 
   return (
-    <Wrapper backgroundColor="background.light" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" padding="large" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
-        <Typography variant="h1">Reflexion und Learnings</Typography>
-        <Typography variant="h3">
+      <Wrapper gradient="primaryToSecondary" padding="large">
+        <Typography variant="h1" align="center" color="neutral.white">
+          Reflexion und Learnings
+        </Typography>
+        <Typography variant="h3" color="neutral.white" align="center">
           Ein Blick zurück und nach vorne: Herausforderungen, Learnings und
           Visionen.
         </Typography>
       </Wrapper>
 
       {/* Herausforderungen */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">Herausforderungen</Typography>
-        <Typography variant="body">
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Herausforderungen
+        </Typography>
+        <Typography color="primary.main">
           Während der Entwicklung von KIM gab es zentrale Herausforderungen, die
           uns besonders gefordert haben:
         </Typography>
@@ -85,9 +92,11 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Learnings */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">Learnings</Typography>
-        <Typography variant="body">
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Learnings
+        </Typography>
+        <Typography color="primary.main">
           Diese Erfahrungen gehen über KIM hinaus und zeigen, wie Designprozesse
           verbessert werden können:
         </Typography>
@@ -95,9 +104,11 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Verbesserungen */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">Was wir anders machen würden</Typography>
-        <Typography variant="body">
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Was wir anders machen würden
+        </Typography>
+        <Typography color="primary.main">
           Mit mehr Zeit hätten wir die Usability-Tests früher integriert und
           KIM’s KI-Funktionen umfassender validiert, um die User Experience
           weiter zu optimieren.
@@ -105,9 +116,11 @@ export default function ReflectionPage() {
       </Wrapper>
 
       {/* Zukunftsaussichten */}
-      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
-        <Typography variant="h2">Zukunftsaussichten</Typography>
-        <Typography variant="body">
+      <Wrapper gradient="primaryToSecondary" padding="large">
+        <Typography variant="h2" align="center" color="neutral.white">
+          Zukunftsaussichten
+        </Typography>
+        <Typography variant="body" color="neutral.white" align="center">
           Langfristig sehen wir KIM als innovative Plattform, die digitale und
           reale Verbindungen nachhaltig stärkt:
         </Typography>

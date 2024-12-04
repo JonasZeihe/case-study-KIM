@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useSwipeable } from 'react-swipeable';
 
-// Keyframes für Animationen
+// Keyframes for Animation
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -121,6 +122,11 @@ function Lightbox({ media, currentIndex = 0, onClose }) {
     }
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => navigate(1),
+    onSwipedRight: () => navigate(-1),
+  });
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -141,7 +147,12 @@ function Lightbox({ media, currentIndex = 0, onClose }) {
   const activeMedia = media[activeIndex];
 
   return ReactDOM.createPortal(
-    <Overlay onClick={onClose} aria-modal="true" role="dialog">
+    <Overlay
+      {...swipeHandlers}
+      aria-modal="true"
+      role="dialog"
+      onClick={onClose}
+    >
       <ContentWrapper onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} aria-label="Close Lightbox">
           <FaTimes size={20} />

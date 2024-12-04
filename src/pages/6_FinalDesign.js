@@ -73,29 +73,34 @@ export default function FinalDesignPage() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.light" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" padding="large" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
-        <Typography variant="h1">Finale Lösung und Design</Typography>
-        <Typography variant="h3">
+      <Wrapper gradient="primaryToSecondary" padding="large">
+        <Typography variant="h1" align="center" color="neutral.white">
+          Finale Lösung und Design
+        </Typography>
+        <Typography variant="h3" color="neutral.white" align="center">
           Einblicke in die Hauptfeatures und das finale visuelle Konzept von
           KIM.
         </Typography>
       </Wrapper>
 
       {/* Hauptfeatures */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">Hauptfeatures</Typography>
-        <Typography variant="body">
-          Die Hauptfeatures von KIM kombinieren Technologie, emotionales Design
-          und Interaktionen für tiefere Verbindungen.
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Hauptfeatures
+        </Typography>
+        <Typography color="primary.main">
+          Die Hauptfeatures von KIM kombinieren Technologie,{' '}
+          <HighlightText>emotionales Design</HighlightText> und Interaktionen
+          für tiefere Verbindungen.
         </Typography>
         <ListComponent items={features} variant="highlighted" />
       </Wrapper>
 
       {/* App Screens */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2" textAlign="center">
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main" textAlign="center">
           Finale App-Screens
         </Typography>
         <Carousel slides={media} autoplay interval={5000} />

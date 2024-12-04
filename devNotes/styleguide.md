@@ -1,3 +1,5 @@
+### **Styleguide für das App-Design**
+
 ---
 
 ### **Farbpalette für das App-Design**
@@ -57,10 +59,24 @@
 
 Aus dem Bild übernommen:
 
-- **Headline 1**: *Futura, bold, 26*
-- **Headline 2**: *Futura, medium, 20*
-- **Button Text**: *Futura, medium, 16*
-- **Body Text**: *Helvetica Neue, bold, 16*
-- **Detail Text**: *Helvetica Neue, medium, 14*
+- **Headline 1**: _Futura, bold, 26_
+- **Headline 2**: _Futura, medium, 20_
+- **Button Text**: _Futura, medium, 16_
+- **Body Text**: _Helvetica Neue, bold, 16_
+- **Detail Text**: _Helvetica Neue, medium, 14_
 
 ---
+
+### **Spacings**
+
+- **8px Spacing**: Wird für kleine Abstände zwischen Elementen verwendet, z. B. zwischen Texten oder Symbolen.
+- **16px Spacing**: Standardabstand zwischen zusammengehörigen Komponenten, z. B. zwischen einer Überschrift und ihrem zugehörigen Inhalt.
+- **24px Spacing**: Größerer Abstand zwischen verschiedenen Sektionen, um visuelle Hierarchie zu erzeugen.
+- **32px Spacing**: Hauptabstand zwischen großen Blöcken oder Elementen, die klar voneinander getrennt sein sollen.
+
+### **Spacing-Anwendung**
+
+- **Zwischen Überschriften und Inhalten**: 16px.
+- **Innerhalb von Karten oder Blöcken**: 8px.
+- **Zwischen verschiedenen Kategorien oder Sektionen**: 24px oder 32px, abhängig von der visuellen Priorität.
+- **Ränder des Bildschirms**: 16px.

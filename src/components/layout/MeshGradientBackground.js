@@ -29,7 +29,7 @@ const GradientLayer1 = styled.div`
   height: 150%;
   top: -10%;
   left: -10%;
-  background: ${({ theme }) => theme.gradients.primaryToSecondary};
+  background: ${({ theme }) => theme.gradients.neutralSoft};
   filter: blur(120px);
   opacity: 1.7;
   z-index: 1;
@@ -42,7 +42,7 @@ const GradientLayer2 = styled.div`
   height: 170%;
   bottom: -20%;
   right: -20%;
-  background: ${({ theme }) => theme.gradients.accentBright};
+  background: ${({ theme }) => theme.gradients.neutralSoft};
   filter: blur(150px);
   opacity: 2.4;
   z-index: 3;

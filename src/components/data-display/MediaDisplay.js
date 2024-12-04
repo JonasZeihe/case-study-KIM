@@ -9,7 +9,8 @@ const MediaGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: ${({ theme }) => theme.spacing(3)};
   justify-content: center;
-  margin: 0 auto;
+  margin: ${({ theme }) => theme.spacing(4)} auto; /* Added spacing above and below */
+  width: 100%; /* Ensures the grid spans the Wrapper */
 `;
 
 const MediaItem = styled.button`
@@ -24,7 +25,7 @@ const MediaItem = styled.button`
     box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px); /* Enhanced hover effect */
     box-shadow: ${({ theme }) => theme.boxShadow.medium};
   }
 
@@ -38,7 +39,7 @@ const MediaItem = styled.button`
 `;
 
 const MediaCaption = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(2)};
+  margin-top: ${({ theme }) => theme.spacing(3)};
   text-align: center;
   font-size: ${({ theme }) => theme.typography.fontSize.small};
   color: ${({ theme }) => theme.colors.neutral.medium};
@@ -76,7 +77,7 @@ export default function MediaDisplay({ media }) {
                     kind="captions"
                     srcLang={trackLang || 'en'}
                     label={trackLang ? `${trackLang} subtitles` : 'English'}
-                    default={!trackSrc} // Markiere den Dummy-Track als Standard
+                    default={!trackSrc}
                   />
                   Your browser does not support this video format.
                 </video>

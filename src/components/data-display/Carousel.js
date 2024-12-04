@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useSwipeable } from 'react-swipeable';
 import Lightbox from '../common/Lightbox';
 import Button from '../common/Button';
@@ -28,8 +27,9 @@ const Slide = styled.div`
   align-items: center;
 
   img {
-    max-width: 100%;
-    max-height: ${({ theme }) => (theme?.breakpoints?.md ? '400px' : '80vh')};
+    width: 100%;
+    max-height: 80vh;
+    object-fit: cover;
     border-radius: ${({ theme }) => theme?.borderRadius?.medium || '8px'};
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -47,6 +47,11 @@ const Controls = styled.div`
   justify-content: space-between;
   width: 100%;
   transform: translateY(-50%);
+  z-index: 10;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none; /* Hide controls for mobile views */
+  }
 `;
 
 const Dot = styled.button`
@@ -115,7 +120,7 @@ function Carousel({ slides }) {
             onClick={() => navigate(-1)}
             aria-label="Previous Slide"
           >
-            <FaChevronLeft />
+            {'<'}
           </Button>
           <Button
             type="button"
@@ -124,7 +129,7 @@ function Carousel({ slides }) {
             onClick={() => navigate(1)}
             aria-label="Next Slide"
           >
-            <FaChevronRight />
+            {'>'}
           </Button>
         </Controls>
         <Dots>

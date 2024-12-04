@@ -429,3 +429,99 @@ Header und solche Komponenten wurde noch nicht entzerrt- da ist noch Luft nach o
 Au weia jetzt kommen die ganzen Design Baustellen, also Headlines für jede Page müssen einen Gradient bekommen aber subheadline oder Headline müssen dann doch noch aufgewertet werden
 
 Ich lass erstmal gut sein
+
+## 20241201 1233
+
+Refactoring abgeschlossen und alles optimiert, daraufhin habe ich erneut ein transkript aufgenommen und jetzt gehts hier weiter:
+
+### **Zusammenfassung der Optimierungspunkte aus deinem Transkript:**
+
+#### **1. Typografie und Design**
+
+- **Schriftgröße:** Headlines (H2, H3) und Body-Text sind aktuell zu klein. Sie müssen für bessere Lesbarkeit angepasst werden.
+- **Farben der Headlines:** Orange H2-Titel sind nicht konsistent und wirken nicht optimal.
+- **Kontrast & Farbpalette:** Das Design ist zu dunkel. Wir heben es auf, ohne den Kontrast zu verlieren und bleiben in der Palette des Styleguides.
+- **Typografiekonsistenz:** Strong-Elemente, HighlightText und andere Textformatierungen sollen in allen List- und Quote-Elementen vereinheitlicht werden.
+
+#### **2. Spacing & Layout**
+
+- **MediaDisplay:** Der Text unter MediaDisplay darf nicht "kleben". Der Wrapper soll Spacing zwischen Text und Medien einfügen.
+- **Wrapper-Breite:** MediaDisplay darf den Wrapper ausfüllen, um visuell harmonischer zu wirken.
+- **Carousel:** Eng verschachteltes Layout auflockern. Mobile-Ansicht ohne unnötige Buttons (links/rechts).
+
+#### **3. Funktionalität**
+
+- **Lightbox/Carousel in Mobile:**
+  - Pinch-Zoom anstelle von "Rein-Tippen".
+  - Wischgesten für Navigation.
+- **Navigation & Zitate:** Die QuoteComponent sollte verstärkt für Interview-Zitate und Insights verwendet werden, nicht in ListComponent.
+
+---
+
+### **Mein Plan für die Umsetzung**
+
+#### **Typografie & Layout**
+
+1. **Wrapper-Komponente anpassen:**
+   - Mehr Default-Spacing für `padding` und `gap` zwischen den Sektionen.
+   - Spacing-Regeln zwischen MediaDisplay und Text automatisieren.
+2. **Typografie-Updates:**
+   - Dynamische Schriftgrößen für bessere Lesbarkeit.
+   - Konsistente Farben basierend auf der Styleguide-Palette.
+
+#### **Media & Carousel**
+
+3. **Lightbox in Mobile optimieren:**
+   - Pinch-to-Zoom.
+   - Wischgesten-Navigation implementieren.
+4. **Carousel-Ansicht:**
+   - Entferne Navigations-Buttons in Mobile.
+   - Padding um das Carousel auflockern.
+
+#### **Color Refinement**
+
+5. **Farben auffrischen:**
+   - Verwendung der Primär- und Sekundärfarben aus dem Styleguide.
+   - Dunkle Abschnitte aufhellen und Kontrast wahren.
+
+#### **Refactoring von QuoteComponent**
+
+6. QuoteComponent als Default für Zitate und Insights verwenden, nicht ListComponent.
+
+---
+
+### Nächste Schritte
+
+1. Lade die komplette Codebase hoch, damit ich alle Änderungen integrieren kann.
+2. Ich werde jede Seite einzeln überarbeiten, basierend auf den oben genannten Punkten und deinem Feedback.
+3. Die AppScreens nutze ich zur Verfeinerung des Layouts und um sicherzustellen, dass Design und Funktionalität miteinander harmonieren.
+
+## 20241203 0031
+
+Viel ist passiert- aber nicht genug
+
+Layout und Styling müssen überarbeitet werden
+
+Kaskadierung fehlerhaft
+
+Styleguide ist nicht konform und muss mehr integriert werden
+
+H1 bricht aus
+
+Lightbox immer noch falsch
+
+Carousel immer noch falsch buttons und swipe gesten nicht richtig
+
+Grundlegendes light design falsch
+
+Wir machen als nächstes verbessertes theme
+
+mit light und dark mode aufbauend auf farbpalette und styleguide
+
+mit switcher toggle
+
+Nachwievor List nicht konsistent eingebaut in den pages mit highlight text und strong elementen
+
+Quote ist nicht responsive- mobile sieht es gut aus aber desktop ist viel zu breit
+
+Hab noch gerade in introduction rumgespielt- typography js ist fehlerhaft- Farbe und alles wird nicht richtig übernommen

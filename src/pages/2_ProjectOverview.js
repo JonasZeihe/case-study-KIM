@@ -11,11 +11,30 @@ import projectOverviewImage from '../assets/images/project_overview.png';
 
 export default function ProjectOverview() {
   const methodsAndTools = [
-    { content: '🎨 Figma & FigJam: Prototyping, Wireframes und Moodboards' },
-    { content: '📋 Notion: Projektmanagement und zentrale Dokumentation' },
     {
-      content:
-        '🔬 Methoden: Desk Research, User Interviews, quantitative Umfragen, Personas, User Journey Maps, Wireframing, Prototyping, iteratives Testing',
+      content: (
+        <>
+          🎨 <HighlightText>Figma & FigJam:</HighlightText> Prototyping,
+          Wireframes und Moodboards
+        </>
+      ),
+    },
+    {
+      content: (
+        <>
+          📋 <HighlightText>Notion:</HighlightText> Projektmanagement und
+          zentrale Dokumentation
+        </>
+      ),
+    },
+    {
+      content: (
+        <>
+          🔬 <HighlightText>Methoden:</HighlightText> Desk Research, User
+          Interviews, quantitative Umfragen, Personas, User Journey Maps,
+          Wireframing, Prototyping, iteratives Testing
+        </>
+      ),
     },
   ];
 
@@ -28,65 +47,68 @@ export default function ProjectOverview() {
   ];
 
   return (
-    <Wrapper backgroundColor="background.light" padding="large" elevated>
+    <Wrapper backgroundColor="background.dark" padding="large" elevated>
       {/* Header Section */}
-      <Wrapper gradient="primaryToSecondary" padding="large" textAlign="center">
-        <Typography variant="h1">Projektüberblick</Typography>
-        <Typography variant="h3">
-          Ein tiefer Einblick in das Projekt, das Verbindungen neu definiert.
+      <Wrapper gradient="primaryToSecondary" padding="large">
+        <Typography variant="h1" align="center" color="neutral.white">
+          Projektüberblick
+        </Typography>
+        <Typography variant="h3" color="neutral.white" align="center">
+          Ein tiefer Einblick in das, was Verbindungen neu definiert.
         </Typography>
       </Wrapper>
 
       {/* Produktbeschreibung Section */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Produktbeschreibung</HighlightText>
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Produktbeschreibung
         </Typography>
-        <Typography variant="body">
-          <strong>KIM</strong> ist mehr als nur eine Plattform. Sie dient als{' '}
-          <HighlightText>Brücke zwischen Menschen</HighlightText>, die auf der
-          Suche nach echten Verbindungen sind. Basierend auf{' '}
+        <Typography color="primary.main">
+          <HighlightText>KIM</HighlightText> ist mehr als nur eine Plattform.
+          Sie dient als <HighlightText>Brücke zwischen Menschen</HighlightText>,
+          die auf der Suche nach echten Verbindungen sind. Basierend auf{' '}
           <HighlightText>gemeinsamen Interessen, Zielen</HighlightText> und
           Persönlichkeiten, die durch KI ermittelt werden, bietet KIM einen
           neuen Ansatz für authentische Beziehungen.
         </Typography>
-        <MediaDisplay media={mediaContent} layout="grid" />
+        <MediaDisplay media={mediaContent} />
       </Wrapper>
 
       {/* Team & Rollen Section */}
-      <Wrapper backgroundColor="background.dark" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Team & Rollen</HighlightText>
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Team & Rollen
         </Typography>
-        <Typography variant="body">
-          Unser Team besteht aus <strong>Darya, Isabel und Jonas</strong>, die
-          als <HighlightText>UX/UI-Designer</HighlightText> im{' '}
+        <Typography color="primary.main">
+          Unser Team besteht aus{' '}
+          <HighlightText>Darya, Isabel und Jonas</HighlightText>, die als{' '}
+          <HighlightText>UX/UI-Designer</HighlightText> im{' '}
           <HighlightText>„neue fische“ Bootcamp</HighlightText>{' '}
           zusammenarbeiteten. Ziel war es, eine durchdachte, nutzerzentrierte
           App zu entwickeln, die innovative Technologien einsetzt.
         </Typography>
-        <Typography variant="h3">Methoden & Tools</Typography>
+        <Typography variant="h2" color="primary.main">
+          Methoden & Tools
+        </Typography>
         <ListComponent items={methodsAndTools} variant="highlighted" />
       </Wrapper>
 
       {/* Problemstellung Section */}
-      <Wrapper backgroundColor="background.main" padding="large">
-        <Typography variant="h2">
-          <HighlightText>Problemstellung</HighlightText>
+      <Wrapper backgroundColor="neutral.white" padding="large">
+        <Typography variant="h2" color="primary.main">
+          Problemstellung
         </Typography>
-        <Typography variant="body">
+        <Typography color="primary.main">
           Die größte Herausforderung war es, eine Plattform zu entwickeln, die{' '}
           <HighlightText>
             tiefere, emotional fundierte Verbindungen
           </HighlightText>{' '}
           ermöglicht, anstatt nur oberflächliche Kontakte zu schaffen. Unsere
           Wettbewerbsanalyse zeigte, dass bestehende Netzwerke wie LinkedIn,
-          Facebook und XING oft eher „verbindend“ als „verstehend“ sind.
+          Facebook und XING oft eher{' '}
+          <HighlightText>„verbindend“ als „verstehend“</HighlightText> sind.
         </Typography>
-        <QuoteComponent
-          text="Verbindungen, die auf Verständnis basieren, statt nur auf Netzwerken."
-          author="KIM Vision Statement"
-        />
+        <QuoteComponent text="Verbindungen, die auf Verständnis basieren, statt nur auf Netzwerken." />
       </Wrapper>
     </Wrapper>
   );
