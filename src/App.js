@@ -13,7 +13,7 @@ import FinalDesign from './pages/6_FinalDesign';
 import Reflection from './pages/7_Reflection';
 
 const Main = styled.main`
-  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(4)};
+  padding: ${({ theme }) => theme.spacing(6)} ${({ theme }) => theme.spacing(1)};
   max-width: ${({ theme }) => theme.breakpoints.xl};
   margin: 0 auto;
 `;
@@ -51,6 +51,5 @@ export default function App() {
 }
 
 const Section = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(8)};
   scroll-margin-top: 80px; /* Verhindert, dass der Header den Inhalt überlappt */
 `;
