@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/case-study-KIM/static/js/main.5a461a77.js",
+    "main.js": "/case-study-KIM/static/js/main.6da1727d.js",
     "static/media/persona_tom.png": "/case-study-KIM/static/media/persona_tom.e7306e04d02b919ea132.png",
     "static/media/competitor_analysis.png": "/case-study-KIM/static/media/competitor_analysis.9ea876a60c4956b7f2a7.png",
     "static/media/project_overview.png": "/case-study-KIM/static/media/project_overview.f79e50bace46e7e1bb36.png",
@@ -27,9 +27,9 @@
     "static/media/user_story_tom.png": "/case-study-KIM/static/media/user_story_tom.b41db72965130367510b.png",
     "static/media/KIM_logo_large.png": "/case-study-KIM/static/media/KIM_logo_large.b44e824ceb9e2b33f2e5.png",
     "index.html": "/case-study-KIM/index.html",
-    "main.5a461a77.js.map": "/case-study-KIM/static/js/main.5a461a77.js.map"
+    "main.6da1727d.js.map": "/case-study-KIM/static/js/main.6da1727d.js.map"
   },
   "entrypoints": [
-    "static/js/main.5a461a77.js"
+    "static/js/main.6da1727d.js"
   ]
 }
