@@ -19,8 +19,6 @@ export default function Introduction() {
 
   return (
     <Wrapper backgroundColor="background.dark">
-      <MediaDisplay media={mediaContent} layout="grid" />
-
       <Wrapper gradient="primaryToSecondary" textAlign="center">
         <Typography variant="h1" align="center" color="neutral.white">
           Case Study: <strong>KIM</strong>
@@ -31,6 +29,7 @@ export default function Introduction() {
           auf ihren Interessen und Werten tiefgehende Verbindungen zu schaffen.
         </Typography>{' '}
       </Wrapper>
+      <MediaDisplay media={mediaContent} layout="grid" />
 
       <Wrapper backgroundColor="neutral.white">
         <Typography variant="h2" color="primary.main">

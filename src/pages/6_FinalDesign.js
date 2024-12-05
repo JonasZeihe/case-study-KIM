@@ -4,6 +4,7 @@ import Carousel from '../components/data-display/Carousel';
 import Typography from '../styles/Typography';
 import ListComponent from '../components/data-display/ListComponent';
 import HighlightText from '../components/utilities/HighlightText';
+import MediaDisplay from '../components/data-display/MediaDisplay';
 
 // Assets
 import appScreen1 from '../assets/images/appscreens/final_app_screens_1.png';
@@ -17,6 +18,7 @@ import appScreen8 from '../assets/images/appscreens/final_app_screens_8.png';
 import appScreen9 from '../assets/images/appscreens/final_app_screens_9.png';
 import appScreen10 from '../assets/images/appscreens/final_app_screens_10.png';
 import appScreen11 from '../assets/images/appscreens/final_app_screens_11.png';
+import finalVideo from '../assets/videos/FinalesVideo.mp4';
 
 export default function FinalDesignPage() {
   const media = [
@@ -31,6 +33,14 @@ export default function FinalDesignPage() {
     { type: 'image', src: appScreen9, alt: 'App Screen 9' },
     { type: 'image', src: appScreen10, alt: 'App Screen 10' },
     { type: 'image', src: appScreen11, alt: 'App Screen 11' },
+  ];
+
+  const videoMedia = [
+    {
+      type: 'video',
+      src: finalVideo,
+      alt: 'Finales Video',
+    },
   ];
 
   const features = [
@@ -114,6 +124,17 @@ export default function FinalDesignPage() {
           Icebreaker-Funktion, das Dashboard und vieles mehr.
         </Typography>
         <Carousel slides={media} autoplay interval={5000} />
+      </Wrapper>
+
+      {/* Final Video */}
+      <Wrapper backgroundColor="neutral.white">
+        <Typography variant="h2" color="primary.main" textAlign="center">
+          Finales Video
+        </Typography>
+        <Typography color="primary.main" align="center">
+          Ein kurzer Einblick in die finale Version von KIM.
+        </Typography>
+        <MediaDisplay media={videoMedia} />
       </Wrapper>
     </Wrapper>
   );
