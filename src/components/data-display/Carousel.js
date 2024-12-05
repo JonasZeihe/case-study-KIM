@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useSwipeable } from 'react-swipeable';
-import Lightbox from '../common/Lightbox';
+import Lightbox from '../lightbox/Lightbox';
 import Button from '../common/Button';
 
 // Styled Components

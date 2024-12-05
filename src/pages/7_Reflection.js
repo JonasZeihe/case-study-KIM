@@ -10,17 +10,18 @@ export default function ReflectionPage() {
       content: (
         <>
           🧠 <HighlightText>Emotionalität vs. Funktionalität:</HighlightText>{' '}
-          Eine Plattform zu schaffen, die beides vereint und dennoch zugänglich
-          bleibt.
+          Die zentrale Herausforderung war, KIM mit einer „Seele“ zu versehen –
+          eine Plattform, die Nutzern ein Gefühl echter Verbindung bietet, ohne
+          an Funktionalität einzubüßen.
         </>
       ),
     },
     {
       content: (
         <>
-          🎨 <HighlightText>Design mit Seele:</HighlightText> Nutzern eine
-          emotionale Verbindung zu bieten und gleichzeitig klare Interaktionen
-          zu gewährleisten.
+          🎨 <HighlightText>Design mit Tiefe:</HighlightText> Nutzern eine
+          emotionale Verbindung zu bieten und gleichzeitig intuitive und klare
+          Interaktionen zu gewährleisten.
         </>
       ),
     },
@@ -30,9 +31,9 @@ export default function ReflectionPage() {
     {
       content: (
         <>
-          🔄 <HighlightText>Iterative Prozesse:</HighlightText> Nutzerfeedback
-          zeigt den Weg zu echten Lösungen, wenn man bereit ist, Anpassungen
-          vorzunehmen.
+          🔄 <HighlightText>Iterative Prozesse:</HighlightText> Der iterative
+          Ansatz, gepaart mit psychologischem Storytelling, half uns dabei, KIM
+          zu etwas zu machen, das Vertrauen und emotionale Tiefe vermittelt.
         </>
       ),
     },
@@ -40,8 +41,8 @@ export default function ReflectionPage() {
       content: (
         <>
           🎯 <HighlightText>Flexibilität im Design:</HighlightText>{' '}
-          Nutzerbedürfnisse erfordern Offenheit für Änderungen – ein
-          entscheidender Faktor für den Erfolg.
+          Nutzerbedürfnisse erfordern Offenheit für Änderungen – die Balance
+          zwischen Funktionalität und Emotionalität war unser größtes Learning.
         </>
       ),
     },
@@ -51,8 +52,9 @@ export default function ReflectionPage() {
     {
       content: (
         <>
-          🌍 <HighlightText>Globale Skalierbarkeit:</HighlightText> KIM könnte
-          eine Plattform für tiefere Verbindungen weltweit werden.
+          🌍 <HighlightText>Globale Skalierbarkeit:</HighlightText> Langfristig
+          könnte KIM zu einer Plattform für tiefere Verbindungen weltweit
+          werden.
         </>
       ),
     },
@@ -60,67 +62,62 @@ export default function ReflectionPage() {
       content: (
         <>
           🌟 <HighlightText>Brückenbauer für reale Treffen:</HighlightText> KIM
-          könnte langfristig Beziehungen auch offline fördern.
+          könnte Beziehungen nicht nur digital, sondern auch durch reale Treffen
+          und Erlebnisse nachhaltig fördern.
         </>
       ),
     },
   ];
 
   return (
-    <Wrapper backgroundColor="background.dark" elevated>
+    <Wrapper backgroundColor="background.dark" padding="large" elevated>
       {/* Header */}
-      <Wrapper gradient="primaryToSecondary">
+      <Wrapper gradient="primaryToSecondary" padding="large">
         <Typography variant="h1" align="center" color="neutral.white">
           Reflexion und Learnings
         </Typography>
-        <Typography variant="h3" color="neutral.white" align="center">
-          Ein Blick zurück und nach vorne: Herausforderungen, Learnings und
-          Visionen.
+        <Typography variant="h3" align="center" color="neutral.white">
+          Rückblick, Herausforderungen und Visionen für die Zukunft.
         </Typography>
       </Wrapper>
 
       {/* Herausforderungen */}
-      <Wrapper backgroundColor="neutral.white">
+      <Wrapper backgroundColor="neutral.white" padding="large">
         <Typography variant="h2" color="primary.main">
           Herausforderungen
         </Typography>
         <Typography color="primary.main">
-          Während der Entwicklung von KIM gab es zentrale Herausforderungen, die
-          uns besonders gefordert haben:
+          Die Entwicklung von KIM war geprägt von der Suche nach der Balance
+          zwischen Funktionalität und Emotionalität:
         </Typography>
         <ListComponent items={challenges} variant="highlighted" />
       </Wrapper>
 
       {/* Learnings */}
-      <Wrapper backgroundColor="neutral.white">
+      <Wrapper backgroundColor="neutral.white" padding="large">
         <Typography variant="h2" color="primary.main">
           Learnings
         </Typography>
         <Typography color="primary.main">
-          Diese Erfahrungen gehen über KIM hinaus und zeigen, wie Designprozesse
-          verbessert werden können:
+          Während des Designprozesses konnten wir zentrale Erkenntnisse
+          gewinnen:
         </Typography>
         <ListComponent items={learnings} variant="highlighted" />
-      </Wrapper>
 
-      {/* Verbesserungen */}
-      <Wrapper backgroundColor="neutral.white">
-        <Typography variant="h2" color="primary.main">
-          Was wir anders machen würden
-        </Typography>
         <Typography color="primary.main">
-          Mit mehr Zeit hätten wir die Usability-Tests früher integriert und
-          KIM’s KI-Funktionen umfassender validiert, um die User Experience
-          weiter zu optimieren.
+          Mit mehr Zeit hätten wir die Usability-Tests früher integriert, um
+          KIMs KI-Funktionen umfassender zu validieren und die User Experience
+          noch präziser zu gestalten. Ein stärkerer Fokus auf Tests im frühen
+          Entwicklungsstadium hätte weitere Einblicke ermöglichen können.
         </Typography>
       </Wrapper>
 
       {/* Zukunftsaussichten */}
-      <Wrapper gradient="primaryToSecondary">
+      <Wrapper gradient="primaryToSecondary" padding="large">
         <Typography variant="h2" align="center" color="neutral.white">
           Zukunftsaussichten
         </Typography>
-        <Typography variant="body" color="neutral.white" align="center">
+        <Typography variant="body" align="center" color="neutral.white">
           Langfristig sehen wir KIM als innovative Plattform, die digitale und
           reale Verbindungen nachhaltig stärkt:
         </Typography>

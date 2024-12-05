@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Lightbox from '../common/Lightbox';
+import Lightbox from '../lightbox/Lightbox';
 
 // Styled Components
 const MediaGrid = styled.div`
@@ -12,10 +12,10 @@ const MediaGrid = styled.div`
   width: 100%; /* Ensures the grid spans the Wrapper */
 `;
 
-const MediaItem = styled.button`
-  cursor: pointer;
+const MediaItem = styled.div`
+  cursor: ${({ isClickable }) => (isClickable ? 'pointer' : 'default')};
   border: none;
-  background: none;
+  background: ${({ theme }) => theme.colors.background.light};
   overflow: hidden;
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   box-shadow: ${({ theme }) => theme.boxShadow.light};
@@ -24,16 +24,23 @@ const MediaItem = styled.button`
     box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-5px); /* Enhanced hover effect */
-    box-shadow: ${({ theme }) => theme.boxShadow.medium};
+    transform: ${({ isClickable }) =>
+      isClickable ? 'translateY(-5px)' : 'none'};
+    box-shadow: ${({ theme, isClickable }) =>
+      isClickable ? theme.boxShadow.medium : theme.boxShadow.light};
   }
 
   img,
   video {
+    display: block; /* Ensures no extra space around media */
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%; /* Ensures the media fills the container */
+    object-fit: cover; /* Crops if necessary to maintain aspect ratio */
     border-radius: ${({ theme }) => theme.borderRadius.medium};
+  }
+
+  video::-webkit-media-controls {
+    opacity: 1; /* Ensures video controls are always visible */
   }
 `;
 
@@ -49,8 +56,10 @@ export default function MediaDisplay({ media }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const openLightbox = (index) => {
-    setCurrentIndex(index);
-    setLightboxOpen(true);
+    if (media[index].type === 'image') {
+      setCurrentIndex(index);
+      setLightboxOpen(true);
+    }
   };
 
   const closeLightbox = () => setLightboxOpen(false);
@@ -59,9 +68,13 @@ export default function MediaDisplay({ media }) {
     <>
       <MediaGrid>
         {media.map(
-          ({ type, src, alt, caption, trackSrc, trackLang }, index) => (
+          (
+            { type, src, alt, caption, trackSrc = '', trackLang = 'en' },
+            index
+          ) => (
             <MediaItem
               key={src}
+              isClickable={type === 'image'}
               onClick={() => openLightbox(index)}
               aria-label={`Open ${type === 'image' ? 'image' : 'video'} ${alt || `Media ${index + 1}`}`}
             >
@@ -72,11 +85,11 @@ export default function MediaDisplay({ media }) {
                 <video controls aria-label={alt || `Video ${index + 1}`}>
                   <source src={src} type="video/mp4" />
                   <track
-                    src={trackSrc || ''}
+                    src={trackSrc}
                     kind="captions"
-                    srcLang={trackLang || 'en'}
-                    label={trackLang ? `${trackLang} subtitles` : 'English'}
-                    default={!trackSrc}
+                    srcLang={trackLang}
+                    label={`${trackLang} subtitles`}
+                    default
                   />
                   Your browser does not support this video format.
                 </video>
@@ -89,7 +102,7 @@ export default function MediaDisplay({ media }) {
 
       {lightboxOpen && (
         <Lightbox
-          media={media}
+          media={media.filter(({ type }) => type === 'image')} // Only show images in Lightbox
           currentIndex={currentIndex}
           onClose={closeLightbox}
         />
