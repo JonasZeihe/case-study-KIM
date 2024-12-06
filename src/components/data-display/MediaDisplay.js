@@ -8,14 +8,23 @@ const MediaGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: ${({ theme }) => theme.spacing(2)};
+  width: 100%;
   justify-content: center;
-  width: 100%; /* Ensures the grid spans the Wrapper */
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: ${({ theme }) => theme.spacing(1.5)};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: ${({ theme }) => theme.spacing(1)};
+  }
 `;
 
 const MediaItem = styled.div`
+  position: relative;
   cursor: ${({ isClickable }) => (isClickable ? 'pointer' : 'default')};
-  border: none;
-  background: ${({ theme }) => theme.colors.background.light};
   overflow: hidden;
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   box-shadow: ${({ theme }) => theme.boxShadow.light};
@@ -32,25 +41,54 @@ const MediaItem = styled.div`
 
   img,
   video {
-    display: block; /* Ensures no extra space around media */
+    display: block;
     width: 100%;
-    height: 100%; /* Ensures the media fills the container */
-    object-fit: cover; /* Crops if necessary to maintain aspect ratio */
+    height: 100%;
+    object-fit: cover;
     border-radius: ${({ theme }) => theme.borderRadius.medium};
   }
 
-  video::-webkit-media-controls {
-    opacity: 1; /* Ensures video controls are always visible */
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    &:hover {
+      transform: none;
+      box-shadow: ${({ theme }) => theme.boxShadow.light};
+    }
+
+    img,
+    video {
+      height: auto;
+    }
   }
 `;
 
 const MediaCaption = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(3)};
+  margin-top: ${({ theme }) => theme.spacing(2)};
   text-align: center;
   font-size: ${({ theme }) => theme.typography.fontSize.small};
   color: ${({ theme }) => theme.colors.neutral.medium};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.typography.fontSize.caption};
+  }
 `;
 
+const VideoWrapper = styled.div`
+  position: relative;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  width: 100%;
+  height: 0;
+
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
+// Component Definition
 export default function MediaDisplay({ media }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -82,17 +120,19 @@ export default function MediaDisplay({ media }) {
                 <img src={src} alt={alt || `Media ${index + 1}`} />
               )}
               {type === 'video' && (
-                <video controls aria-label={alt || `Video ${index + 1}`}>
-                  <source src={src} type="video/mp4" />
-                  <track
-                    src={trackSrc}
-                    kind="captions"
-                    srcLang={trackLang}
-                    label={`${trackLang} subtitles`}
-                    default
-                  />
-                  Your browser does not support this video format.
-                </video>
+                <VideoWrapper>
+                  <video controls aria-label={alt || `Video ${index + 1}`}>
+                    <source src={src} type="video/mp4" />
+                    <track
+                      src={trackSrc}
+                      kind="captions"
+                      srcLang={trackLang}
+                      label={`${trackLang} subtitles`}
+                      default
+                    />
+                    Your browser does not support this video format.
+                  </video>
+                </VideoWrapper>
               )}
               {caption && <MediaCaption>{caption}</MediaCaption>}
             </MediaItem>
@@ -118,8 +158,8 @@ MediaDisplay.propTypes = {
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
       caption: PropTypes.string,
-      trackSrc: PropTypes.string, // Optional: Pfad zu den Untertitel-Dateien
-      trackLang: PropTypes.string, // Optional: Sprache der Untertitel
+      trackSrc: PropTypes.string,
+      trackLang: PropTypes.string,
     })
   ).isRequired,
 };
