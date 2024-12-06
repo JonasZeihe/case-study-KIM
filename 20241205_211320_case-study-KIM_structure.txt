@@ -1,0 +1,108 @@
+case-study-KIM/
+├── .gitignore
+├── .git/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── build/
+├── devNotes/
+│   ├── analyse.md
+│   ├── devlog.md
+│   ├── RAWcaseStudy.md
+│   ├── RAWstyleguide.md
+│   ├── styleguide_I.md
+│   └── styleguide_II.md
+├── node_modules/
+├── public/
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── src/
+│   ├── assets/
+│   │   ├── images/
+│   │   │   ├── appscreens/
+│   │   │   │   ├── final_app_screens_1.png
+│   │   │   │   ├── final_app_screens_10.png
+│   │   │   │   ├── final_app_screens_11.png
+│   │   │   │   ├── final_app_screens_2.png
+│   │   │   │   ├── final_app_screens_3.png
+│   │   │   │   ├── final_app_screens_4.png
+│   │   │   │   ├── final_app_screens_5.png
+│   │   │   │   ├── final_app_screens_6.png
+│   │   │   │   ├── final_app_screens_7.png
+│   │   │   │   ├── final_app_screens_8.png
+│   │   │   │   └── final_app_screens_9.png
+│   │   │   ├── competitor_analysis.png
+│   │   │   ├── conceptual_insights.png
+│   │   │   ├── hero_kim_chat_screen.png
+│   │   │   ├── information_architecture_diagram.png
+│   │   │   ├── interview_quotes.png
+│   │   │   ├── key_findings_diagram.png
+│   │   │   ├── KIM_logo_large.png
+│   │   │   ├── KIM_logo_small.png
+│   │   │   ├── persona_tom.png
+│   │   │   ├── project_overview.png
+│   │   │   ├── styleguide_colors_typography.png
+│   │   │   ├── user_flow.png
+│   │   │   ├── user_journey_map.png
+│   │   │   ├── user_research_insights.png
+│   │   │   ├── user_story_tom.png
+│   │   │   └── wireframes_mid_fidelity.png
+│   │   └── videos/
+│   │       └── FinalesVideo.mp4
+│   ├── components/
+│   │   ├── common/
+│   │   │   └── Button.js
+│   │   ├── data-display/
+│   │   │   ├── Carousel.js
+│   │   │   ├── ListComponent.js
+│   │   │   └── MediaDisplay.js
+│   │   ├── layout/
+│   │   │   ├── Footer.js
+│   │   │   ├── Header.js
+│   │   │   ├── MeshGradientBackground.js
+│   │   │   └── Wrapper.js
+│   │   ├── lightbox/
+│   │   │   ├── Lightbox.js
+│   │   │   ├── Navigation.js
+│   │   │   └── scale.js
+│   │   ├── sections/
+│   │   │   └── QuoteComponent.js
+│   │   └── utilities/
+│   │       ├── HighlightText.js
+│   │       └── SmoothScroller.js
+│   ├── pages/
+│   │   ├── 1_Introduction.js
+│   │   ├── 2_ProjectOverview.js
+│   │   ├── 3_Research.js
+│   │   ├── 4_Architecture.js
+│   │   ├── 5_UXProcess.js
+│   │   ├── 6_FinalDesign.js
+│   │   └── 7_Reflection.js
+│   ├── styles/
+│   │   ├── GlobalStyles.js
+│   │   ├── Gradient.js
+│   │   ├── theme.js
+│   │   └── Typography.js
+│   ├── App.css
+│   ├── App.js
+│   ├── App.test.js
+│   ├── index.css
+│   ├── index.js
+│   ├── logo.svg
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+├── .eslintrc.json
+├── .gitignore
+├── .prettierrc
+├── .stylelintrc.json
+├── case-study-KIM.code-workspace
+├── FuchsScript.bat
+├── package-lock.json
+├── package.json
+├── README.md
+├── run_React_App.bat
+└── skryper_2024-10-11_20-05-09 .exe

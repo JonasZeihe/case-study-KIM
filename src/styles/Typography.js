@@ -23,30 +23,47 @@ const StyledTypography = styled.span`
         font-weight: ${theme.typography.fontWeight.bold};
         line-height: ${theme.typography.lineHeight.tight};
         margin-bottom: ${theme.spacing(6)};
+        @media (max-width: ${theme.breakpoints.md}) {
+          font-size: ${theme.typography.fontSize.h2};
+          margin-bottom: ${theme.spacing(4)};
+        }
       `,
       h2: css`
         font-size: ${theme.typography.fontSize.h2};
         font-weight: ${theme.typography.fontWeight.bold};
         line-height: ${theme.typography.lineHeight.tight};
         margin-bottom: ${theme.spacing(5)};
+        @media (max-width: ${theme.breakpoints.md}) {
+          font-size: ${theme.typography.fontSize.h3};
+          margin-bottom: ${theme.spacing(3)};
+        }
       `,
       h3: css`
         font-size: ${theme.typography.fontSize.h3};
         font-weight: ${theme.typography.fontWeight.medium};
         line-height: ${theme.typography.lineHeight.normal};
         margin-bottom: ${theme.spacing(4)};
+        @media (max-width: ${theme.breakpoints.md}) {
+          font-size: ${theme.typography.fontSize.body};
+          margin-bottom: ${theme.spacing(2)};
+        }
       `,
       caption: css`
         font-size: ${theme.typography.fontSize.small};
         font-weight: ${theme.typography.fontWeight.light};
         line-height: ${theme.typography.lineHeight.tight};
         color: ${theme.colors.neutral.medium};
+        margin-bottom: ${theme.spacing(2)};
       `,
       body: css`
         font-size: ${theme.typography.fontSize.body};
         font-weight: ${theme.typography.fontWeight.regular};
         line-height: ${theme.typography.lineHeight.normal};
         margin-bottom: ${theme.spacing(3)};
+        @media (max-width: ${theme.breakpoints.md}) {
+          font-size: ${theme.typography.fontSize.small};
+          margin-bottom: ${theme.spacing(2)};
+        }
       `,
     };
 
